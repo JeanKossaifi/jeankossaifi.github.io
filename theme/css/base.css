@@ -3,8 +3,27 @@ body {
 }
 
 .main_content {
-	max-width: 800px;
+  position: relative;
 }
+
+@media screen and (min-width: 1000px) {
+  .main_content {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  .main_content.is-fluid {
+    margin: 0 20px;
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .main_content {
+    max-width: 1000px;
+  }
+}
+
+
 
 /*
 .nav { 
