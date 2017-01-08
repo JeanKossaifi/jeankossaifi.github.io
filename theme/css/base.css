@@ -4,6 +4,7 @@ body {
 
 .main_content {
   position: relative;
+  min-height: 60vh;
 }
 
 @media screen and (min-width: 1000px) {
@@ -23,7 +24,13 @@ body {
   }
 }
 
+.nav-title {
+	font-size: 2em;
+}
 
+.nav-tab {
+	font-size: 1.5em;
+}
 
 /*
 .nav { 
