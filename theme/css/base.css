@@ -87,6 +87,7 @@ footer {
 	display: block;
 }
 .input {
+	font-size: inherit;
 	border: 0!important;
 	display: table!important;
 	padding:0!important;
