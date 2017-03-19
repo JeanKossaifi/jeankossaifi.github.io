@@ -112,3 +112,11 @@ footer {
 .input_area {
 	max-width: calc(100vw - 4rem);
 }
+
+/* rst code related */
+.literal-block {
+	margin-bottom: 1.5em;
+}
+
+
+img.align-center { margin:auto; display:block; }
