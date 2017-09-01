@@ -1,9 +1,57 @@
 body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    background: whitesmoke;
     overflow: hidden!important;
 }
-
+@media screen and (max-width: 768px) {
+	table {
+		display: block;
+		overflow-x: auto;
+	}
+}
+.navbar-burger {
+	padding-left: 0.4em;
+}
+.twitter-timeline {
+	height: 100%!important;
+	margin-top: 3em!important;
+}
+.container {
+	width: 100%;
+}
+.title {
+	font-weight: normal;
+}
+.nav-title {
+	font-size: 2em;
+}
+.nav-menu {
+	font-size: 1.5em;
+}
+.content .section {                                                                                                                                                                                         
+	    padding: 0; /* prevent each new subsection to be smaller (especially horrible on mobiles where the sub-sub-section becomes a tiny column */
+}
+.content h1 {
+    padding-bottom: 0.5em;
+    padding-top: 0.4em;
+    font-size: 2.5rem;
+    overflow-wrap: break-word;
+}
+.content h2 {
+    padding-top: 1.75em;
+    overflow-wrap: break-word;
+}                                                                                                                                                                                                           
+.content h3 {
+    padding-top: 1.5em;
+    overflow-wrap: break-word;
+}
+.content h4 {
+    padding-top: 1.25em;
+    overflow-wrap: break-word;
+}
+.content h5 {
+    padding-top: 1em;
+    overflow-wrap: break-word;
+}
 @media screen and (min-width: 1000px) {
   .main_content {
     margin: 0 auto;
@@ -15,9 +63,12 @@ body {
   }
 }
 @media screen and (max-width: 768px) {
-  .MathJax_Display {
-	font-size: 0.8em;;
-  }
+    div.math {
+		font-size: 0.8em;
+  	}
+}
+div.math {
+	overflow: scroll;
 }
 @media screen and (min-width: 1192px) {
   .main-content {
@@ -26,20 +77,6 @@ body {
 }
 .main-section {
     min-height: calc(100vh - 20rem);
-}
-.top-nav {
-    height: 6rem;
-}
-.nav-title {
-	font-size: 2em;
-}
-.nav-tab {
-	font-size: 1.5em;
-}
-.nav-toggle {
-    height: 4rem;
-    width: 4rem;
-    margin: 1rem;
 }
 .footer a {
     margin: 0.2em;
@@ -92,14 +129,6 @@ footer {
 	display: table!important;
 	padding:0!important;
 }
-/*
-.nav { 
-	position: fixed !important;
-	top: 0;
-	left: 0;
-	right: 0; 
-}
-*/
 .posts {
     margin: 3em 0;
 }
@@ -118,6 +147,5 @@ footer {
 .literal-block {
 	margin-bottom: 1.5em;
 }
-
 
 img.align-center { margin:auto; display:block; }

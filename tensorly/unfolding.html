@@ -4,67 +4,69 @@
         <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="machine learning, computer vision, research">
-        <meta name="description" content="Jean Kossaifi: Machine Learning/Computer Vision">
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
+        <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
 
         <meta name="author" content="Jean Kossaifi">
-        <title>Tensor unfolding -- Jean Kossaifi -- Machine Learning/Computer Vision</title>
+        <title>Tensor unfolding - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
 
 
+		<script type="text/javascript" async
+		    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+		</script>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
         <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
         <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
 
     </head>
 
     <body>
-<section class="hero is-bold">
-    <div class="hero-head">
-        <div class="container">
-            <nav class="nav has-shadow top-nav">
-                <div class="container">
+<div class="container navigation-container">
+<nav class="navbar">
 
-                    <div class="nav-left">
-                        <a class="nav-item nav-title" href="https://jeankossaifi.github.io">
-                            Jean Kossaifi
-                        </a>
-                    </div>
+	<div class="navbar-brand">
+		<a class="navbar-item nav-title" href="https://jeankossaifi.github.io">
+			Jean Kossaifi
+		</a>
 
+		<span class="navbar-burger">
+			<span></span>
+			<span></span>
+			<span></span>
+			menu
+		</span>
 
-                    <span class="nav-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        menu
-                    </span>
+	</div>
 
-                    <div class="nav-right nav-menu">
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io">
-                            Home
-                        </a>
+	<div class="navbar-menu">
+		<div class="navbar-end">
+		</div>
 
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io/publications.html">
-                            Publications
-                        </a>
+		<div class="navbar-end nav-menu">
+			<a class="navbar-item" href="https://jeankossaifi.github.io">
+				Blog
+			</a>
 
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io/about.html">
-                            About me
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</section>
+			<a class="navbar-item" href="https://jeankossaifi.github.io/publications.html">
+				Publications
+			</a>
+
+			<a class="navbar-item" href="https://jeankossaifi.github.io/about.html">
+				About me
+			</a>
+		</div>
+	</div>
+
+</nav>
+</div>
+
 
 <script>
-// The following code is based off a toggle menu by @Bradcomp
-// source: https://gist.github.com/Bradcomp/a9ef2ef322a8e8017443b626208999c1
 (function() {
-    var burger = document.querySelector('.nav-toggle');
-    var menu = document.querySelector('.nav-menu');
+    var burger = document.querySelector('.navbar-burger');
+    var menu = document.querySelector('.navbar-menu');
     burger.addEventListener('click', function() {
         burger.classList.toggle('is-active');
         menu.classList.toggle('is-active');
@@ -90,14 +92,18 @@
         <nav class"level">
             <div class="tags level-right">
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/machine-learning.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
                     machine-learning
                 </a>
+				</span>
                 &thinsp;
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/tensorly.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
                     TensorLy
                 </a>
+				</span>
                 &thinsp;
             </div>
         </nav>
@@ -107,7 +113,7 @@
 
     <div="section blog">
         <div class="container">
-            <div class="content blog-post is-large">
+            <div class="content blog-post is-medium">
                 <p>It is hard, if not impossible, to produce good software in Machine Learning without touching both programming and mathematics. Implementation of tensor unfolding is a very good example of that.</p>
 <p>Tensor unfolding, or <strong>matrization</strong>, is a fundamental operation and a building block for most tensor methods. Considering a tensor as a multi-dimensional array, <strong>unfolding</strong> it consists of reading its element in such a way as to obtain a matrix instead of a tensor. mode-k unfolding is obtained by considering the <span class="math">\(k^{th}\)</span> mode as the first dimension of a matrix and collapsing the other into the other dimension of that matrix. For a tensor of size <span class="math">\((I_1, I_2, \cdots, I_n)\)</span>, the k-mode unfolding of this tensor will be of size <span class="math">\((I_k, I_1 \times \cdots \times I_{k-1} \times I_{k+1} \cdots \times I_n)\)</span>. There are different ways of doing this, differing by the order in which the dimensions are collapsed, and each definition impacts the mathematical properties and the performance.</p>
 <p>In TensorLy, to offer competitive speed, we had to depart from the traditional definition of <em>unfolding</em> to a formulation offering both better performance in NumPy <em>and</em> nice mathematical properties.</p>
@@ -533,63 +539,7 @@ done. Then we undo the transpose:</p>
 <p>By simply redifining the unfoding operator we were able to gain a significant speedup. Tensor unfolding is ubuquitous in multi-linear algebra, used in all kind of algorithms from higher order SVD to tensor regression and the speedup translates into faster algorithms. Not only that it also translates into nice mathematical properties and a natural implemenation in Python.</p>
 </div>
 </div>
-<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
 
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
             </div>
         </div>
     </div>

@@ -4,67 +4,69 @@
         <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="machine learning, computer vision, research">
-        <meta name="description" content="Jean Kossaifi: Machine Learning/Computer Vision">
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
+        <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
 
         <meta name="author" content="Jean Kossaifi">
-        <title>Publications -- Jean Kossaifi -- Machine Learning/Computer Vision</title>
+        <title>Jean Kossaifi's Home Page - Machine Learning & Computer Vision - Publications </title>
 
 
+		<script type="text/javascript" async
+		    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+		</script>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
         <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
         <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
 
     </head>
 
     <body>
-<section class="hero is-bold">
-    <div class="hero-head">
-        <div class="container">
-            <nav class="nav has-shadow top-nav">
-                <div class="container">
+<div class="container navigation-container">
+<nav class="navbar">
 
-                    <div class="nav-left">
-                        <a class="nav-item nav-title" href="https://jeankossaifi.github.io">
-                            Jean Kossaifi
-                        </a>
-                    </div>
+	<div class="navbar-brand">
+		<a class="navbar-item nav-title" href="https://jeankossaifi.github.io">
+			Jean Kossaifi
+		</a>
 
+		<span class="navbar-burger">
+			<span></span>
+			<span></span>
+			<span></span>
+			menu
+		</span>
 
-                    <span class="nav-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        menu
-                    </span>
+	</div>
 
-                    <div class="nav-right nav-menu">
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io">
-                            Home
-                        </a>
+	<div class="navbar-menu">
+		<div class="navbar-end">
+		</div>
 
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io/publications.html">
-                            Publications
-                        </a>
+		<div class="navbar-end nav-menu">
+			<a class="navbar-item" href="https://jeankossaifi.github.io">
+				Blog
+			</a>
 
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io/about.html">
-                            About me
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</section>
+			<a class="navbar-item" href="https://jeankossaifi.github.io/publications.html">
+				Publications
+			</a>
+
+			<a class="navbar-item" href="https://jeankossaifi.github.io/about.html">
+				About me
+			</a>
+		</div>
+	</div>
+
+</nav>
+</div>
+
 
 <script>
-// The following code is based off a toggle menu by @Bradcomp
-// source: https://gist.github.com/Bradcomp/a9ef2ef322a8e8017443b626208999c1
 (function() {
-    var burger = document.querySelector('.nav-toggle');
-    var menu = document.querySelector('.nav-menu');
+    var burger = document.querySelector('.navbar-burger');
+    var menu = document.querySelector('.navbar-menu');
     burger.addEventListener('click', function() {
         burger.classList.toggle('is-active');
         menu.classList.toggle('is-active');
@@ -187,44 +189,6 @@ function toggle_modal(id){
 		<div class="box">
 
 			<div class="content is-medium">
-				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Bi-directional Fitting of Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15), September 2015
-			</div>
-
-			<nav class="level is-mobile">
-
-				<div class="level-left is-mobile">
-					<p class="level-item">
-
-					<div class="modal" id="kossaifi_bidirectional_aam">
-						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></div>
-						<div class="modal-content">
-							<div class="box">
-								@inproceedings{kossaifi_bidirectional_aam,<br/> address = {Quebec City, QC, Canada},<br/> author = {J. Kossaifi and G. Tzimiropoulos and M. Pantic},<br/> booktitle = {Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15)},<br/> month = {September},<br/> pages = {1135--1139},<br/> title = {Fast and exact Bi-directional Fitting of Active Appearance Models},<br/> year = {2015}<br/>}<br/>
-
-							</div>
-						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></button>
-					</div>
-
-					<p class="level-item">
-					<a class="button" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');">
-						<span class='icon'>
-							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
-						</span> 
-						<span> Bibtex </span> 
-					</a> 
-					</p>
-
-					<p class="level-item">
-					<a class='button' onclick="window.open('/pdfs/kossaifi_bidirectional_aam.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
-					</p>
-				</div>
-			</nav>
-
-		</div>
-		<div class="box">
-
-			<div class="content is-medium">
 				J. Shen, S. Zafeiriou, G. Chrysos, <emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>The First Facial Landmark Tracking in-the-Wild Challenge: Benchmark and Results</i>, in Proceedings of IEEE International Conference on Computer Vision, 300 Videos in the Wild (300-VW): Facial Landmark Tracking in-the-Wild Challenge &amp; Workshop (ICCVW&#x27;15), December 2015
 			</div>
 
@@ -255,6 +219,44 @@ function toggle_modal(id){
 
 					<p class="level-item">
 					<a class='button' onclick="window.open('/pdfs/300VW.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+
+		</div>
+		<div class="box">
+
+			<div class="content is-medium">
+				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Bi-directional Fitting of Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15), September 2015
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_bidirectional_aam">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{kossaifi_bidirectional_aam,<br/> address = {Quebec City, QC, Canada},<br/> author = {J. Kossaifi and G. Tzimiropoulos and M. Pantic},<br/> booktitle = {Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15)},<br/> month = {September},<br/> pages = {1135--1139},<br/> title = {Fast and exact Bi-directional Fitting of Active Appearance Models},<br/> year = {2015}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/kossaifi_bidirectional_aam.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
 					</p>
 				</div>
 			</nav>

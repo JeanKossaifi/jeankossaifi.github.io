@@ -4,67 +4,69 @@
         <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="machine learning, computer vision, research">
-        <meta name="description" content="Jean Kossaifi: Machine Learning/Computer Vision">
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
+        <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
 
         <meta name="author" content="Jean Kossaifi">
-        <title>Jean Kossaifi -- Machine Learning/Computer Vision</title>
+        <title>Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
 
 
+		<script type="text/javascript" async
+		    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+		</script>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
         <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
         <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
 
     </head>
 
     <body>
-<section class="hero is-bold">
-    <div class="hero-head">
-        <div class="container">
-            <nav class="nav has-shadow top-nav">
-                <div class="container">
+<div class="container navigation-container">
+<nav class="navbar">
 
-                    <div class="nav-left">
-                        <a class="nav-item nav-title" href="https://jeankossaifi.github.io">
-                            Jean Kossaifi
-                        </a>
-                    </div>
+	<div class="navbar-brand">
+		<a class="navbar-item nav-title" href="https://jeankossaifi.github.io">
+			Jean Kossaifi
+		</a>
 
+		<span class="navbar-burger">
+			<span></span>
+			<span></span>
+			<span></span>
+			menu
+		</span>
 
-                    <span class="nav-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        menu
-                    </span>
+	</div>
 
-                    <div class="nav-right nav-menu">
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io">
-                            Home
-                        </a>
+	<div class="navbar-menu">
+		<div class="navbar-end">
+		</div>
 
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io/publications.html">
-                            Publications
-                        </a>
+		<div class="navbar-end nav-menu">
+			<a class="navbar-item" href="https://jeankossaifi.github.io">
+				Blog
+			</a>
 
-                        <a class="nav-item nav-tab" href="https://jeankossaifi.github.io/about.html">
-                            About me
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</section>
+			<a class="navbar-item" href="https://jeankossaifi.github.io/publications.html">
+				Publications
+			</a>
+
+			<a class="navbar-item" href="https://jeankossaifi.github.io/about.html">
+				About me
+			</a>
+		</div>
+	</div>
+
+</nav>
+</div>
+
 
 <script>
-// The following code is based off a toggle menu by @Bradcomp
-// source: https://gist.github.com/Bradcomp/a9ef2ef322a8e8017443b626208999c1
 (function() {
-    var burger = document.querySelector('.nav-toggle');
-    var menu = document.querySelector('.nav-menu');
+    var burger = document.querySelector('.navbar-burger');
+    var menu = document.querySelector('.navbar-menu');
     burger.addEventListener('click', function() {
         burger.classList.toggle('is-active');
         menu.classList.toggle('is-active');
@@ -82,6 +84,69 @@
     </h2>
 
     <div class="posts">
+        <hr/>
+<div class="container">
+    <div class="content container is-medium">
+
+        <nav class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <h3 class="title is-3"><a class="post-title" href="https://jeankossaifi.github.io/tensorly/tensorly_with_mxnet_backend.html">TensorLy, with MXNet backend</a></h3>
+                </div>
+            </div>
+            <div class="level-left">
+                <div class="level-item">
+                    <small>
+                        Mon 28 August 2017
+                    </small>
+                </div>
+            </div>
+        </nav>
+
+        <p class="content"><p class="first last">From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.</p>
+</p>
+
+        <nav class="level">
+            <div class="tags level-left">
+	
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
+                    machine-learning
+                </a>
+				</span>
+                &thinsp;
+	
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
+                    TensorLy
+                </a>
+				</span>
+                &thinsp;
+	
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/mxnet.html">
+                    MXNet
+                </a>
+				</span>
+                &thinsp;
+            </div>
+            <div class="level-right">
+                <h5 class="title is-5">
+                    <a class="button read-more" href="https://jeankossaifi.github.io/tensorly/tensorly_with_mxnet_backend.html">
+                        <span>
+                            Read more
+                        </span>
+                        &nbsp;
+                        <span>
+                            <i class="fa fa-angle-double-right"></i>
+                        </span>
+                    </a>
+                </h5>
+            </div>
+        </nav>
+
+    </div>
+</div>
         <hr/>
 <div class="container">
     <div class="content container is-medium">
@@ -107,14 +172,18 @@
         <nav class="level">
             <div class="tags level-left">
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/machine-learning.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
                     machine-learning
                 </a>
+				</span>
                 &thinsp;
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/tensorly.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
                     TensorLy
                 </a>
+				</span>
                 &thinsp;
             </div>
             <div class="level-right">
@@ -158,14 +227,18 @@
         <nav class="level">
             <div class="tags level-left">
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/machine-learning.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
                     Machine-Learning
                 </a>
+				</span>
                 &thinsp;
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/tensorly.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
                     TensorLy
                 </a>
+				</span>
                 &thinsp;
             </div>
             <div class="level-right">
@@ -210,14 +283,18 @@
         <nav class="level">
             <div class="tags level-left">
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/general.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/general.html">
                     general
                 </a>
+				</span>
                 &thinsp;
 	
-                <a class="tag is-light" href="https://jeankossaifi.github.io/tag/tech.html">
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/tech.html">
                     tech
                 </a>
+				</span>
                 &thinsp;
             </div>
             <div class="level-right">

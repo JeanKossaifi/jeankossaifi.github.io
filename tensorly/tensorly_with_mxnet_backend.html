@@ -8,7 +8,7 @@
         <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
 
         <meta name="author" content="Jean Kossaifi">
-        <title>New year, new website - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+        <title>TensorLy, with MXNet backend - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
 
 
 		<script type="text/javascript" async
@@ -82,10 +82,10 @@
     <div class="post-title">
         <div class="container has-text-centered">
             <h2 class="title is-2">
-                New year, new website
+                TensorLy, with MXNet backend
             </h2>
             <h4 class="subtitle is-4">
-                Sun 01 January 2017 
+                Mon 28 August 2017 
             </h4>
         </div>
 
@@ -93,15 +93,22 @@
             <div class="tags level-right">
 	
 				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/general.html">
-                    general
+                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
+                    machine-learning
                 </a>
 				</span>
                 &thinsp;
 	
 				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/tech.html">
-                    tech
+                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
+                    TensorLy
+                </a>
+				</span>
+                &thinsp;
+	
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/mxnet.html">
+                    MXNet
                 </a>
 				</span>
                 &thinsp;
@@ -114,11 +121,83 @@
     <div="section blog">
         <div class="container">
             <div class="content blog-post is-medium">
-                <p>I have been meaning to start a blog for a while without ever finding the time. The winter break gave me the perfect opportunity to finally do so.</p>
-<div class="section" id="the-pelican-way">
-<h2>The Pelican way</h2>
-<p>I had been long playing with the idea of a dynamic blog with Flask and Mongo and even got out a working prototype. But, whilst writing a dynamic website from scratch is fun, dealing with all the components involved (e.g. security, creating the various interfaces, dealing with the database, etc), alongside a slightly time-consuming PhD, outweighted the advantages of a dynamic website and I started exploring static options.</p>
-<p>Amongst the numerous available options, I settled with <a class="reference external" href="http://blog.getpelican.com">Pelican</a>, a Python powered static generator that is popular and well maintained. For the front-end, I created a custom theme using <a class="reference external" href="http://bulma.io">Bulma</a>, a modern, lightweight CSS framework base on Flexbox : the result site is a responsive website (try resising your window) that aims at minimalistic elegance.</p>
+                <p>The goal of TensorLy is to make tensor operations easy and accessible. I originally developed it to have minimum dependency and depend only on NumPy, SciPy and optionally on Matplotlib for plotting. However, as Deep Learning becomes more ubiquitous, we need better tools to i) combine tensor methods and Deep Learning and ii) run the algorithms at scale, on several machines and both CPU and GPU.
+It so happens that MXNet, in addition to shining in both of these areas, has an NDArray structure that is very similar to NumPy and aims at feature parity with it. Furthermore, its ability to use to define deep networks imperatively made it a prime candidate.</p>
+<p>I therefore refactored TensorLy to accept both MXNet and NumPy as backends, which now allows to run tensor methods on CPU and GPU transparently and to seemlessly combine them with Deep Learning using MXNet's Gluon interface (for a great tutorial on Gluon and deep learning, check out this interactive <a class="reference external" href="https://github.com/zackchase/mxnet-the-straight-dope">book</a>).</p>
+<p>Here is a quick guide on getting started with the new version of TensorLy.</p>
+<div class="section" id="installation">
+<h2>Installation</h2>
+<div class="section" id="pre-requisite">
+<h3>Pre-requisite</h3>
+<p>If you don't already have Python I recommend you use <a class="reference external" href="https://www.anaconda.com/download/">Anaconda</a> (choose Python 3, it's 2017).
+Then install <a class="reference external" href="https://mxnet.incubator.apache.org/get_started/install.html">MXNet</a>.</p>
+</div>
+<div class="section" id="install-with-pip">
+<h3>Install with pip</h3>
+<p>We want the latest version of MXNet, and the latest version of TensorLy:</p>
+<div class="highlight"><pre><span></span>pip install --pre mxnet
+pip install -U tensorly
+</pre></div>
+</div>
+<div class="section" id="install-from-source">
+<h3>Install from source</h3>
+<div class="section" id="install-mxnet-from-source">
+<h4>Install MXNet from source</h4>
+<p>To install from sources, you first want to clone the repository:</p>
+<div class="highlight"><pre><span></span>git clone --recursive https://github.com/apache/incubator-mxnet.git
+<span class="nb">cd</span> mxnet
+</pre></div>
+<p>Next, make the shared library:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">OSX</th>
+<th class="head">Linux</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><div class="first last"><div class="highlight"><pre><span></span>cp make/osx.mk ./config.mk
+make -j<span class="k">$(</span>sysctl -n hw.ncpu<span class="k">)</span>
+</pre></div>
+</div></td>
+<td><div class="first last"><div class="highlight"><pre><span></span>make -j <span class="k">$(</span>nproc<span class="k">)</span>
+</pre></div>
+</div></td>
+</tr>
+</tbody>
+</table>
+<p>Install the python binding:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> python
+pip install -e .
+</pre></div>
+</div>
+<div class="section" id="install-tensorly-from-source">
+<h4>Install TensorLy from source</h4>
+<div class="highlight"><pre><span></span>git clone https://github.com/tensorly/tensorly
+<span class="nb">cd</span> tensorly
+pip install -e .
+</pre></div>
+<p>That's it, you're ready to go!</p>
+</div>
+</div>
+</div>
+<div class="section" id="checking-all-is-good">
+<h2>Checking all is good</h2>
+<p>You can now check everything is working as expected in Python:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tensorly</span> <span class="kn">as</span> <span class="nn">tl</span>
+<span class="n">Using</span> <span class="n">mxnet</span> <span class="n">backend</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">tensorly</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="s1">&#39;0.2.0&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="what-s-next">
+<h2>What's next</h2>
+<p>For documentation, check the <a class="reference external" href="https://tensorly.github.io/">documentation</a>.</p>
+<p>For source code, head to TensorLy's <a class="reference external" href="https://github.com/tensorly/tensorly">github repository</a>.</p>
+<p>For examples of use, check out the jupyter <a class="reference external" href="https://github.com/JeanKossaifi/tensorly_notebooks">Notebooks</a>.</p>
 </div>
 
             </div>
@@ -141,7 +220,7 @@
 
         <div class="level-right is-mobile">
             <div class="level-item">
-                <a class="tooltip" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2fgeneral%2fnew_year_new_post.html&via=JeanKossaifi"
+                <a class="tooltip" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_mxnet_backend.html&via=JeanKossaifi"
  data-via="JeanKossaifi" >
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                     <span class="tooltiptext">Share on Twitter</span>
@@ -150,14 +229,14 @@
 
 
             <div class="level-item">
-                <a class="tooltip" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2fgeneral%2fnew_year_new_post.html">
+                <a class="tooltip" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_mxnet_backend.html">
                     <i class="fa fa-facebook" aria-hidden="true"></i>
                     <span class="tooltiptext">Share on Facebook</span>
                 </a>
             </div>
 
             <div class="level-item">
-                <a class="tooltip" href="https://plus.google.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2fgeneral%2fnew_year_new_post.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <a class="tooltip" href="https://plus.google.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_mxnet_backend.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                     <i class="fa fa-google-plus" aria-hidden="true"></i>
                     <span class="tooltiptext">Share on Google Plus</span>
                 </a>
@@ -177,8 +256,8 @@
 <script>
 
 var disqus_config = function () {
-	this.page.url = "https://jeankossaifi.github.io/general/new_year_new_post.html";
-	this.page.identifier = "general/new_year_new_post.html"; 
+	this.page.url = "https://jeankossaifi.github.io/tensorly/tensorly_with_mxnet_backend.html";
+	this.page.identifier = "tensorly/tensorly_with_mxnet_backend.html"; 
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
