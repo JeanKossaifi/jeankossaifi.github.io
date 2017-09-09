@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
+        <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+
+        <meta name="author" content="Jean Kossaifi">
+        <title>TensorLy, now also with PyTorch backend - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+
+
+
+		<script type="text/javascript" async
+		    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+		</script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
+        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
+        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+
+    </head>
+
+    <body>
+<div class="container navigation-container">
+<nav class="navbar">
+
+	<div class="navbar-brand">
+		<a class="navbar-item nav-title" href="https://jeankossaifi.github.io">
+			Jean Kossaifi
+		</a>
+
+		<span class="navbar-burger">
+			<span></span>
+			<span></span>
+			<span></span>
+			menu
+		</span>
+
+	</div>
+
+	<div class="navbar-menu">
+		<div class="navbar-end">
+		</div>
+
+		<div class="navbar-end nav-menu">
+			<a class="navbar-item" href="https://jeankossaifi.github.io">
+				Blog
+			</a>
+
+			<a class="navbar-item" href="https://jeankossaifi.github.io/publications.html">
+				Publications
+			</a>
+
+			<a class="navbar-item" href="https://jeankossaifi.github.io/about.html">
+				About me
+			</a>
+		</div>
+	</div>
+
+</nav>
+</div>
+
+
+<script>
+(function() {
+    var burger = document.querySelector('.navbar-burger');
+    var menu = document.querySelector('.navbar-menu');
+    burger.addEventListener('click', function() {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+    });
+})();
+</script>
+
+        <section class="section main-section">
+            <div class="container main-content">
+
+<div class="container">
+
+    <div class="post-title">
+        <div class="container has-text-centered">
+            <h2 class="title is-2">
+                TensorLy, now also with PyTorch backend
+            </h2>
+            <h4 class="subtitle is-4">
+                Thu 09 November 2017 
+            </h4>
+        </div>
+
+        <nav class"level">
+            <div class="tags level-right">
+	
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
+                    machine-learning
+                </a>
+				</span>
+                &thinsp;
+	
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
+                    TensorLy
+                </a>
+				</span>
+                &thinsp;
+	
+				<span class="tag is-light">
+                <a href="https://jeankossaifi.github.io/tag/pytorch.html">
+                    pytorch
+                </a>
+				</span>
+                &thinsp;
+            </div>
+        </nav>
+    </div>
+
+    <hr/>
+
+    <div="section blog">
+        <div class="container">
+            <div class="content blog-post is-medium">
+                <p>Since <a class="reference external" href="https://github.com/tensorly/tensorly">TensorLy</a> was refactored to support backends, it is fairly easy to
+add new backends, so as a proof of concepts I put together a Pytorch
+backend. There are most likely a few optimisations to do and some
+things could be done better but all the tests pass. Here is a quick
+demonstration.</p>
+<div class="section" id="requirements">
+<h2>Requirements</h2>
+<p>For the pytorch backend you will need the master version of TensorLy as well as the master version of PyTorch.</p>
+<p>We need pytorch Variables to have a shape property, as added in this <a class="reference external" href="https://github.com/pytorch/pytorch/pull/2306">pull-request</a>, so either install pytorch from master or do the modification yourself!</p>
+</div>
+<div class="section" id="tucker-decomposition-using-sgd-and-autograd">
+<h2>Tucker decomposition using SGD and autograd</h2>
+<p>Let's see how we can use TensorLy and the pytorch backend to perform Tucker tensor decomposition via gradient descent.</p>
+<p>First let's import all the necessary stuff:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="o">&gt;&gt;</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="o">&gt;&gt;</span> <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+<span class="o">&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tensorly</span> <span class="kn">as</span> <span class="nn">tl</span>
+<span class="o">&gt;&gt;</span> <span class="kn">from</span> <span class="nn">tensorly.tucker_tensor</span> <span class="kn">import</span> <span class="n">tucker_to_tensor</span>
+<span class="o">&gt;&gt;</span> <span class="kn">from</span> <span class="nn">tensorly.random</span> <span class="kn">import</span> <span class="n">check_random_state</span>
+<span class="n">Using</span> <span class="n">mxnet</span> <span class="n">backend</span><span class="o">.</span>
+</pre></div>
+<p>Now let's switch to the PyTorch backend:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
+<span class="n">Using</span> <span class="n">pytorch</span> <span class="n">backend</span><span class="o">.</span>
+</pre></div>
+<p>We just fix the random seed for reproducibility</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1234</span>
+<span class="o">&gt;&gt;</span> <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+</pre></div>
+<p>Define a random tensor which we will try to decompose. We wrap our
+tensors in Variables so we can backpropagate through them:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="n">tensor</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">shape</span><span class="p">)),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+<p>Initialise a random Tucker decomposition of that tensor</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="n">core</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">ranks</span><span class="p">)),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span> <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ranks</span><span class="p">[</span><span class="n">i</span><span class="p">]))),</span>
+                       <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">tensor</span><span class="p">))]</span>
+</pre></div>
+<p>Now we just iterate through the training loop and backpropagate...</p>
+<div class="highlight"><pre><span></span><span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.00005</span>
+<span class="n">penalty</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">([</span><span class="n">core</span><span class="p">]</span><span class="o">+</span><span class="n">factors</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+
+    <span class="c1"># Reconstruct the tensor from the decomposed form</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">tucker_to_tensor</span><span class="p">(</span><span class="n">core</span><span class="p">,</span> <span class="n">factors</span><span class="p">)</span>
+
+    <span class="c1"># squared l2 loss</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">rec</span> <span class="o">-</span> <span class="n">tensor</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># squared l2 penalty on the factors of the decomposition</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">:</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span> <span class="o">+</span> <span class="n">penalty</span> <span class="o">*</span> <span class="n">f</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">rec_error</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">tensor</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">tl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Epoch </span><span class="si">%s</span><span class="s2">,. Rec. error: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">rec_error</span><span class="p">))</span>
+</pre></div>
+<p>You should see the reconstruction error go down:</p>
+<pre class="literal-block">
+Epoch 1000,. Rec. error: 9.85501529153
+Epoch 2000,. Rec. error: 5.4266791947
+Epoch 3000,. Rec. error: 2.93432695168
+Epoch 4000,. Rec. error: 1.58708802561
+Epoch 5000,. Rec. error: 1.03465270384
+Epoch 6000,. Rec. error: 0.94976522999
+Epoch 7000,. Rec. error: 0.979246423375
+Epoch 8000,. Rec. error: 0.996610962433
+Epoch 9000,. Rec. error: 0.999994015288
+</pre>
+</div>
+<div class="section" id="what-next">
+<h2>What next?</h2>
+<p>This is very much a proof of concept so there might be bugs. If you see something that can be improved or if you have any suggestions, feel free to comment here or open an issue on the <a class="reference external" href="https://github.com/tensorly/tensorly">Github</a> page.</p>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+
+	<br/>
+    <nav class="level is-mobile">
+        <div class="level-left">
+            <div class="level-item">
+                <a class="tooltip" href="#top">
+                    <span class="icon is-medium">
+                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i>
+                    </span>
+                    <span class="tooltiptext">Back to top</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="level-right is-mobile">
+            <div class="level-item">
+                <a class="tooltip" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html&via=JeanKossaifi"
+ data-via="JeanKossaifi" >
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                    <span class="tooltiptext">Share on Twitter</span>
+                </a>
+            </div>
+
+
+            <div class="level-item">
+                <a class="tooltip" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <span class="tooltiptext">Share on Facebook</span>
+                </a>
+            </div>
+
+            <div class="level-item">
+                <a class="tooltip" href="https://plus.google.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                    <span class="tooltiptext">Share on Google Plus</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <hr/>
+
+
+    <h2 class="title is-2">
+        Leave a comment:
+    </h2>
+    <div class="card is-fullwidth">
+        <div class="card-content">
+            <div class="content">
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+	this.page.url = "https://jeankossaifi.github.io/tensorly/tensorly_with_pytorch_backend.html";
+	this.page.identifier = "tensorly/tensorly_with_pytorch_backend.html"; 
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//jeankossaifi.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                            </div>
+        </div>
+    </div>
+
+</div>
+            </div>
+        </section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+            © Jean Kossaifi
+            </p>
+
+            <p>
+                <a class="tooltip icon" href="https://github.com/JeanKossaifi">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                    <span class="tooltiptext">Github</span>
+                </a>
+
+                <a class="tooltip icon" href="http://twitter.com/JeanKossaifi">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                    <span class="tooltiptext">Twitter</span>
+                </a>
+                
+                <a class="tooltip icon" href="https://uk.linkedin.com/in/jeankossaifi">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    <span class="tooltiptext">LinkedIn</span>
+                </a>
+
+                <a class="tooltip icon" href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    <span class="tooltiptext">Google Scholar</span>
+                </a>
+
+            </p>
+        </div>
+    </div>
+</footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-89357746-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    </body>
+</html>
