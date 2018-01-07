@@ -16,6 +16,7 @@ __pycache__/
 
 # vim temp files
 *.swp
+*.swo
 
 # Sphinx doc
 doc/_build/

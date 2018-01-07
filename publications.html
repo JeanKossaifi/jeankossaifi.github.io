@@ -1,82 +1,76 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
-        <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+    <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
 
-        <meta name="author" content="Jean Kossaifi">
-        <title>Jean Kossaifi's Home Page - Machine Learning & Computer Vision - Publications </title>
+	<meta name="author" content="Jean Kossaifi">
+	<title>Jean Kossaifi's Home Page - Machine Learning & Computer Vision - Publications </title>
 
 
+	<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+	</script>
 
-		<script type="text/javascript" async
-		    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
-		</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+	<link rel="icon" href="https://jeankossaifi.github.io/theme/favicon.ico" type="image/x-icon" />
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+</head>
 
-    </head>
 
-    <body>
-<div class="container navigation-container">
-<nav class="navbar">
+<body>
+
+<!-- START NAV -->
+<nav class="navbar is-fixed-top is-dark">
 
 	<div class="navbar-brand">
-		<a class="navbar-item nav-title" href="https://jeankossaifi.github.io">
+		<a class="navbar-item menu-title is-size-4" href="https://jeankossaifi.github.io">
 			Jean Kossaifi
 		</a>
-
-		<span class="navbar-burger">
+		<div class="button navbar-burger" data-target="navMenu">
 			<span></span>
 			<span></span>
 			<span></span>
-			menu
-		</span>
-
+		</div>
 	</div>
 
-	<div class="navbar-menu">
+	<div id="navMenu" class="navbar-menu">
 		<div class="navbar-end">
-		</div>
-
-		<div class="navbar-end nav-menu">
-			<a class="navbar-item" href="https://jeankossaifi.github.io">
-				Blog
+			<!--
+			<a class="navbar-item" href="#">
+				Home
 			</a>
-
-			<a class="navbar-item" href="https://jeankossaifi.github.io/publications.html">
+			-->
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-about">
+				About Me
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-news">
+				News
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-projects">
+				Projects
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-publications">
 				Publications
 			</a>
-
-			<a class="navbar-item" href="https://jeankossaifi.github.io/about.html">
-				About me
+			<a class="navbar-item " href="https://jeankossaifi.github.io/blog.html">
+				Blog
 			</a>
 		</div>
 	</div>
-
 </nav>
-</div>
+<!-- END NAV -->
 
 
-<script>
-(function() {
-    var burger = document.querySelector('.navbar-burger');
-    var menu = document.querySelector('.navbar-menu');
-    burger.addEventListener('click', function() {
-        burger.classList.toggle('is-active');
-        menu.classList.toggle('is-active');
-    });
-})();
-</script>
-
-        <section class="section main-section">
-            <div class="container main-content">
+<section class="articles">
+<div class="column is-8 is-offset-2">
 
 <script type="text/javascript">
 function disp(s) {
@@ -113,8 +107,8 @@ function toggle_modal(id){
 	<section id="content" class="body">
 		<div class="box">
 
-			<div class="content is-medium">
-				<emph><strong>J. Kossaifi</strong></emph>, A. Khanna, Z. Lipton, T. Furlanello, A. Anandkumar, <i>Tensor Contraction Layers for Parsimonious Deep Nets</i>, in 2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), July 2017
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, L, Tran, Y. Panagakis and M. Pantic, <i>GAGAN: Geometry-Aware Generative Adverserial Networks</i>, in arXiv preprint arXiv:1712.00684, 2017
 			</div>
 
 			<nav class="level is-mobile">
@@ -122,19 +116,19 @@ function toggle_modal(id){
 				<div class="level-left is-mobile">
 					<p class="level-item">
 
-					<div class="modal" id="kossaifi_tcl">
-						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_tcl');"></div>
+					<div class="modal" id="gagan">
+						<div class="modal-background" onclick="javascrip:toggle_modal('gagan');"></div>
 						<div class="modal-content">
 							<div class="box">
-								@inproceedings{kossaifi_tcl,<br/> author = {J. Kossaifi and A. Khanna and Z. Lipton and T. Furlanello and A. Anandkumar},<br/> booktitle = {2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},<br/> month = {July},<br/> pages = {1940--1946},<br/> title = {Tensor Contraction Layers for Parsimonious Deep Nets},<br/> year = {2017}<br/>}<br/>
+								@article{gagan,<br/> author = {J. Kossaifi and L, Tran and Y. Panagakis and M. Pantic},<br/> journal = {arXiv preprint arXiv:1712.00684},<br/> title = {GAGAN: Geometry-Aware Generative Adverserial Networks},<br/> year = {2017}<br/>}<br/>
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_tcl');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('gagan');"></button>
 					</div>
 
 					<p class="level-item">
-					<a class="button" onclick="javascrip:toggle_modal('kossaifi_tcl');">
+					<a class="button" onclick="javascrip:toggle_modal('gagan');">
 						<span class='icon'>
 							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
 						</span> 
@@ -143,7 +137,7 @@ function toggle_modal(id){
 					</p>
 
 					<p class="level-item">
-					<a class='button' onclick="window.open('/pdfs/tensor_contraction_layers.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					<a class='button' onclick="window.open('/pdfs/gagan.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
 					</p>
 				</div>
 			</nav>
@@ -151,7 +145,7 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos, S. Todorovic and M. Pantic, <i>AFEW-VA database for valence and arousal estimation in-the-wild</i>, in Image and Vision Computing, 2017
 			</div>
 
@@ -168,7 +162,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_afewva');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('kossaifi_afewva');"></button>
 					</div>
 
 					<p class="level-item">
@@ -189,7 +183,7 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, Z. Lipton, A. Khanna, T. Furlanello, A. Anandkumar, <i>Tensor Regression Networks</i>, in CoRR, 2017
 			</div>
 
@@ -206,7 +200,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_trl');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('kossaifi_trl');"></button>
 					</div>
 
 					<p class="level-item">
@@ -227,7 +221,45 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, A. Khanna, Z. Lipton, T. Furlanello, A. Anandkumar, <i>Tensor Contraction Layers for Parsimonious Deep Nets</i>, in 2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), July 2017
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_tcl">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_tcl');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{kossaifi_tcl,<br/> author = {J. Kossaifi and A. Khanna and Z. Lipton and T. Furlanello and A. Anandkumar},<br/> booktitle = {2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},<br/> month = {July},<br/> pages = {1940--1946},<br/> title = {Tensor Contraction Layers for Parsimonious Deep Nets},<br/> year = {2017}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('kossaifi_tcl');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_tcl');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/tensor_contraction_layers.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+
+		</div>
+		<div class="box">
+
+			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Newton and Bidirectional fitting of Active Appearance Models</i>, in IEEE Transactions on Image Processing (TIP), accepted for publication, 2016
 			</div>
 
@@ -244,7 +276,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_aam_tip');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('kossaifi_aam_tip');"></button>
 					</div>
 
 					<p class="level-item">
@@ -265,7 +297,7 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, Y. Panagakis and M. Pantic, <i>TensorLy: Tensor Learning in Python</i>, in NIPS Tensor-Learn Workshop, 2016
 			</div>
 
@@ -282,7 +314,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('tensorly');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('tensorly');"></button>
 					</div>
 
 					<p class="level-item">
@@ -303,7 +335,7 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
 				J. Shen, S. Zafeiriou, G. Chrysos, <emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>The First Facial Landmark Tracking in-the-Wild Challenge: Benchmark and Results</i>, in Proceedings of IEEE International Conference on Computer Vision, 300 Videos in the Wild (300-VW): Facial Landmark Tracking in-the-Wild Challenge &amp; Workshop (ICCVW&#x27;15), December 2015
 			</div>
 
@@ -320,7 +352,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('300VW');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('300VW');"></button>
 					</div>
 
 					<p class="level-item">
@@ -341,7 +373,7 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Bi-directional Fitting of Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15), September 2015
 			</div>
 
@@ -358,7 +390,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></button>
 					</div>
 
 					<p class="level-item">
@@ -379,7 +411,7 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
 				A. Abraham, F. Pedregosa, M. Eickenberg, P. Gervais, A. Mueller, <emph><strong>J. Kossaifi</strong></emph>, A. Gramfort, B. Thirion and G. Varoquaux, <i>Machine Learning for Neuroimaging with Scikit-Learn</i>, in Frontiers in Neuroinformatics, 2014
 			</div>
 
@@ -396,7 +428,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('ml_neuroimaging_sklearn');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('ml_neuroimaging_sklearn');"></button>
 					</div>
 
 					<p class="level-item">
@@ -417,7 +449,7 @@ function toggle_modal(id){
 		</div>
 		<div class="box">
 
-			<div class="content is-medium">
+			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast Newton Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’14), October 2014
 			</div>
 
@@ -434,7 +466,7 @@ function toggle_modal(id){
 
 							</div>
 						</div>
-						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_newton_aam');"></button>
+						<button class="modal-close is-large" onclick="javascrip:toggle_modal('kossaifi_newton_aam');"></button>
 					</div>
 
 					<p class="level-item">
@@ -456,39 +488,44 @@ function toggle_modal(id){
 	</section>
 </div>
 
-            </div>
-        </section>
+</div>
+</section>
 
 <footer class="footer">
-    <div class="container">
-        <div class="content has-text-centered">
-            <p>
-            © Jean Kossaifi
-            </p>
+	<p class="has-text-centered">
+	© <a href=https://jeankossaifi.github.io>Jean Kossaifi</a>
+	</p>
+	<br/><br/>
 
-            <p>
-                <a class="tooltip icon" href="https://github.com/JeanKossaifi">
-                    <i class="fa fa-github" aria-hidden="true"></i>
-                    <span class="tooltiptext">Github</span>
-                </a>
+	<div class="column is-two-fifths is-offset-two-fifths">
+		<p>
+		<a href="https://github.com/JeanKossaifi">
+			<i class="fa fa-github" aria-hidden="true"></i>
+			Github
+		</a>
+		</p>
 
-                <a class="tooltip icon" href="http://twitter.com/JeanKossaifi">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                    <span class="tooltiptext">Twitter</span>
-                </a>
-                
-                <a class="tooltip icon" href="https://uk.linkedin.com/in/jeankossaifi">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                    <span class="tooltiptext">LinkedIn</span>
-                </a>
+		<p>
+		<a href="http://twitter.com/JeanKossaifi">
+			<i class="fa fa-twitter" aria-hidden="true"></i>
+			Twitter
+		</a>
+		</p>
+		
+		<p>
+		<a href="https://uk.linkedin.com/in/jeankossaifi">
+			<i class="fa fa-linkedin" aria-hidden="true"></i>
+			Linkedin
+		</a>
+		</p>
 
-                <a class="tooltip icon" href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    <span class="tooltiptext">Google Scholar</span>
-                </a>
+		<p>
+		<a href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
+			<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+			Google Scholar
+		</a>
+		</p>
 
-            </p>
-        </div>
     </div>
 </footer>
     <script>
@@ -500,5 +537,10 @@ function toggle_modal(id){
       ga('create', 'UA-89357746-1', 'auto');
       ga('send', 'pageview');
     </script>
-    </body>
+
+</body>
+
+<script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/burger.js" />
+</script>
+
 </html>

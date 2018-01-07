@@ -1,431 +1,704 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
-        <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+    <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
 
-        <meta name="author" content="Jean Kossaifi">
-        <title>Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+	<meta name="author" content="Jean Kossaifi">
+	<title>Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
 
 
+	<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+	</script>
 
-		<script type="text/javascript" async
-		    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
-		</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+	<link rel="icon" href="https://jeankossaifi.github.io/theme/favicon.ico" type="image/x-icon" />
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+</head>
 
-    </head>
 
-    <body>
-<div class="container navigation-container">
-<nav class="navbar">
+<body>
+
+<!-- START NAV -->
+<nav class="navbar is-fixed-top is-dark">
 
 	<div class="navbar-brand">
-		<a class="navbar-item nav-title" href="https://jeankossaifi.github.io">
+		<a class="navbar-item menu-title is-size-4" href="https://jeankossaifi.github.io">
 			Jean Kossaifi
 		</a>
-
-		<span class="navbar-burger">
+		<div class="button navbar-burger" data-target="navMenu">
 			<span></span>
 			<span></span>
 			<span></span>
-			menu
-		</span>
-
+		</div>
 	</div>
 
-	<div class="navbar-menu">
+	<div id="navMenu" class="navbar-menu">
 		<div class="navbar-end">
-		</div>
-
-		<div class="navbar-end nav-menu">
-			<a class="navbar-item" href="https://jeankossaifi.github.io">
-				Blog
+			<!--
+			<a class="navbar-item" href="#">
+				Home
 			</a>
-
-			<a class="navbar-item" href="https://jeankossaifi.github.io/publications.html">
+			-->
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-about">
+				About Me
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-news">
+				News
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-projects">
+				Projects
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-publications">
 				Publications
 			</a>
-
-			<a class="navbar-item" href="https://jeankossaifi.github.io/about.html">
-				About me
+			<a class="navbar-item " href="https://jeankossaifi.github.io/blog.html">
+				Blog
 			</a>
 		</div>
 	</div>
-
 </nav>
+<!-- END NAV -->
+
+
+<section class="articles">
+<div class="column is-8 is-offset-2">
+
+	<!-- START about -->
+	<a class="menu-anchor" id="menu-about"></a>
+	<div class="card article menu-section">
+	<div class="card-content">
+
+		<!-- title -->
+		<div class="media">
+			<div class="media-center">
+				<span class="article-icon icon fa-2x">
+					<i class="fa fa-user"></i>
+				</span>
+			</div>
+			<div class="media-content has-text-centered">
+			  <h1 class="title article-title">
+				  About Me
+			  </h1>
+			</div>
+	  	</div>
+		<!-- content -->
+		<div id="" class="content article-body">
+	<div class="columns">
+		<div class="column is-two-thirds">
+
+			<div class="content">
+				<h2>Biography</h2>
+				<img style="padding-right: 20px; max-width:150px;" src="https://jeankossaifi.github.io/images/jean.jpg" align="left"/>
+				<p>
+				I am currently a Research Assistant and PhD student in the Department of Computing at Imperial College London, within the <a href="http://ibug.doc.ic.ac.uk/">iBug</a> group. I work on automatic facial affect estimation, a field which bridges the gap between Computer Vision and Machine Learning. After contributing to facial landmark detection using Active Appearance Models I have shifted my focus to Machine Learning using tensors. Recently, I developed <a href="https://tensorly.github.io/">TensorLy</a>, a library for tensor learning and decomposition in Python, which I had the chance to present at the NIPS'16 <a href="http://tensor-learn.org/">workshop on tensor-learn</a>.
+				</p>
+
+				<p>
+				Prior to my current position, I obtained a Masters in Advanced Computing from Imperial College London. I also hold a French Engineering diploma / MSc in Applied Mathematics, Computing and Finance and obtained a BSc in advanced mathematics in parallel.
+				</p>
+
+
+			<h3>You can find me on:</h3>
+			<hr/>
+			<nav class="level">
+
+				<div class="level-item has-text-centered">
+					<a class="button" href="https://github.com/JeanKossaifi">
+						<span class="icon">
+							<i class="fa fa-github" aria-hidden="true"></i>
+						</span>
+						<span>GitHub</span>
+					</a>
+				</div>
+
+				<div class="level-item has-text-centered">
+					<a class="button" href="http://twitter.com/JeanKossaifi">
+						<span class="icon">
+							<i class="fa fa-twitter" aria-hidden="true"></i>
+						</span>
+						<span>Twitter</span>
+					</a>
+				</div>
+
+				<div class="level-item has-text-centered">
+					<a class="button" href="https://uk.linkedin.com/in/jeankossaifi">
+						<span class="icon">
+							<i class="fa fa-linkedin" aria-hidden="true"></i>
+						</span>
+						<span>LinkedIn</span>
+					</a>
+				</div>
+
+				<div class="level-item has-text-centered">
+					<a class="button" href="https://scholar.google.fr/citations?user=hJS2TXwAAAAJ">
+						<span class="icon">
+							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+						</span>
+						<span>Google Scholar</span>
+					</a>
+				</div>
+			</nav>
+			</div>
+		</div>
+
+		<div class="column is-one-third">
+			<a class="twitter-timeline" data-height="500" href="https://twitter.com/JeanKossaifi">Tweets by JeanKossaifi</a> 
+			<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+	</div>		</div>
+		<!-- END content -->
+	</div>
+	</div>
+	<!-- END about -->
+
+	<!-- START news -->
+	<a class="menu-anchor" id="menu-news"></a>
+	<div class="card article menu-section">
+	<div class="card-content">
+
+		<!-- title -->
+		<div class="media">
+			<div class="media-center">
+				<span class="article-icon icon fa-2x">
+					<i class="fa fa-newspaper-o"></i>
+				</span>
+			</div>
+			<div class="media-content has-text-centered">
+			  <h1 class="title article-title">
+				  News
+			  </h1>
+			</div>
+	  	</div>
+		<!-- content -->
+		<div id="" class="content news-summary article-body">
+			<ul class="first last">
+<li><p class="first"><strong>10/12/2017</strong></p>
+<p>Best poster award at the NIPS <a class="reference external" href="https://mltrain.cc/events/nips-highlights-learn-how-to-code-a-paper-with-state-of-the-art-frameworks/">MLtrain workshop</a> for Tensor Contraction &amp; Regression Networks with <a class="reference external" href="http://tensorly.github.io/">TensorLy</a> <a class="reference external" href="https://arxiv.org/abs/1707.08308">https://arxiv.org/abs/1707.08308</a></p>
+</li>
+<li><p class="first"><strong>23/10/2017</strong></p>
+<p>Co-organising the ICCV 2017 Workshop on Matrix and Tensor Factorization Methods for Computer Vision.
+<a class="reference external" href="http://tensor-cv.com/">http://tensor-cv.com/</a></p>
+</li>
+<li><p class="first"><strong>July 2017</strong></p>
+<p>Paper on <em>Tensor Contraction Layers for Parsimonious Deep Nets*</em> accepted at CVPR'17 Workshop on Tensor Methods in Computer Vision.
+<a class="reference external" href="http://users.cecs.anu.edu.au/~koniusz/tensors-cvpr17/">http://users.cecs.anu.edu.au/~koniusz/tensors-cvpr17/</a></p>
+</li>
+</ul>
+
+		</div>
+		<!-- END content -->
+	</div>
+	</div>
+	<!-- END news -->
+
+
+	<!-- START news -->
+	<a class="menu-anchor" id="menu-projects"></a>
+	<div class="card article menu-section">
+	<div class="card-content">
+
+		<!-- title -->
+		<div class="media">
+			<div class="media-center">
+				<span class="article-icon icon fa-2x">
+					<i class="fa fa-tasks"></i>
+				</span>
+			</div>
+			<div class="media-content has-text-centered">
+			  <h1 class="title article-title">
+				  Projects
+			  </h1>
+			</div>
+	  	</div>
+		<!-- content -->
+		<div id="" class="content article-body">
+<div class="box">
+	<nav class="tile is-parent">
+		<div class="tile is-4">
+			<figure class="image is-128x128">
+				<img src="https://jeankossaifi.github.io/images/TensorLy_logo.png" alt="Image">
+			</figure>
+		</div>
+		<div class="tile is-8">
+				<div class="content">
+					<h4 class="title project-title is-4"><a href="https://tensorly.github.io/dev/">TensorLy</a></h4>
+					<p>
+					Creator and lead developer of TensorLy, a library for tensor methods in Python. 
+					</p>
+				</div>
+		</div>
+	</nav>
+	<nav class="level is-link">
+		<a class="button level-item" href="https://tensorly.github.io/dev/">
+			Website
+		</a>
+		<a class="button level-item" href="https://github.com/tensorly/tensorly">
+			Github
+		</a>
+		<a class="button level-item" href="https://github.com/JeanKossaifi/tensorly-notebooks">
+			Notebooks
+		</a>
+	</nav>
+</div>		</div>
+		<!-- END content -->
+	</div>
+	</div>
+	<!-- END news -->
+
+
+	<!-- START publications -->
+	<a class="menu-anchor" id="menu-publications"></a>
+	<div class="card article menu-section">
+	<div class="card-content">
+		<!-- title -->
+		<div class="media">
+			<div class="media-center">
+				<span class="article-icon icon fa-2x">
+					<i class="fa fa-graduation-cap"></i>
+				</span>
+			</div>
+			<div class="media-content has-text-centered">
+			  <h1 class="title article-title">
+				  Publications
+			  </h1>
+			</div>
+	  	</div>
+		<!-- content -->
+		<div id="" class="content article-body">
+			<script type="text/javascript">
+			function disp(s) {
+				var win;
+				var doc;
+				win = window.open("", "WINDOWID");
+				doc = win.document;
+				doc.open("text/plain");
+				doc.write("<pre>" + s + "</pre>");
+				doc.close();
+				}
+			</script>
+
+			<script>
+			function toggle_modal(id){
+				var modal = document.getElementById(id);
+				modal.classList.toggle('is-active');
+			};
+			</script>
+		
+			<section id="content" class="body">
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, L, Tran, Y. Panagakis and M. Pantic, <i>GAGAN: Geometry-Aware Generative Adverserial Networks</i>, in arXiv preprint arXiv:1712.00684, 2017
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="gagan">
+						<div class="modal-background" onclick="javascrip:toggle_modal('gagan');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@article{gagan,<br/> author = {J. Kossaifi and L, Tran and Y. Panagakis and M. Pantic},<br/> journal = {arXiv preprint arXiv:1712.00684},<br/> title = {GAGAN: Geometry-Aware Generative Adverserial Networks},<br/> year = {2017}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('gagan');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('gagan');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/gagan.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos, S. Todorovic and M. Pantic, <i>AFEW-VA database for valence and arousal estimation in-the-wild</i>, in Image and Vision Computing, 2017
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_afewva">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_afewva');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@article{kossaifi_afewva,<br/> author = {J. Kossaifi and G. Tzimiropoulos and S. Todorovic and M. Pantic},<br/> journal = {Image and Vision Computing},<br/> title = {AFEW-VA database for valence and arousal estimation in-the-wild},<br/> year = {2017}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_afewva');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_afewva');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/afewva.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, Z. Lipton, A. Khanna, T. Furlanello, A. Anandkumar, <i>Tensor Regression Networks</i>, in CoRR, 2017
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_trl">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_trl');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{kossaifi_trl,<br/> author = {J. Kossaifi and Z. Lipton and A. Khanna and T. Furlanello and A. Anandkumar},<br/> journal = {CoRR},<br/> link = {http://arxiv.org/abs/1707.08308},<br/> title = {Tensor Regression Networks},<br/> year = {2017}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_trl');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_trl');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/tensor_regression_networks.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, A. Khanna, Z. Lipton, T. Furlanello, A. Anandkumar, <i>Tensor Contraction Layers for Parsimonious Deep Nets</i>, in 2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), July 2017
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_tcl">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_tcl');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{kossaifi_tcl,<br/> author = {J. Kossaifi and A. Khanna and Z. Lipton and T. Furlanello and A. Anandkumar},<br/> booktitle = {2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},<br/> month = {July},<br/> pages = {1940--1946},<br/> title = {Tensor Contraction Layers for Parsimonious Deep Nets},<br/> year = {2017}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_tcl');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_tcl');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/tensor_contraction_layers.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Newton and Bidirectional fitting of Active Appearance Models</i>, in IEEE Transactions on Image Processing (TIP), accepted for publication, 2016
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_aam_tip">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_aam_tip');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@article{kossaifi_aam_tip,<br/> author = {J. Kossaifi and G. Tzimiropoulos and M. Pantic},<br/> journal = {IEEE Transactions on Image Processing (TIP), accepted for publication},<br/> title = {Fast and exact Newton and Bidirectional fitting of Active Appearance Models},<br/> year = {2016}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_aam_tip');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_aam_tip');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/newton_and_bidirectional_aam.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, Y. Panagakis and M. Pantic, <i>TensorLy: Tensor Learning in Python</i>, in NIPS Tensor-Learn Workshop, 2016
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="tensorly">
+						<div class="modal-background" onclick="javascrip:toggle_modal('tensorly');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{tensorly,<br/> author = {J. Kossaifi and Y. Panagakis and M. Pantic},<br/> booktitle = {NIPS Tensor-Learn Workshop},<br/> title = {TensorLy: Tensor Learning in Python},<br/> year = {2016}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('tensorly');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('tensorly');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/tensorly.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				J. Shen, S. Zafeiriou, G. Chrysos, <emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>The First Facial Landmark Tracking in-the-Wild Challenge: Benchmark and Results</i>, in Proceedings of IEEE International Conference on Computer Vision, 300 Videos in the Wild (300-VW): Facial Landmark Tracking in-the-Wild Challenge &amp; Workshop (ICCVW&#x27;15), December 2015
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="300VW">
+						<div class="modal-background" onclick="javascrip:toggle_modal('300VW');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{300VW,<br/> author = {J. Shen and S. Zafeiriou and G. Chrysos and J. Kossaifi and G. Tzimiropoulos and M. Pantic},<br/> booktitle = {Proceedings of IEEE International Conference on Computer Vision, 300 Videos in the Wild (300-VW): Facial Landmark Tracking in-the-Wild Challenge &amp; Workshop (ICCVW&#x27;15)},<br/> month = {December},<br/> title = {The First Facial Landmark Tracking in-the-Wild Challenge: Benchmark and Results},<br/> year = {2015}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('300VW');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('300VW');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/300VW.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Bi-directional Fitting of Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15), September 2015
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_bidirectional_aam">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{kossaifi_bidirectional_aam,<br/> address = {Quebec City, QC, Canada},<br/> author = {J. Kossaifi and G. Tzimiropoulos and M. Pantic},<br/> booktitle = {Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15)},<br/> month = {September},<br/> pages = {1135--1139},<br/> title = {Fast and exact Bi-directional Fitting of Active Appearance Models},<br/> year = {2015}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_bidirectional_aam');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/kossaifi_bidirectional_aam.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				A. Abraham, F. Pedregosa, M. Eickenberg, P. Gervais, A. Mueller, <emph><strong>J. Kossaifi</strong></emph>, A. Gramfort, B. Thirion and G. Varoquaux, <i>Machine Learning for Neuroimaging with Scikit-Learn</i>, in Frontiers in Neuroinformatics, 2014
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="ml_neuroimaging_sklearn">
+						<div class="modal-background" onclick="javascrip:toggle_modal('ml_neuroimaging_sklearn');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@article{ml_neuroimaging_sklearn,<br/> author = {A. Abraham and F. Pedregosa and M. Eickenberg and P. Gervais and A. Mueller and J. Kossaifi and A. Gramfort and B. Thirion and G. Varoquaux},<br/> journal = {Frontiers in Neuroinformatics},<br/> number = {14},<br/> title = {Machine Learning for Neuroimaging with Scikit-Learn},<br/> volume = {8},<br/> year = {2014}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('ml_neuroimaging_sklearn');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('ml_neuroimaging_sklearn');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/neuroimaging_scikit_learn.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box">
+			<div class="content">
+				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast Newton Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’14), October 2014
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="kossaifi_newton_aam">
+						<div class="modal-background" onclick="javascrip:toggle_modal('kossaifi_newton_aam');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@inproceedings{kossaifi_newton_aam,<br/> address = {Paris, France},<br/> author = {J. Kossaifi and G. Tzimiropoulos and M. Pantic},<br/> booktitle = {Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’14)},<br/> month = {October},<br/> pages = {1420--1424},<br/> title = {Fast Newton Active Appearance Models},<br/> year = {2014}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('kossaifi_newton_aam');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('kossaifi_newton_aam');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+					<p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/kossaifi_newton_aam.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </span> </a> &nbsp; &nbsp;
+					</p>
+				</div>
+			</nav>
+		</div>
+
+		</div>
+		<!-- END content -->
+	</div>
+	</div>
+	<!-- END publications -->
+
 </div>
-
-
-<script>
-(function() {
-    var burger = document.querySelector('.navbar-burger');
-    var menu = document.querySelector('.navbar-menu');
-    burger.addEventListener('click', function() {
-        burger.classList.toggle('is-active');
-        menu.classList.toggle('is-active');
-    });
-})();
-</script>
-
-        <section class="section main-section">
-            <div class="container main-content">
-
-<div class="container">
-    <h2 class="title is-2 has-text-centered">
-        Latest posts
-
-    </h2>
-
-    <div class="posts">
-        <hr/>
-<div class="container">
-    <div class="content container is-medium">
-
-        <nav class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <h3 class="title is-3"><a class="post-title" href="https://jeankossaifi.github.io/tensorly/tensorly_with_pytorch_backend.html">TensorLy, now also with PyTorch backend</a></h3>
-                </div>
-            </div>
-            <div class="level-left">
-                <div class="level-item">
-                    <small>
-                        Thu 09 November 2017
-                    </small>
-                </div>
-            </div>
-        </nav>
-
-        <p class="content"><p class="first last">In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch code with tensor methods. In this post we demonstrate this by performing Tucker tensor using autograd and gradient descent.</p>
-</p>
-
-        <nav class="level">
-            <div class="tags level-left">
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
-                    machine-learning
-                </a>
-				</span>
-                &thinsp;
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
-                    TensorLy
-                </a>
-				</span>
-                &thinsp;
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/pytorch.html">
-                    pytorch
-                </a>
-				</span>
-                &thinsp;
-            </div>
-            <div class="level-right">
-                <h5 class="title is-5">
-                    <a class="button read-more" href="https://jeankossaifi.github.io/tensorly/tensorly_with_pytorch_backend.html">
-                        <span>
-                            Read more
-                        </span>
-                        &nbsp;
-                        <span>
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-                    </a>
-                </h5>
-            </div>
-        </nav>
-
-    </div>
-</div>
-        <hr/>
-<div class="container">
-    <div class="content container is-medium">
-
-        <nav class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <h3 class="title is-3"><a class="post-title" href="https://jeankossaifi.github.io/tensorly/tensorly_with_mxnet_backend.html">TensorLy, with MXNet backend</a></h3>
-                </div>
-            </div>
-            <div class="level-left">
-                <div class="level-item">
-                    <small>
-                        Mon 28 August 2017
-                    </small>
-                </div>
-            </div>
-        </nav>
-
-        <p class="content"><p class="first last">From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.</p>
-</p>
-
-        <nav class="level">
-            <div class="tags level-left">
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
-                    machine-learning
-                </a>
-				</span>
-                &thinsp;
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
-                    TensorLy
-                </a>
-				</span>
-                &thinsp;
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/mxnet.html">
-                    MXNet
-                </a>
-				</span>
-                &thinsp;
-            </div>
-            <div class="level-right">
-                <h5 class="title is-5">
-                    <a class="button read-more" href="https://jeankossaifi.github.io/tensorly/tensorly_with_mxnet_backend.html">
-                        <span>
-                            Read more
-                        </span>
-                        &nbsp;
-                        <span>
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-                    </a>
-                </h5>
-            </div>
-        </nav>
-
-    </div>
-</div>
-        <hr/>
-<div class="container">
-    <div class="content container is-medium">
-
-        <nav class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <h3 class="title is-3"><a class="post-title" href="https://jeankossaifi.github.io/tensorly/unfolding.html">Tensor unfolding</a></h3>
-                </div>
-            </div>
-            <div class="level-left">
-                <div class="level-item">
-                    <small>
-                        Sun 19 March 2017
-                    </small>
-                </div>
-            </div>
-        </nav>
-
-        <p class="content"><p class="first last">A look at tensor unfolding and its different definitions. We go through their mathematical properties, and python implementation with NumPy.</p>
-</p>
-
-        <nav class="level">
-            <div class="tags level-left">
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
-                    machine-learning
-                </a>
-				</span>
-                &thinsp;
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
-                    TensorLy
-                </a>
-				</span>
-                &thinsp;
-            </div>
-            <div class="level-right">
-                <h5 class="title is-5">
-                    <a class="button read-more" href="https://jeankossaifi.github.io/tensorly/unfolding.html">
-                        <span>
-                            Read more
-                        </span>
-                        &nbsp;
-                        <span>
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-                    </a>
-                </h5>
-            </div>
-        </nav>
-
-    </div>
-</div>
-        <hr/>
-<div class="container">
-    <div class="content container is-medium">
-
-        <nav class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <h3 class="title is-3"><a class="post-title" href="https://jeankossaifi.github.io/tensorly/rpca.html">Robust Tensor PCA with TensorLy</a></h3>
-                </div>
-            </div>
-            <div class="level-left">
-                <div class="level-item">
-                    <small>
-                        Wed 08 March 2017
-                    </small>
-                </div>
-            </div>
-        </nav>
-
-        <p class="content"><p>A demonstration on how to use TensorLy to perform robust tensor Principal Component Analysis, with an application on images and videos.</p></p>
-
-        <nav class="level">
-            <div class="tags level-left">
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
-                    Machine-Learning
-                </a>
-				</span>
-                &thinsp;
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
-                    TensorLy
-                </a>
-				</span>
-                &thinsp;
-            </div>
-            <div class="level-right">
-                <h5 class="title is-5">
-                    <a class="button read-more" href="https://jeankossaifi.github.io/tensorly/rpca.html">
-                        <span>
-                            Read more
-                        </span>
-                        &nbsp;
-                        <span>
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-                    </a>
-                </h5>
-            </div>
-        </nav>
-
-    </div>
-</div>
-        <hr/>
-<div class="container">
-    <div class="content container is-medium">
-
-        <nav class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <h3 class="title is-3"><a class="post-title" href="https://jeankossaifi.github.io/general/new_year_new_post.html">New year, new website</a></h3>
-                </div>
-            </div>
-            <div class="level-left">
-                <div class="level-item">
-                    <small>
-                        Sun 01 January 2017
-                    </small>
-                </div>
-            </div>
-        </nav>
-
-        <p class="content"><p class="first last">Hello world!</p>
-</p>
-
-        <nav class="level">
-            <div class="tags level-left">
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/general.html">
-                    general
-                </a>
-				</span>
-                &thinsp;
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/tech.html">
-                    tech
-                </a>
-				</span>
-                &thinsp;
-            </div>
-            <div class="level-right">
-                <h5 class="title is-5">
-                    <a class="button read-more" href="https://jeankossaifi.github.io/general/new_year_new_post.html">
-                        <span>
-                            Read more
-                        </span>
-                        &nbsp;
-                        <span>
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-                    </a>
-                </h5>
-            </div>
-        </nav>
-
-    </div>
-</div>
-        <hr/>
-    </div>
-
-<nav class="pagination is-centered">
-
-
-    <ul class="pagination-list">
-        <li>
-            <span>
-                Page 1 / 1
-            </span>
-        </li>
-    </ul>
-</nav></div>
-
-            </div>
-        </section>
+</section>
 
 <footer class="footer">
-    <div class="container">
-        <div class="content has-text-centered">
-            <p>
-            © Jean Kossaifi
-            </p>
+	<p class="has-text-centered">
+	© <a href=https://jeankossaifi.github.io>Jean Kossaifi</a>
+	</p>
+	<br/><br/>
 
-            <p>
-                <a class="tooltip icon" href="https://github.com/JeanKossaifi">
-                    <i class="fa fa-github" aria-hidden="true"></i>
-                    <span class="tooltiptext">Github</span>
-                </a>
+	<div class="column is-two-fifths is-offset-two-fifths">
+		<p>
+		<a href="https://github.com/JeanKossaifi">
+			<i class="fa fa-github" aria-hidden="true"></i>
+			Github
+		</a>
+		</p>
 
-                <a class="tooltip icon" href="http://twitter.com/JeanKossaifi">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                    <span class="tooltiptext">Twitter</span>
-                </a>
-                
-                <a class="tooltip icon" href="https://uk.linkedin.com/in/jeankossaifi">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                    <span class="tooltiptext">LinkedIn</span>
-                </a>
+		<p>
+		<a href="http://twitter.com/JeanKossaifi">
+			<i class="fa fa-twitter" aria-hidden="true"></i>
+			Twitter
+		</a>
+		</p>
+		
+		<p>
+		<a href="https://uk.linkedin.com/in/jeankossaifi">
+			<i class="fa fa-linkedin" aria-hidden="true"></i>
+			Linkedin
+		</a>
+		</p>
 
-                <a class="tooltip icon" href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    <span class="tooltiptext">Google Scholar</span>
-                </a>
+		<p>
+		<a href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
+			<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+			Google Scholar
+		</a>
+		</p>
 
-            </p>
-        </div>
     </div>
 </footer>
     <script>
@@ -437,5 +710,12 @@
       ga('create', 'UA-89357746-1', 'auto');
       ga('send', 'pageview');
     </script>
-    </body>
+
+</body>
+
+<script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/navigation.js" />
+</script>
+<script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/burger.js" />
+</script>
+
 </html>

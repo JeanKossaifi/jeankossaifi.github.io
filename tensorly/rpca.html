@@ -1,121 +1,110 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
-        <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+    <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
 
-        <meta name="author" content="Jean Kossaifi">
-        <title>Robust Tensor PCA with TensorLy - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+	<meta name="author" content="Jean Kossaifi">
+	<title>Robust Tensor PCA with TensorLy - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
 
 
+	<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+	</script>
 
-		<script type="text/javascript" async
-		    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
-		</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+	<link rel="icon" href="https://jeankossaifi.github.io/theme/favicon.ico" type="image/x-icon" />
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
-        <link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+</head>
 
-    </head>
 
-    <body>
-<div class="container navigation-container">
-<nav class="navbar">
+<body>
+
+<!-- START NAV -->
+<nav class="navbar is-fixed-top is-dark">
 
 	<div class="navbar-brand">
-		<a class="navbar-item nav-title" href="https://jeankossaifi.github.io">
+		<a class="navbar-item menu-title is-size-4" href="https://jeankossaifi.github.io">
 			Jean Kossaifi
 		</a>
-
-		<span class="navbar-burger">
+		<div class="button navbar-burger" data-target="navMenu">
 			<span></span>
 			<span></span>
 			<span></span>
-			menu
-		</span>
-
+		</div>
 	</div>
 
-	<div class="navbar-menu">
+	<div id="navMenu" class="navbar-menu">
 		<div class="navbar-end">
-		</div>
-
-		<div class="navbar-end nav-menu">
-			<a class="navbar-item" href="https://jeankossaifi.github.io">
-				Blog
+			<!--
+			<a class="navbar-item" href="#">
+				Home
 			</a>
-
-			<a class="navbar-item" href="https://jeankossaifi.github.io/publications.html">
+			-->
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-about">
+				About Me
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-news">
+				News
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-projects">
+				Projects
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-publications">
 				Publications
 			</a>
-
-			<a class="navbar-item" href="https://jeankossaifi.github.io/about.html">
-				About me
+			<a class="navbar-item " href="https://jeankossaifi.github.io/blog.html">
+				Blog
 			</a>
 		</div>
 	</div>
-
 </nav>
-</div>
+<!-- END NAV -->
 
 
-<script>
-(function() {
-    var burger = document.querySelector('.navbar-burger');
-    var menu = document.querySelector('.navbar-menu');
-    burger.addEventListener('click', function() {
-        burger.classList.toggle('is-active');
-        menu.classList.toggle('is-active');
-    });
-})();
-</script>
-
-        <section class="section main-section">
-            <div class="container main-content">
-
-<div class="container">
-
-    <div class="post-title">
-        <div class="container has-text-centered">
-            <h2 class="title is-2">
-                Robust Tensor PCA with TensorLy
-            </h2>
-            <h4 class="subtitle is-4">
-                Wed 08 March 2017 
-            </h4>
-        </div>
-
-        <nav class"level">
-            <div class="tags level-right">
-	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/machine-learning.html">
-                    Machine-Learning
-                </a>
+<section class="articles">
+<div class="column is-8 is-offset-2">
+<!-- START about -->
+	<div class="card article" href="https://jeankossaifi.github.io/tensorly/rpca.html" id="article">
+		<div class="card-content">
+		<!-- title -->
+		<div class="media">
+			<!--
+			<div class="media-center">
+				<span class="article-icon icon fa-2x">
+					<i class="fa fa-user"></i>
 				</span>
-                &thinsp;
+			</div>
+			-->
+			<div class="media-content has-text-centered">
+			<h1 class="title article-title">
+			    Robust Tensor PCA with TensorLy
+			</h1>
+			<h2 class="subtitle is-4">
 	
-				<span class="tag is-light">
-                <a href="https://jeankossaifi.github.io/tag/tensorly.html">
-                    TensorLy
-                </a>
-				</span>
-                &thinsp;
-            </div>
-        </nav>
-    </div>
-
-    <hr/>
-
-    <div="section blog">
-        <div class="container">
-            <div class="content blog-post is-medium">
-                <style type="text/css">/*!
+					<a class="tag is-rounded is-dark" href="https://jeankossaifi.github.io/tag/machine-learning.html">
+						Machine-Learning
+					</a>
+					&thinsp;
+	
+					<a class="tag is-rounded is-dark" href="https://jeankossaifi.github.io/tag/tensorly.html">
+						TensorLy
+					</a>
+					&thinsp;
+			</h2>
+			</div>
+	  	</div>
+		<hr/>
+		<!-- content -->
+		<div id="" class="content article-body">
+            <style type="text/css">/*!
 *
 * IPython notebook
 *
@@ -1124,22 +1113,23 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's start with traditional Principal Component Analysis. There are several ways to formulate the PCA problem, here we show the minimum reconstruction error formulation. Formally, we want to minimise the Frobenius norm of the reconstruction error under orthogonality constraint over the projection weights. Let $X \in \mathbb{R}^{M, N}$ be an $N$ by $M$ matrix. We want to find the orthonormal projection matrix $W \in \mathbb{R}^{M, K}, K \leq M$ that solves:</p>
-\begin{equation*}
+<p>\begin{equation*}
 \begin{aligned}
    & \min_{W} 
    & & \|X - XWW^T \|_F^2\\
    & \text{subject to} 
    & & W^TW = Id\\
 \end{aligned}
-\end{equation*}<p>If we write $D$ the reconstructed matrix $D = XWW^T$, we can equivalently write the problem as:</p>
-\begin{equation*}
+\end{equation*}</p>
+<p>If we write $D$ the reconstructed matrix $D = XWW^T$, we can equivalently write the problem as:</p>
+<p>\begin{equation*}
 \begin{aligned}
    & \min_{W} 
    & & \|X - D\|_F^2\\
    & \text{subject to} 
    & & rank(D) \leq K\\
 \end{aligned}
-\end{equation*}
+\end{equation*}</p>
 </div>
 </div>
 </div>
@@ -1148,20 +1138,22 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robust PCA still wants to minimise the error but this time under the asumption that the noise is gross but sparse: instead of minimising an $\ell_2$ norm, we minimise an $\ell_0$ norm of the reconstruction error. In addition, instead of setting an upper bound on the rank of the reconstruction,  we directly seek to minimze it:</p>
-\begin{equation*}
+<p>\begin{equation*}
 \begin{aligned}
    & \min_{D} 
    & & rank(D) +  \|X - D\|_0\\
 \end{aligned}
-\end{equation*}<p>However, this problem is NP-hard, which means it cannot be solved in Polynomial time (i.e. as the size of your data increases, the time it takes to solve it increases exponentially).</p>
+\end{equation*}</p>
+<p>However, this problem is NP-hard, which means it cannot be solved in Polynomial time (i.e. as the size of your data increases, the time it takes to solve it increases exponentially).</p>
 <p>A nice way around this is to relax the problem using the convex surrogate of the norm $\ell_0$ and of the rank operator as proposed by Cantes in his paper "Robust Principal Component Analysis" in ACM Journal, 2011.</p>
 <p>This turns the problem into a tractable one:</p>
-\begin{equation*}
+<p>\begin{equation*}
 \begin{aligned}
    & \min_{\tilde D} 
    & & \|D\|_* + \lambda \|X - D\|_1 \\
 \end{aligned}
-\end{equation*}<p>Note that I have cheekily added a regularisation parameter on the norm $\ell_1$ of the error while you weren't looking: in practice, this parameter controls how sparse the error matrix will be and needs to be tuned to each particular data.</p>
+\end{equation*}</p>
+<p>Note that I have cheekily added a regularisation parameter on the norm $\ell_1$ of the error while you weren't looking: in practice, this parameter controls how sparse the error matrix will be and needs to be tuned to each particular data.</p>
 </div>
 </div>
 </div>
@@ -1171,12 +1163,13 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robust Tensor PCA generalises this problem to tensors. Instead of minimizing the nuclear norm of the data tensor $\tilde{X}$, we minimise the nuclear norm of its unfoldings, $\tilde{X_{[i]}}$ along each mode $i, i \in \left[1, \cdots, N\right].$</p>
 <p>In other words, the problem robust tensor PCA solves is:</p>
-\begin{equation*}
+<p>\begin{equation*}
 \begin{aligned}
    & \min_{\tilde D} 
    & & \sum_{i=1}^N  \|\tilde D_{[i]}\|_* + \lambda \|\tilde X - \tilde D\|_1 \\
 \end{aligned}
-\end{equation*}<p>This is implemented in TensorLy using the Alternating Direction Method of Multipliers (ADMM) and wraped in a nice API.</p>
+\end{equation*}</p>
+<p>This is implemented in TensorLy using the Alternating Direction Method of Multipliers (ADMM) and wraped in a nice API.</p>
 </div>
 </div>
 </div>
@@ -31055,64 +31048,88 @@ UAh4tQAAAABJRU5ErkJggg==
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-            </div>
-        </div>
-    </div>
+		</div>
+		<!-- END content -->
 
+		<!-- social links -->
+		<nav class="level is-mobile">
+			<div class="level-left">
+				<div class="level-item has-text-centered">
+					<a class="button" href="#top">
+						<span class="icon">
+							<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+			</div>
 
-	<br/>
-    <nav class="level is-mobile">
-        <div class="level-left">
-            <div class="level-item">
-                <a class="tooltip" href="#top">
-                    <span class="icon is-medium">
-                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i>
-                    </span>
-                    <span class="tooltiptext">Back to top</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="level-right is-mobile">
-            <div class="level-item">
-                <a class="tooltip" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html&via=JeanKossaifi"
+			<div>
+			<p class="heading">
+			Share this article: 
+			</p>
+			<div class="level-right">
+				<div class="level-item">
+					<a class="button is-twitter" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html&via=JeanKossaifi"
  data-via="JeanKossaifi" >
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                    <span class="tooltiptext">Share on Twitter</span>
-                </a>
-            </div>
+						<span class="icon">
+						<i class="fa fa-twitter" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
 
 
-            <div class="level-item">
-                <a class="tooltip" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                    <span class="tooltiptext">Share on Facebook</span>
-                </a>
-            </div>
+				<div class="level-item">
+					<a class="button is-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html">
+						<span class="icon">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
 
-            <div class="level-item">
-                <a class="tooltip" href="https://plus.google.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                    <i class="fa fa-google-plus" aria-hidden="true"></i>
-                    <span class="tooltiptext">Share on Google Plus</span>
-                </a>
-            </div>
-        </div>
-    </nav>
-    <hr/>
+				<div class="level-item">
+					<a class="button is-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html&title=Robust%20Tensor%20PCA%20with%20TensorLy&summary=%3Cp%3EA%20demonstration%20on%20how%20to%20use%20TensorLy%20to%20perform%20robust%20tensor%20Principal%20Component%20Analysis%2C%20with%20an%20application%20on%20images%20and%20videos.%3C/p%3E">
+						<span class="icon">
+						<i class="fa fa-linkedin" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
 
+			</div>
+			</div>
+		</nav>
+		<!-- END social links -->
 
-    <h2 class="title is-2">
-        Leave a comment:
-    </h2>
-    <div class="card is-fullwidth">
-        <div class="card-content">
-            <div class="content">
+	</div>
+	</div>
+	<!-- END about -->
+
+	<!-- START comments -->
+	<div class="card article" href="https://jeankossaifi.github.io/tensorly/rpca.html">
+		<div class="card-content">
+		<!-- title -->
+		<div class="media">
+			<!--
+			<div class="media-center">
+				<span class="article-icon icon fa-2x">
+					<i class="fa fa-user"></i>
+				</span>
+			</div>
+			-->
+			<div class="media-content has-text-centered">
+			<h1 class="title article-title">
+				Leave a comment:
+			</h1>
+			</div>
+	  	</div>
+		<!-- content -->
+		<div id="" class="content article-body">
 <div id="disqus_thread"></div>
 <script>
 
@@ -31129,44 +31146,87 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                            </div>
-        </div>
-    </div>
+                                		</div>
+		<!-- END content -->
+	</div>
+	</div>
+	<!-- END about -->
+
+
+<div class="side-scroll fade" id="side-scroll">
+	<div class="side-button">
+	<a class="button is-outlined" href="#top">
+		<span class="icon">
+			<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html&via=JeanKossaifi"
+ data-via="JeanKossaifi" >
+		<span class="icon">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html">
+		<span class="icon">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2frpca.html&title=Robust%20Tensor%20PCA%20with%20TensorLy&summary=%3Cp%3EA%20demonstration%20on%20how%20to%20use%20TensorLy%20to%20perform%20robust%20tensor%20Principal%20Component%20Analysis%2C%20with%20an%20application%20on%20images%20and%20videos.%3C/p%3E">
+		<span class="icon">
+			<i class="fa fa-linkedin" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/sidescroll.js" />
+</script>
 
 </div>
-            </div>
-        </section>
+</section>
 
 <footer class="footer">
-    <div class="container">
-        <div class="content has-text-centered">
-            <p>
-            © Jean Kossaifi
-            </p>
+	<p class="has-text-centered">
+	© <a href=https://jeankossaifi.github.io>Jean Kossaifi</a>
+	</p>
+	<br/><br/>
 
-            <p>
-                <a class="tooltip icon" href="https://github.com/JeanKossaifi">
-                    <i class="fa fa-github" aria-hidden="true"></i>
-                    <span class="tooltiptext">Github</span>
-                </a>
+	<div class="column is-two-fifths is-offset-two-fifths">
+		<p>
+		<a href="https://github.com/JeanKossaifi">
+			<i class="fa fa-github" aria-hidden="true"></i>
+			Github
+		</a>
+		</p>
 
-                <a class="tooltip icon" href="http://twitter.com/JeanKossaifi">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                    <span class="tooltiptext">Twitter</span>
-                </a>
-                
-                <a class="tooltip icon" href="https://uk.linkedin.com/in/jeankossaifi">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                    <span class="tooltiptext">LinkedIn</span>
-                </a>
+		<p>
+		<a href="http://twitter.com/JeanKossaifi">
+			<i class="fa fa-twitter" aria-hidden="true"></i>
+			Twitter
+		</a>
+		</p>
+		
+		<p>
+		<a href="https://uk.linkedin.com/in/jeankossaifi">
+			<i class="fa fa-linkedin" aria-hidden="true"></i>
+			Linkedin
+		</a>
+		</p>
 
-                <a class="tooltip icon" href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    <span class="tooltiptext">Google Scholar</span>
-                </a>
+		<p>
+		<a href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
+			<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+			Google Scholar
+		</a>
+		</p>
 
-            </p>
-        </div>
     </div>
 </footer>
     <script>
@@ -31178,5 +31238,10 @@ s.setAttribute('data-timestamp', +new Date());
       ga('create', 'UA-89357746-1', 'auto');
       ga('send', 'pageview');
     </script>
-    </body>
+
+</body>
+
+<script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/burger.js" />
+</script>
+
 </html>
