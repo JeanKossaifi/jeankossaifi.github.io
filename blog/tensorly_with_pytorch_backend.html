@@ -5,11 +5,19 @@
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning">
-    <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning, Tensor Methods">
+    <meta name="description" content='Jean Kossaifi's Home Page - Machine Learning & Computer Vision'>
 
 	<meta name="author" content="Jean Kossaifi">
-	<title>TensorLy, now also with PyTorch backend - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+	<title>TensorLy, Now Also with PyTorch Backend - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+
+
+	<meta name="twitter:card" content="summary" />
+
+	<meta name="twitter:creator" content="@JeanKossaifi" />
+	<meta name="twitter:title" content="TensorLy, Now Also with PyTorch Backend" />
+	<meta name="twitter:description" content="In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch code with tensor methods. In this post we demonstrate this by performing Tucker tensor decomposition using autograd and gradient descent." />
+
 
 
 	<script type="text/javascript" async
@@ -72,20 +80,14 @@
 <section class="articles">
 <div class="column is-8 is-offset-2">
 <!-- START about -->
-	<div class="card article" href="https://jeankossaifi.github.io/tensorly/tensorly_with_pytorch_backend.html" id="article">
+	<div class="card article" href="https://jeankossaifi.github.io/blog/tensorly_with_pytorch_backend.html" id="article">
+
 		<div class="card-content">
 		<!-- title -->
 		<div class="media">
-			<!--
-			<div class="media-center">
-				<span class="article-icon icon fa-2x">
-					<i class="fa fa-user"></i>
-				</span>
-			</div>
-			-->
 			<div class="media-content has-text-centered">
 			<h1 class="title article-title">
-			    TensorLy, now also with PyTorch backend
+			    TensorLy, Now Also with PyTorch Backend
 			</h1>
 			<h2 class="subtitle is-4">
 	
@@ -158,6 +160,8 @@ tensors in Variables so we can backpropagate through them:</p>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">([</span><span class="n">core</span><span class="p">]</span><span class="o">+</span><span class="n">factors</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+    <span class="c1"># Important: do not forget to reset the gradients</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
     <span class="c1"># Reconstruct the tensor from the decomposed form</span>
     <span class="n">rec</span> <span class="o">=</span> <span class="n">tucker_to_tensor</span><span class="p">(</span><span class="n">core</span><span class="p">,</span> <span class="n">factors</span><span class="p">)</span>
@@ -199,6 +203,10 @@ Epoch 9000,. Rec. error: 0.999994015288
 
 		<!-- social links -->
 		<nav class="level is-mobile">
+			<div>
+			<p class="heading">
+			BACK TO TOP:  
+			</p>
 			<div class="level-left">
 				<div class="level-item has-text-centered">
 					<a class="button" href="#top">
@@ -208,6 +216,7 @@ Epoch 9000,. Rec. error: 0.999994015288
 					</a>
 				</div>
 			</div>
+			</div>
 
 			<div>
 			<p class="heading">
@@ -215,7 +224,7 @@ Epoch 9000,. Rec. error: 0.999994015288
 			</p>
 			<div class="level-right">
 				<div class="level-item">
-					<a class="button is-twitter" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html&via=JeanKossaifi"
+					<a class="button is-twitter" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2fblog%2ftensorly_with_pytorch_backend.html&via=JeanKossaifi"
  data-via="JeanKossaifi" >
 						<span class="icon">
 						<i class="fa fa-twitter" aria-hidden="true"></i>
@@ -225,7 +234,7 @@ Epoch 9000,. Rec. error: 0.999994015288
 
 
 				<div class="level-item">
-					<a class="button is-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html">
+					<a class="button is-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2fblog%2ftensorly_with_pytorch_backend.html">
 						<span class="icon">
 						<i class="fa fa-facebook" aria-hidden="true"></i>
 						</span>
@@ -233,7 +242,7 @@ Epoch 9000,. Rec. error: 0.999994015288
 				</div>
 
 				<div class="level-item">
-					<a class="button is-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html&title=TensorLy%2C%20now%20also%20with%20PyTorch%20backend&summary=%3Cp%20class%3D%22first%20last%22%3EIn%20version%200.2.0%2C%20TensorLy%20was%20refactored%20to%20support%20backends.%20As%20proof%20of%20concept%20I%20put%20together%20a%20PyTorch%20backend.%20It%20makes%20it%20trivial%20to%20combine%20pytorch%20code%20with%20tensor%20methods.%20In%20this%20post%20we%20demonstrate%20this%20by%20performing%20Tucker%20tensor%20using%20autograd%20and%20gradient%20descent.%3C/p%3E%0A">
+					<a class="button is-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2fblog%2ftensorly_with_pytorch_backend.html&title=TensorLy%2C%20Now%20Also%20with%20PyTorch%20Backend&summary=%3Cp%20class%3D%22first%20last%22%3EIn%20version%200.2.0%2C%20TensorLy%20was%20refactored%20to%20support%20backends.%20As%20proof%20of%20concept%20I%20put%20together%20a%20PyTorch%20backend.%20It%20makes%20it%20trivial%20to%20combine%20pytorch%20code%20with%20tensor%20methods.%20In%20this%20post%20we%20demonstrate%20this%20by%20performing%20Tucker%20tensor%20decomposition%20using%20autograd%20and%20gradient%20descent.%3C/p%3E%0A">
 						<span class="icon">
 						<i class="fa fa-linkedin" aria-hidden="true"></i>
 						</span>
@@ -250,20 +259,13 @@ Epoch 9000,. Rec. error: 0.999994015288
 	<!-- END about -->
 
 	<!-- START comments -->
-	<div class="card article" href="https://jeankossaifi.github.io/tensorly/tensorly_with_pytorch_backend.html">
+	<div class="card article" href="https://jeankossaifi.github.io/blog/tensorly_with_pytorch_backend.html">
 		<div class="card-content">
 		<!-- title -->
 		<div class="media">
-			<!--
-			<div class="media-center">
-				<span class="article-icon icon fa-2x">
-					<i class="fa fa-user"></i>
-				</span>
-			</div>
-			-->
 			<div class="media-content has-text-centered">
-			<h1 class="title article-title">
-				Leave a comment:
+			<h1 class="title is-3 article-title">
+				Leave a comment
 			</h1>
 			</div>
 	  	</div>
@@ -273,8 +275,8 @@ Epoch 9000,. Rec. error: 0.999994015288
 <script>
 
 var disqus_config = function () {
-	this.page.url = "https://jeankossaifi.github.io/tensorly/tensorly_with_pytorch_backend.html";
-	this.page.identifier = "tensorly/tensorly_with_pytorch_backend.html"; 
+	this.page.url = "https://jeankossaifi.github.io/blog/tensorly_with_pytorch_backend.html";
+	this.page.identifier = "blog/tensorly_with_pytorch_backend.html"; 
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -301,7 +303,7 @@ s.setAttribute('data-timestamp', +new Date());
 	</a>
 	</div>
 	<div class="side-button">
-	<a class="button is-outlined" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html&via=JeanKossaifi"
+	<a class="button is-outlined" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2fblog%2ftensorly_with_pytorch_backend.html&via=JeanKossaifi"
  data-via="JeanKossaifi" >
 		<span class="icon">
 		<i class="fa fa-twitter" aria-hidden="true"></i>
@@ -309,14 +311,14 @@ s.setAttribute('data-timestamp', +new Date());
 	</a>
 	</div>
 	<div class="side-button">
-	<a class="button is-outlined" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html">
+	<a class="button is-outlined" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2fblog%2ftensorly_with_pytorch_backend.html">
 		<span class="icon">
 		<i class="fa fa-facebook" aria-hidden="true"></i>
 		</span>
 	</a>
 	</div>
 	<div class="side-button">
-	<a class="button is-outlined" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2ftensorly%2ftensorly_with_pytorch_backend.html&title=TensorLy%2C%20now%20also%20with%20PyTorch%20backend&summary=%3Cp%20class%3D%22first%20last%22%3EIn%20version%200.2.0%2C%20TensorLy%20was%20refactored%20to%20support%20backends.%20As%20proof%20of%20concept%20I%20put%20together%20a%20PyTorch%20backend.%20It%20makes%20it%20trivial%20to%20combine%20pytorch%20code%20with%20tensor%20methods.%20In%20this%20post%20we%20demonstrate%20this%20by%20performing%20Tucker%20tensor%20using%20autograd%20and%20gradient%20descent.%3C/p%3E%0A">
+	<a class="button is-outlined" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2fblog%2ftensorly_with_pytorch_backend.html&title=TensorLy%2C%20Now%20Also%20with%20PyTorch%20Backend&summary=%3Cp%20class%3D%22first%20last%22%3EIn%20version%200.2.0%2C%20TensorLy%20was%20refactored%20to%20support%20backends.%20As%20proof%20of%20concept%20I%20put%20together%20a%20PyTorch%20backend.%20It%20makes%20it%20trivial%20to%20combine%20pytorch%20code%20with%20tensor%20methods.%20In%20this%20post%20we%20demonstrate%20this%20by%20performing%20Tucker%20tensor%20decomposition%20using%20autograd%20and%20gradient%20descent.%3C/p%3E%0A">
 		<span class="icon">
 			<i class="fa fa-linkedin" aria-hidden="true"></i>
 		</span>
@@ -327,6 +329,30 @@ s.setAttribute('data-timestamp', +new Date());
 
 <script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/sidescroll.js" />
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+	"@id": "https://jeankossaifi.github.io/blog/tensorly_with_pytorch_backend.html"
+  },
+  "headline": "TensorLy, Now Also with PyTorch Backend",
+  "datePublished": "2017-09-11 00:00:00+01:00",
+  "dateModified": "2017-09-11 00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+ "publisher": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "description": "In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch code with tensor methods. In this post we demonstrate this by performing Tucker tensor decomposition using autograd and gradient descent."
+}
+</script>
+
 
 </div>
 </section>

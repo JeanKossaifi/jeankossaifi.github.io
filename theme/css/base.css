@@ -139,6 +139,9 @@ a {
 .figure.full-image {
     width: 100vw;
 }
+.figure img{
+	float: left;
+}
 img {
     max-width: 100vw;
 }
@@ -156,12 +159,24 @@ img {
 		position: relative;
     }
 } 
+img.banner {
+	max-height: 80vh;
+}
 img.large-image {
     position: relative;
 	width: 100%;
 } 
 img.align-center { margin:auto; display:block; }
-
+.figure.align-right {
+	float: right;
+	margin: 0 0 1em 1em;
+	max-width: 25%;
+}
+img.box-right {
+	float: right;
+	margin: 1em 0 1em 1em;
+	max-width: 100%;
+}
 /* MATH */
 @media screen and (max-width: 768px) {
     div.math {
@@ -185,44 +200,29 @@ div.math {
 .output_subarea {
     max-width: none!important;
 }
+.output_area {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	border: dashed;
+	border-width: 1px;
+	border-color: coral;
+}
 .output_png>img,video {
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: flex;
 }
 .input {
     font-size: inherit;
     border: 0!important;
     display: table!important;
     padding:0!important;
-}
-
-/* IPyhon related style */
-.prompt {
-    display: none!important;
-}
-.import-area {
-    padding:0!important;
-}
-.output_subarea {
-    max-width: none!important;
-}
-.output_png>img,video {
-    margin-left: auto;
-    margin-right: auto;
-    display: relative;
-}
-.input {
-    font-size: inherit;
-    border: 0!important;
-    display: table!important;
-    padding:0!important;
-}
-.inner_cell {
-    max-width: 100%;
 }
 .input_area {
-    max-width: 100%;
+	display: grid;
+}
+div.cell {
+	display: inherit!important;
 }
 /* Side scroll */
 @media screen and (max-width: 768px) {
@@ -232,7 +232,7 @@ div.math {
 }
 @media screen and (min-width: 768px) {
 	.side-scroll {
-		top: 40%;
+		top: 20%;
 		position: fixed;
 		opacity:1;
 		transition: opacity 0.7s;
