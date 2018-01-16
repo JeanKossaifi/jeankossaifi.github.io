@@ -264,3 +264,16 @@ div.cell {
 	bottom: 20px!important;
 	top:auto!important;
 }
+/* 404 */
+.not-found-title {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+.not-found-body {
+	padding-top: 4em;
+	padding-bottom: 4em;
+}
+.not-found {
+	min-height: 70vh;
+	margin-top: 3em;
+}
