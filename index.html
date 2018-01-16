@@ -55,7 +55,7 @@
 			</a>
 			-->
 			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-about">
-				About Me
+				About
 			</a>
 			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-news">
 				News
@@ -92,7 +92,7 @@
 			</div>
 			<div class="media-content has-text-centered">
 			  <h1 class="title article-title">
-				  About Me
+				  About
 			  </h1>
 			</div>
 	  	</div>
@@ -103,6 +103,7 @@
 
 			<div class="content">
 				<h2>Biography</h2>
+				<hr/>
 				<img style="padding-right: 20px; max-width:150px;" src="https://jeankossaifi.github.io/images/jean.jpg" align="left"/>
 				<p>
 				I am currently a Research Assistant and PhD student in the Department of Computing at Imperial College London, within the <a href="http://ibug.doc.ic.ac.uk/">iBug</a> group. I work on automatic facial affect estimation, a field which bridges the gap between Computer Vision and Machine Learning. After contributing to facial landmark detection using Active Appearance Models I have shifted my focus to Machine Learning using tensors. Recently, I developed <a href="https://tensorly.github.io/">TensorLy</a>, a library for tensor learning and decomposition in Python, which I had the chance to present at the NIPS'16 <a href="http://tensor-learn.org/">workshop on tensor-learn</a>.
@@ -229,32 +230,121 @@
 		<div id="" class="content article-body">
 <div class="box">
 	<nav class="tile is-parent">
-		<div class="tile is-4">
-			<figure class="image is-128x128">
+		<div class="tile is-5">
+			<figure class="image project-img">
 				<img src="https://jeankossaifi.github.io/images/TensorLy_logo.png" alt="Image">
 			</figure>
 		</div>
-		<div class="tile is-8">
+		<div class="tile is-7">
 				<div class="content">
 					<h4 class="title project-title is-4"><a href="https://tensorly.github.io/dev/">TensorLy</a></h4>
 					<p>
 					Creator and lead developer of TensorLy, a library for tensor methods in Python. 
 					</p>
+					<p>
+					TensorLy is a fast and simple Python library for tensor learning. It builds on top of NumPy, SciPy and allows for fast and straightforward tensor decomposition, tensor learning and tensor algebra.
+					<p>
+					Its flexible backend system allows to run operations transparently on GPU or Multi-Machines using PyTorch or MXNet, and to combine Tensor Methods with Deep-Learning
+					</p>
+				</div>
+		</div>
+	</nav>
+	<nav class="level">
+		<div class="level-left">
+		</div>
+		<div class="level-right">
+		<div class="level-item">
+		<a class="button" href="https://tensorly.github.io/dev/">
+			Website
+		</a>
+		</div>
+		<div class="level-item">
+		<a class="button" href="https://github.com/tensorly/tensorly">
+			Github
+		</a>
+		</div>
+		<div class="level-item">
+		<a class="button" href="https://github.com/JeanKossaifi/tensorly-notebooks">
+			Notebooks
+		</a>
+		</div>
+		</div>
+	</nav>
+</div>
+
+
+<div class="box">
+	<nav class="tile is-parent">
+		<div class="tile is-5">
+			<figure class="image project-img">
+				<img src="https://jeankossaifi.github.io/images/afewva.png" alt="Image">
+			</figure>
+		</div>
+		<div class="tile is-7">
+				<div class="content">
+					<h4 class="title project-title is-4"><a href="https://ibug.doc.ic.ac.uk/resources/afew-va-database/">AFEW-VA database</a></h4>
+					<p>
+					Author of the AFEW-VA database for Valence and Arousal estimation in-the-wild.
+					</p>
+					<p>
+					The AFEW-VA databaset is a collection of highly accurate per-frame annotations levels of valence and arousal, along with per-frame annotations of 68 facial landmarks for 600 challenging video clips. These clips are extracted from feature films and were also annotated in terms of discrete emotion categories in the form of the AFEW database (that can be obtained there).
+					</p>
 				</div>
 		</div>
 	</nav>
 	<nav class="level is-link">
-		<a class="button level-item" href="https://tensorly.github.io/dev/">
-			Website
+		<div class="level-left">
+		</div>
+		<div class="level-right">
+		<div class="level-item">
+		<a class="button" href="https://tensorly.github.io/dev/">
+			Database
 		</a>
-		<a class="button level-item" href="https://github.com/tensorly/tensorly">
-			Github
-		</a>
-		<a class="button level-item" href="https://github.com/JeanKossaifi/tensorly-notebooks">
-			Notebooks
-		</a>
+		</div>
+		</div>
 	</nav>
-</div>		</div>
+</div>
+
+
+<div class="box">
+	<nav class="tile is-parent">
+		<div class="tile is-5">
+			<figure class="image project-img">
+				<img src="https://jeankossaifi.github.io/images/annotation_tool.png" alt="Image">
+			</figure>
+		</div>
+		<div class="tile is-7">
+				<div class="content">
+					<h4 class="title project-title is-4"><a href="https://github.com/JeanKossaifi/valence_arousal_annotator">Online annotation tool</a></h4>
+					<p>
+					Valence/Arousal Online Annotation Tool
+					</p>
+					<p>
+					This tool, written in Python as a Flask application backed with a MongoDB, allows any number people to annotate video clips per-frame, for valence and arousal, remotely. In addition it can be easily extended to handle more annotations (e.g. discrete emotions).
+					</p>
+				</div>
+		</div>
+	</nav>
+	<nav class="level is-link">
+	<div class="level-left">
+	</div>
+
+	<div class="level-right">
+		<div class="level-item">
+		<a class="button" href="https://github.com/JeanKossaifi/valence_arousal_annotator">
+			Code
+		</a>
+		</div>
+		<div class="level-item">
+		<a class="button" href="https://github.com/JeanKossaifi/valence_arousal_annotator/wiki">
+			Wiki
+		</a>
+		</div>
+	</div>
+	</nav>
+</div>
+
+		</div>
 		<!-- END content -->
 	</div>
 	</div>
