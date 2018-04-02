@@ -18,6 +18,16 @@
 
 
 
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	  "HTML-CSS": {
+	  styles: {
+	  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+	  },
+	  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+	  });
+	</script>
+
 	<script type="text/javascript" async
 		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
 	</script>
@@ -32,8 +42,6 @@
 
 
 <body>
-
-<!-- START NAV -->
 <nav class="navbar is-fixed-top is-dark">
 
 	<div class="navbar-brand">
@@ -49,11 +57,6 @@
 
 	<div id="navMenu" class="navbar-menu">
 		<div class="navbar-end">
-			<!--
-			<a class="navbar-item" href="#">
-				Home
-			</a>
-			-->
 			<a class="navbar-item menu-link" href="https://jeankossaifi.github.io#menu-about">
 				About
 			</a>
@@ -72,18 +75,13 @@
 		</div>
 	</div>
 </nav>
-<!-- END NAV -->
-
-
 <section class="articles">
 <div class="column is-8 is-offset-2">
 
-	<!-- START about -->
 	<a class="menu-anchor" id="menu-about"></a>
 	<div class="card article menu-section">
 	<div class="card-content">
 
-		<!-- title -->
 		<div class="media">
 			<div class="media-center">
 				<span class="article-icon icon fa-2x">
@@ -96,7 +94,6 @@
 			  </h1>
 			</div>
 	  	</div>
-		<!-- content -->
 		<div id="" class="content article-body">
 	<div class="columns">
 		<div class="column is-two-thirds">
@@ -162,17 +159,13 @@
 			<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 	</div>		</div>
-		<!-- END content -->
 	</div>
 	</div>
-	<!-- END about -->
 
-	<!-- START news -->
 	<a class="menu-anchor" id="menu-news"></a>
 	<div class="card article menu-section">
 	<div class="card-content">
 
-		<!-- title -->
 		<div class="media">
 			<div class="media-center">
 				<span class="article-icon icon fa-2x">
@@ -185,9 +178,11 @@
 			  </h1>
 			</div>
 	  	</div>
-		<!-- content -->
 		<div id="" class="content news-summary article-body">
 			<ul class="first last">
+<li><p class="first"><strong>30/03/2017</strong></p>
+<p>New paper accepted at IEEE CVPR on <a class="reference external" href="/pages/gagan.html">Geometry-Aware Generative Adversarial Networks</a></p>
+</li>
 <li><p class="first"><strong>10/12/2017</strong></p>
 <p>Best poster award at the NIPS <a class="reference external" href="https://mltrain.cc/events/nips-highlights-learn-how-to-code-a-paper-with-state-of-the-art-frameworks/">MLtrain workshop</a> for Tensor Contraction &amp; Regression Networks with <a class="reference external" href="http://tensorly.github.io/">TensorLy</a> <a class="reference external" href="https://arxiv.org/abs/1707.08308">https://arxiv.org/abs/1707.08308</a></p>
 </li>
@@ -202,18 +197,14 @@
 </ul>
 
 		</div>
-		<!-- END content -->
 	</div>
 	</div>
-	<!-- END news -->
 
 
-	<!-- START news -->
 	<a class="menu-anchor" id="menu-projects"></a>
 	<div class="card article menu-section">
 	<div class="card-content">
 
-		<!-- title -->
 		<div class="media">
 			<div class="media-center">
 				<span class="article-icon icon fa-2x">
@@ -226,7 +217,6 @@
 			  </h1>
 			</div>
 	  	</div>
-		<!-- content -->
 		<div id="" class="content article-body">
 <div class="box">
 	<nav class="tile is-parent">
@@ -345,17 +335,13 @@
 </div>
 
 		</div>
-		<!-- END content -->
 	</div>
 	</div>
-	<!-- END news -->
 
 
-	<!-- START publications -->
 	<a class="menu-anchor" id="menu-publications"></a>
 	<div class="card article menu-section">
 	<div class="card-content">
-		<!-- title -->
 		<div class="media">
 			<div class="media-center">
 				<span class="article-icon icon fa-2x">
@@ -368,7 +354,9 @@
 			  </h1>
 			</div>
 	  	</div>
-		<!-- content -->
+		<div class="field">
+			<input class="input is-rounded publication-search" type="text" placeholder="Search publications" id="publication-search">
+		</div>
 		<div id="" class="content article-body">
 			<script type="text/javascript">
 			function disp(s) {
@@ -390,9 +378,9 @@
 			</script>
 		
 			<section id="content" class="body">
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
-				<emph><strong>J. Kossaifi</strong></emph>, L, Tran, Y. Panagakis and M. Pantic, <i>GAGAN: Geometry-Aware Generative Adverserial Networks</i>, in arXiv preprint arXiv:1712.00684, 2017
+				<emph><strong>J. Kossaifi</strong></emph>, L, Tran, Y. Panagakis and M. Pantic, <i>GAGAN: Geometry-Aware Generative Adverserial Networks</i>, in IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2018
 			</div>
 
 			<nav class="level is-mobile">
@@ -404,7 +392,7 @@
 						<div class="modal-background" onclick="javascrip:toggle_modal('gagan');"></div>
 						<div class="modal-content">
 							<div class="box">
-								@article{gagan,<br/> author = {J. Kossaifi and L, Tran and Y. Panagakis and M. Pantic},<br/> journal = {arXiv preprint arXiv:1712.00684},<br/> title = {GAGAN: Geometry-Aware Generative Adverserial Networks},<br/> year = {2017}<br/>}<br/>
+								@article{gagan,<br/> author = {J. Kossaifi and L, Tran and Y. Panagakis and M. Pantic},<br/> journal = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},<br/> title = {GAGAN: Geometry-Aware Generative Adverserial Networks},<br/> year = {2018}<br/>}<br/>
 
 							</div>
 						</div>
@@ -424,10 +412,51 @@
 					<a class='button' onclick="window.open('/pdfs/gagan.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </s
 pan> </a> 
 					</p>
+                    <p class="level-item">
+					<a class='button' onclick="window.open('/pages/gagan.html','_blank');" > <span class='icon'> <i class='fa fa-internet-explorer' aria-hidden='true'></i> </span> <span> website </s
+pan> </a> 
+					</p>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
+			<div class="content">
+				G. Dhillon, K. Azizzadenesheli, Z.C.Lipton, J. Bernstein, <emph><strong>J. Kossaifi</strong></emph>, A.Khanna, A.Anandkumar, <i>Stochastic activation pruning for robust adversarial defense</i>, in ICLR, 2018
+			</div>
+
+			<nav class="level is-mobile">
+
+				<div class="level-left is-mobile">
+					<p class="level-item">
+
+					<div class="modal" id="dhillon2018stochastic">
+						<div class="modal-background" onclick="javascrip:toggle_modal('dhillon2018stochastic');"></div>
+						<div class="modal-content">
+							<div class="box">
+								@article{dhillon2018stochastic,<br/> author = {G. Dhillon and K. Azizzadenesheli and Z.C.Lipton and J. Bernstein and J. Kossaifi and A.Khanna and A.Anandkumar},<br/> journal = {ICLR},<br/> title = {Stochastic activation pruning for robust adversarial defense},<br/> year = {2018}<br/>}<br/>
+
+							</div>
+						</div>
+						<button class="modal-close" onclick="javascrip:toggle_modal('dhillon2018stochastic');"></button>
+					</div>
+
+					<p class="level-item">
+					<a class="button" onclick="javascrip:toggle_modal('dhillon2018stochastic');">
+						<span class='icon'>
+							<i class='fa fa-graduation-cap' aria-hidden='true'></i> 
+						</span> 
+						<span> Bibtex </span> 
+					</a> 
+					</p>
+
+                    <p class="level-item">
+					<a class='button' onclick="window.open('/pdfs/stochastic_activation_pruning.pdf','_blank');" > <span class='icon'> <i class='fa fa-file-pdf-o' aria-hidden='true'></i> </span> <span> pdf </s
+pan> </a> 
+					</p>
+				</div>
+			</nav>
+		</div>
+        	<div class="box publication">
 			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos, S. Todorovic and M. Pantic, <i>AFEW-VA database for valence and arousal estimation in-the-wild</i>, in Image and Vision Computing, 2017
 			</div>
@@ -468,7 +497,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, Z. Lipton, A. Khanna, T. Furlanello, A. Anandkumar, <i>Tensor Regression Networks</i>, in CoRR, 2017
 			</div>
@@ -505,7 +534,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, A. Khanna, Z. Lipton, T. Furlanello, A. Anandkumar, <i>Tensor Contraction Layers for Parsimonious Deep Nets</i>, in 2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), July 2017
 			</div>
@@ -542,7 +571,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Newton and Bidirectional fitting of Active Appearance Models</i>, in IEEE Transactions on Image Processing (TIP), accepted for publication, 2016
 			</div>
@@ -579,7 +608,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, Y. Panagakis and M. Pantic, <i>TensorLy: Tensor Learning in Python</i>, in NIPS Tensor-Learn Workshop, 2016
 			</div>
@@ -624,7 +653,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				J. Shen, S. Zafeiriou, G. Chrysos, <emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>The First Facial Landmark Tracking in-the-Wild Challenge: Benchmark and Results</i>, in Proceedings of IEEE International Conference on Computer Vision, 300 Videos in the Wild (300-VW): Facial Landmark Tracking in-the-Wild Challenge &amp; Workshop (ICCVW&#x27;15), December 2015
 			</div>
@@ -661,7 +690,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast and exact Bi-directional Fitting of Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’15), September 2015
 			</div>
@@ -698,7 +727,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				A. Abraham, F. Pedregosa, M. Eickenberg, P. Gervais, A. Mueller, <emph><strong>J. Kossaifi</strong></emph>, A. Gramfort, B. Thirion and G. Varoquaux, <i>Machine Learning for Neuroimaging with Scikit-Learn</i>, in Frontiers in Neuroinformatics, 2014
 			</div>
@@ -735,7 +764,7 @@ pan> </a>
 				</div>
 			</nav>
 		</div>
-        	<div class="box">
+        	<div class="box publication">
 			<div class="content">
 				<emph><strong>J. Kossaifi</strong></emph>, G. Tzimiropoulos and M. Pantic, <i>Fast Newton Active Appearance Models</i>, in Proceedings of the IEEE Int’l Conf. on Image Processing (ICIP’14), October 2014
 			</div>
@@ -774,10 +803,27 @@ pan> </a>
 		</div>
 
 		</div>
-		<!-- END content -->
 	</div>
 	</div>
-	<!-- END publications -->
+
+<script>
+	publications = document.querySelectorAll('div.publication');
+	var input_element = document.getElementById('publication-search');
+    var search_value = input_element.value;
+
+	input_element.onkeyup = function() {
+        var filter = this.value.toUpperCase()
+        for (var i = 0; i < publications.length; i++) {
+            var text = publications[i].textContent;
+			if (text.toUpperCase().indexOf(filter) != -1) {
+                publications[i].style.display = 'block';
+			}
+			else {
+                publications[i].style.display = 'none';
+			}
+        }
+    }
+</script>
 
 <script type="application/ld+json">
 {

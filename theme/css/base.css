@@ -28,6 +28,10 @@ a {
         padding-right: 0.7em;
     }
 }
+input.publication-search {
+	border:1!important;
+	background-color: #e8e8e861;
+}
 /* Projects */
 .project-title {
 	margin: 0!important;
@@ -276,10 +280,14 @@ div.cell {
 	padding-bottom: 1em;
 }
 .not-found-body {
-	padding-top: 4em;
-	padding-bottom: 4em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
 }
 .not-found {
 	min-height: 70vh;
 	margin-top: 3em;
 }
+.content table tr:hover {
+	background-color: transparent!important;
+}
+

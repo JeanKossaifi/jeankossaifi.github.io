@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning, Tensor Methods">
+    <meta name="description" content='Jean Kossaifi's Home Page - Machine Learning & Computer Vision'>
+
+	<meta name="author" content="Jean Kossaifi">
+	<title>(Lady) GAGAN: Geometry-Aware Generative Adversarial Networks - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+
+
+	<meta name="twitter:card" content="summary" />
+
+	<meta name="twitter:creator" content="@JeanKossaifi" />
+	<meta name="twitter:title" content="(Lady) GAGAN: Geometry-Aware Generative Adversarial Networks" />
+	<meta name="twitter:description" content="(Lady) GAGAN generates objects that respect a given geometric prior. For instance, faces of humans or cats with arbitrary morphology and face shapes." />
+	<meta name="twitter:image" content="https://jeankossaifi.github.io/images/gagan/gagan_celebA.png" />
+
+
+
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	  "HTML-CSS": {
+	  styles: {
+	  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+	  },
+	  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+	  });
+	</script>
+
+	<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+	</script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/bulma.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.github.io/theme/css/pygment.css" />
+	<link rel="icon" href="https://jeankossaifi.github.io/theme/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+
+<section class="articles">
+<div class="column is-8 is-offset-2">
+	<div class="card article" href="https://jeankossaifi.github.io/pages/gagan.html" id="article">
+		<img alt="page banner" src=https://jeankossaifi.github.io/images/gagan/gagan_celebA.png class="large-image banner">
+
+		<div class="card-content">
+		<div class="media">
+			<div class="media-content has-text-centered">
+			<h1 class="title article-title">
+			    (Lady) GAGAN: Geometry-Aware Generative Adversarial Networks
+			</h1>
+			</div>
+	  	</div>
+		<hr/>
+		<div id="" class="content article-body">
+            <p>(Lady) GAGAN generates objects that respect a given geometric prior. For instance, faces of humans or cats with arbitrary morphology and face shapes.
+The figure above shows random samples generated with the method.</p>
+<div class="section" id="abstract">
+<h2>Abstract</h2>
+<p>Deep generative models learned through adversarial training have become increasingly popular for their ability to generate naturalistic image textures. However, aside from their texture, the visual appearance of objects is significantly influenced by their shape geometry; information which is not taken into account by existing generative models. This paper introduces the Geometry-Aware Generative Adversarial Networks (GAGAN) for incorporating geometric information into the image generation process. Specifically, in GAGAN the generator samples latent variables from the probability space of a statistical shape model. By mapping the output of the generator to a canonical coordinate frame through a differentiable geometric transformation, we enforce the geometry of the objects and add an implicit connection from the prior to the generated object. Experimental results on face generation indicate that the GAGAN can generate realistic images of faces with arbitrary facial attributes such as facial expression, pose, and morphology, that are of better quality than current GAN-based methods. Our method can be used to augment any existing GAN architecture and improve the quality of the images generated.
+<a class="reference external" href="https://jeankossaifi.github.io/pdfs/gagan.pdf">[PDF]</a> <a class="reference external" href="https://arxiv.org/abs/1712.00684">[ArXiv]</a></p>
+<p><strong>BibTex:</strong></p>
+<pre class="code literal-block">
+&#64;inproceedings{kossaifi2018gagan,
+    author = {J. Kossaifi and L. Tran and Y. Panagakis and M. Pantic},
+    booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+    title = {GAGAN: Geometry-Aware Generative Adversarial Networks},
+    year = {2018},
+}
+</pre>
+</div>
+<div class="section" id="show-me-your-poker-face">
+<h2>Show me your Poker face</h2>
+<p>By changing the shape parameters a face following that shape is generated (1). Notice how Alejandro (row 1) starts smiling when we vary the corresponding shape parameter. More complex movements can be obtained by varying more than one shape parameter, as observed with Donatella, last row.</p>
+<p>Conversely, by leaving it fixed and changing only the non-geometrical prior, GAGAN can generate various appearances while keeping a straight (fixed, really) face (2).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><img alt="" class="first align-center" src="https://jeankossaifi.github.io/images/gagan/1_shape.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/2s_shape.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/4_shape.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/3s_shape.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/interp_3_cropped.png" style="width: 90%;" />
+<ol class="last loweralpha simple">
+<li>Varying only the shape parameters</li>
+</ol>
+</td>
+<td><img alt="" class="first align-center" src="https://jeankossaifi.github.io/images/gagan/2appearance.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/1sappearance.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/3appearance.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/4sappearance.png" style="width: 90%;" />
+<img alt="" class="align-center" src="https://jeankossaifi.github.io/images/gagan/5appearance.png" style="width: 90%;" />
+<ol class="last loweralpha simple" start="2">
+<li>Varying only the non-geometric parameters</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bore-me-with-the-details">
+<h2>Bore me with the details</h2>
+<img alt="gagan overview" class="large-image" src="https://jeankossaifi.github.io/images/gagan/overview.png" />
+<ol class="lowerroman simple">
+<li>For each training image <span class="math">\(\mathbf{i}\)</span>, we leverage the corresponding shape <span class="math">\(\mathbf{s}\)</span>. using the geometry of the object, as learned in the statistical shape model, perturbations <span class="math">\(\mathbf{\hat{s}}_1, \cdots,  \mathbf{\hat{s}}_n\)</span> of that shape are created.</li>
+<li>these perturbed shapes are projected onto a normally distributed latent subspace using the normalised statistical shape model. that projection <span class="math">\(\phi\left(\mathbf{s}\right)\)</span> is concatenated with a latent component <span class="math">\(\mathbf{c}\)</span>, shared by all perturbed versions of a same shape.</li>
+<li>the resulting vectors <span class="math">\(\mathbf{\hat z}_1, \cdots, \mathbf{\hat z}_n\)</span> are used as inputs to the generator which generate fake images <span class="math">\(\mathbf{\hat i}_1, \cdots, \mathbf{\hat i}_n\)</span>. the geometry imposed by the shape prior is enforced by a geometric transformation <span class="math">\(\mathcal{w}\)</span> (in this paper, a piecewise affine warping) that, given a shape <span class="math">\(\mathbf{\hat s}_k\)</span>, maps the corresponding image <span class="math">\(\mathbf{\hat i}_k\)</span> onto the canonical shape. these images, thus normalised according to the shape prior, are classified by the discriminator as fake or real. the final loss is the sum of the GAN loss and an <span class="math">\(\ell_1\)</span> loss enforcing that images generated by perturbations of the same shape be visually similar in the canonical coordinate frame.</li>
+</ol>
+</div>
+<div class="section" id="the-shape-model">
+<h2>The shape model</h2>
+<p>The shape model is an efficient way to model the structure of the face. I used it a lot in my work on <a class="reference external" href="https://jeankossaifi.github.io/pdfs/newton_and_bidirectional_aam.pdf">Active Appearance Models (AAMs)</a>, for landmarks localisation. The general idea is to represent the shape of a face as a linear model, by applying PCA to a set of aligned facial shapes.</p>
+<img alt="shape model" class="large-image" src="https://jeankossaifi.github.io/images/gagan/shape_space.png" />
+<p>The components of the model can be interpreted as modeling pose (components 1 and 2), smile/expression (component 3), etc.</p>
+</div>
+<div class="section" id="enforcing-the-geometry-piecewise-affine-warping">
+<h2>Enforcing the geometry: piecewise affine warping</h2>
+<p>Also known as <em>motion model</em> in the AAM literature, the piecewise affine warping maps the pixels from any shape onto a canonical shape. The main advantage is that a set of object, for instance faces, in different poses and with different shape can be easily compared once mapped onto the canonical shape. This allows to also implicitely check whether the face is correctly aligned with the corresponding landmarks.</p>
+<img alt="piecewise affine warping" class="align-center" src="https://jeankossaifi.github.io/images/gagan/warp_illustration.png" style="width: 80%;" />
+<p>The piecewise affine warping works by first triangulating both shapes, typically as a Delaunay triangulation. The points inside each simplex of the source shape are then mapped to the corresponding triangle in the target shape, using its barycentric coordinates in terms of the vertices of that simplex, and the corresponding value is decided using the nearest neighbor or interpolation.</p>
+</div>
+
+		</div>
+
+		<nav class="level is-mobile">
+			<div>
+			<p class="heading">
+			BACK TO TOP:  
+			</p>
+			<div class="level-left">
+				<div class="level-item has-text-centered">
+					<a class="button" href="#top">
+						<span class="icon">
+							<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+			</div>
+			</div>
+
+			<div>
+			<p class="heading">
+			Share this page: 
+			</p>
+			<div class="level-right">
+				<div class="level-item">
+					<a class="button is-twitter" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2fpages%2fgagan.html&via=JeanKossaifi"
+ data-via="JeanKossaifi" >
+						<span class="icon">
+						<i class="fa fa-twitter" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+
+
+				<div class="level-item">
+					<a class="button is-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2fpages%2fgagan.html">
+						<span class="icon">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+
+				<div class="level-item">
+					<a class="button is-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2fpages%2fgagan.html&title=%28Lady%29%20GAGAN%3A%20Geometry-Aware%20Generative%20Adversarial%20Networks&summary=%3Cp%20class%3D%22first%20last%22%3E%28Lady%29%20GAGAN%20generates%20objects%20that%20respect%20a%20given%20geometric%20prior.%20For%20instance%2C%20faces%20of%20humans%20or%20cats%20with%20arbitrary%20morphology%20and%20face%20shapes.%3C/p%3E%0A">
+						<span class="icon">
+						<i class="fa fa-linkedin" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+
+			</div>
+			</div>
+		</nav>
+
+	</div>
+	</div>
+
+<div class="side-scroll fade" id="side-scroll">
+	<div class="side-button">
+	<a class="button is-outlined" href="#top">
+		<span class="icon">
+			<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.github.io%2fpages%2fgagan.html&via=JeanKossaifi"
+ data-via="JeanKossaifi" >
+		<span class="icon">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.github.io%2fpages%2fgagan.html">
+		<span class="icon">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.github.io%2fpages%2fgagan.html&title=%28Lady%29%20GAGAN%3A%20Geometry-Aware%20Generative%20Adversarial%20Networks&summary=%3Cp%20class%3D%22first%20last%22%3E%28Lady%29%20GAGAN%20generates%20objects%20that%20respect%20a%20given%20geometric%20prior.%20For%20instance%2C%20faces%20of%20humans%20or%20cats%20with%20arbitrary%20morphology%20and%20face%20shapes.%3C/p%3E%0A">
+		<span class="icon">
+			<i class="fa fa-linkedin" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/sidescroll.js" />
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+	"@id": "https://jeankossaifi.github.io/pages/gagan.html"
+  },
+  "headline": "(Lady) GAGAN: Geometry-Aware Generative Adversarial Networks",
+  "image": "https://jeankossaifi.github.io/images/gagan/gagan_celebA.png",
+  "datePublished": "2018-03-31 00:00:00+01:00",
+  "dateModified": "2018-03-31 00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+ "publisher": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "description": "(Lady) GAGAN generates objects that respect a given geometric prior. For instance, faces of humans or cats with arbitrary morphology and face shapes."
+}
+</script>
+
+
+</div>
+</section>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-89357746-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+</body>
+
+<script type="text/javascript" src="https://jeankossaifi.github.io/theme/scripts/burger.js" />
+</script>
+
+</html>
