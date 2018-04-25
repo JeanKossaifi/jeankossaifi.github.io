@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Tensor Learning, Tensor Methods">
+    <meta name="description" content='Jean Kossaifi's Home Page - Machine Learning & Computer Vision'>
+
+	<meta name="author" content="Jean Kossaifi">
+	<title>Thoughts on designing a tensor algebra/ deep learning framework - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+
+
+	<meta name="twitter:card" content="summary" />
+
+	<meta name="twitter:creator" content="@JeanKossaifi" />
+	<meta name="twitter:title" content="Thoughts on designing a tensor algebra/ deep learning framework" />
+	<meta name="twitter:description" content="A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework" />
+	<meta name="twitter:image" content="https://jeankossaifi.com/images/mozart.jpg" />
+
+
+
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	  "HTML-CSS": {
+	  styles: {
+	  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+	  },
+	  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+	  });
+	</script>
+
+	<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> 
+	</script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.com/theme/css/bulma.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.com/theme/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="https://jeankossaifi.com/theme/css/pygment.css" />
+	<link rel="icon" href="https://jeankossaifi.com/theme/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+<nav class="navbar is-fixed-top is-dark">
+
+	<div class="navbar-brand">
+		<a class="navbar-item menu-title is-size-4" href="https://jeankossaifi.com">
+			Jean Kossaifi
+		</a>
+		<div class="button navbar-burger" data-target="navMenu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+
+	<div id="navMenu" class="navbar-menu">
+		<div class="navbar-end">
+			<a class="navbar-item menu-link" href="https://jeankossaifi.com#menu-about">
+				About
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.com#menu-news">
+				News
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.com#menu-projects">
+				Projects
+			</a>
+			<a class="navbar-item menu-link" href="https://jeankossaifi.com#menu-publications">
+				Publications
+			</a>
+			<a class="navbar-item " href="https://jeankossaifi.com/blog.html">
+				Blog
+			</a>
+		</div>
+	</div>
+</nav>
+<section class="articles">
+<div class="column is-8 is-offset-2">
+<!-- START about -->
+	<div class="card article" href="https://jeankossaifi.com/blog/deep-learning-framework.html" id="article">
+		<img alt="page banner" src=https://jeankossaifi.com/images/deep.jpg class="large-image banner">
+
+		<div class="card-content">
+		<!-- title -->
+		<div class="media">
+			<div class="media-content has-text-centered">
+			<h1 class="title article-title">
+			    Thoughts on designing a tensor algebra/ deep learning framework
+			</h1>
+			<h2 class="subtitle is-4">
+	
+					<a class="tag is-rounded is-dark" href="https://jeankossaifi.com/tag/tech.html">
+						tech
+					</a>
+					&thinsp;
+	
+					<a class="tag is-rounded is-dark" href="https://jeankossaifi.com/tag/deep-learning.html">
+						deep-learning
+					</a>
+					&thinsp;
+	
+					<a class="tag is-rounded is-dark" href="https://jeankossaifi.com/tag/python.html">
+						python
+					</a>
+					&thinsp;
+			</h2>
+			</div>
+	  	</div>
+		<hr/>
+		<!-- content -->
+		<div id="" class="content article-body">
+            <p>While adding various backends to <a class="reference external" href="https://github.com/tensorly/tensorly">TensorLy</a>, I had to deal with the various advantages and oddities of the many deep learning frameworks out there. Here, I am collecting some of the lessons I learnt, along with some thoughts on what an ideal deep learning framework should look like, for those of you also combating this interesting issue.</p>
+<p>First and foremost, while diversity is good and tends to encourage novelty, I believe the deep learning field is in dire need of unification. Just like Travis Oliphant unified Numeric and Numarray in what we now know as the ubiquitous NumPy, there needs a big unification work for deep learning frameworks. Here are some elements to go forward.</p>
+<div class="section" id="tensors-vs-matrices">
+<h2>Tensors VS matrices</h2>
+<p>Even though most frameworks manipulate tensors, a lot of the methods actually focus on matrices, or tensors of small order. Some frameworks even break if you try to manipulate tensors of too high an order... Tensor methods are powerful and multi-linear algebra is a strict superset of traditional linear algebra. As computational resources and tensor methods develop, leveraging the structure (spatio-temporal for instance) in the data will become increasingly important. We need to develop tools that work equally well with tensors of any order.</p>
+</div>
+<div class="section" id="imperative-of-symbolic">
+<h2>Imperative of symbolic?</h2>
+<p>While both approaches have they pros and cons, I believe imperative will gain more traction, especially for research and prototyping. It is much more intuitive and flexible than symbolic approaches (that build computational graphs).</p>
+<p>It does not have to be slower and can even combine the best of both worlds under the hood, whether with dynamical graphs (e.g. <a class="reference external" href="http://pytorch.org/">PyTorch</a>) or hybrid approach (e.g. <a class="reference external" href="https://mxnet.incubator.apache.org/">MXNet</a>'s Gluon). Tools like <a class="reference external" href="http://tvmlang.org/">TVM</a> will make it possible to automatically optimize the code and compile it for a large array of platforms and hardwares.</p>
+</div>
+<div class="section" id="the-ndarray-structure">
+<h2>The ndarray structure</h2>
+<p>Rather than being monolithic, the framework should be broken down into a core multi-dimensional array structure, on which the rest of the framework would be built. NumPy has a proven and established interface so is the best candidate for the API.</p>
+<p>One thing to consider is how to specify the context (or device) on which the tensor should reside.
+I do not want to have to explicitly call a method on my tensor every time, such as:</p>
+<pre class="code literal-block">
+T = tensor(data, dtype).gpu()
+</pre>
+<p>Not only is it annoying, but, putting aside the relative lack of elegance of that solution, it also makes it harder to abstract the hardware. You no longer can set the context as one of the variables. Instead you have to either set a global context (i.e. module.use_gpu() ) or have conditional statements everywhere…</p>
+<pre class="code literal-block">
+if use_gpu:
+   tensor.gpu()
+</pre>
+<p>This needlessly crowds the code with logic that should be abstracted away in a context argument</p>
+<p>Ideally, the structure should transparently support CPU and GPU (and even multi-CPU or GPU), via an additional argument, such as:
+.. code:</p>
+<pre class="literal-block">
+T = tensor(data, dtype, context)
+</pre>
+<p>An important aspect is to have parameters and function names as intuitive and informative as possible. But mostly <strong>consistent</strong>. The choices of <cite>dim</cite> instead of <cite>axis</cite>, or <cite>view</cite> instead of <cite>reshape</cite>, while justified in some cases, are the best way to create errors and drive users mad.</p>
+</div>
+<div class="section" id="memory-handling">
+<h2>Memory handling</h2>
+<p>In supporting GPU, frameworks should be transparent about how they use the memory. If by default, all the memory of a GPU is reserved, this should be explicit and there should be a clear variable or method to change that behaviour. Similarly, the garbage collector should work as expected, regardless of the device in which the array is declared.</p>
+</div>
+<div class="section" id="fancy-indexing">
+<h2>Fancy-indexing</h2>
+<p>While designing the ndarray structure, it is important not to over-simplify. Amongst necessary functionality are slicing and fancy indexing: the ability to index an array by slices or using, for instance, a list of indexes. Importantly, these operations should be differentiable.</p>
+</div>
+<div class="section" id="building-up">
+<h2>Building up</h2>
+<p>The actual deep learning / tensor frameworks should build on such a structure and leverage it. Chainer is a great example of this.</p>
+<p>They have broken-up their package into <a class="reference external" href="https://cupy.chainer.org/">CuPy</a> which provides a drop-in replacement for NumPy on GPU, and the core <a class="reference external" href="https://chainer.org/">Chainer</a> framework which builds on top of it and adds deep learning capabilities.</p>
+<p>In addition, a mature, drop-in replacement for NumPy with GPU and multi-machine support will be a tremendous addition for the whole Python community.</p>
+</div>
+<div class="section" id="zeroth-order-tensors-or-0-dimensional">
+<h2>Zeroth order tensors (or 0-dimensional)</h2>
+<p>One important, most often neglected aspect of tensors is zeroth-order tensors, aka scalars. If you fully contract a tensor, for instance by taking its norm n, with an inner product or with tensor contraction, you get a scalar. This needs to be differentiable, i.e. have gradients attached. However, it also needs to be comparable to other scalars. For instance, if it is a loss, is this higher than a certain threshold, etc.</p>
+<p>This might be a technical challenge to get right, but which must be addressed.</p>
+</div>
+<div class="section" id="data-loading-and-augmentation">
+<h2>Data: loading and augmentation</h2>
+<p>Data loading and processing as well as augmentation should be prime citizens in any serious framework, not an after thoughts like is sometimes the case.</p>
+<p>In particular, if the framework has an ndarray structure as described above, a lot of the processing can be done directly on the target device. What we do not want is a pipeline where the image is loaded, for instance, with OpenCV, processed on CPU, converted to NumPy and finally to the target framework….</p>
+<p>The other aspect is multi-processing: rather than having several classes for several classes, a parameter could control the number of threads (think <cite>n_jobs</cite> in <a class="reference external" href="http://scikit-learn.org/stable/">Scikit-Learn</a>). Again, this makes the code more flexible and clearer.</p>
+</div>
+<div class="section" id="final-words">
+<h2>Final words</h2>
+<p>Whilst there might be imprecisions in the list above, the goal is mainly to collect thoughts towards designing better frameworks for tensor methods and deep learning, to allow us to focus on the algorithms without having lower level considerations in the way.</p>
+<p>I will update this list as I go but I am curious to get your thoughts, so don’t hesitate to leave a comment!</p>
+</div>
+
+		</div>
+		<!-- END content -->
+
+		<!-- social links -->
+		<nav class="level is-mobile">
+			<div>
+			<p class="heading">
+			BACK TO TOP:  
+			</p>
+			<div class="level-left">
+				<div class="level-item has-text-centered">
+					<a class="button" href="#top">
+						<span class="icon">
+							<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+			</div>
+			</div>
+
+			<div>
+			<p class="heading">
+			Share this article: 
+			</p>
+			<div class="level-right">
+				<div class="level-item">
+					<a class="button is-twitter" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.com%2fblog%2fdeep-learning-framework.html&via=JeanKossaifi"
+ data-via="JeanKossaifi" >
+						<span class="icon">
+						<i class="fa fa-twitter" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+
+
+				<div class="level-item">
+					<a class="button is-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.com%2fblog%2fdeep-learning-framework.html">
+						<span class="icon">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+
+				<div class="level-item">
+					<a class="button is-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.com%2fblog%2fdeep-learning-framework.html&title=Thoughts%20on%20designing%20a%20tensor%20algebra/%20deep%20learning%20framework&summary=%3Cp%20class%3D%22first%20last%22%3EA%20potpourri%20of%20thoughts%20on%20designing%20the%20ideal%20tensor%20algebra%20and%20deep%20learning%20framework%3C/p%3E%0A">
+						<span class="icon">
+						<i class="fa fa-linkedin" aria-hidden="true"></i>
+						</span>
+					</a>
+				</div>
+
+			</div>
+			</div>
+		</nav>
+		<!-- END social links -->
+
+	</div>
+	</div>
+	<!-- END about -->
+
+	<!-- START comments -->
+	<div class="card article" href="https://jeankossaifi.com/blog/deep-learning-framework.html">
+		<div class="card-content">
+		<!-- title -->
+		<div class="media">
+			<div class="media-content has-text-centered">
+			<h1 class="title is-3 article-title">
+				Leave a comment
+			</h1>
+			</div>
+	  	</div>
+		<!-- content -->
+		<div id="" class="content article-body">
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+	this.page.url = "https://jeankossaifi.com/blog/deep-learning-framework.html";
+	this.page.identifier = "blog/deep-learning-framework.html"; 
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//jeankossaifi.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                		</div>
+		<!-- END content -->
+	</div>
+	</div>
+	<!-- END about -->
+
+
+<div class="side-scroll fade" id="side-scroll">
+	<div class="side-button">
+	<a class="button is-outlined" href="#top">
+		<span class="icon">
+			<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" href="http://twitter.com/share?url=https%3A%2f%2fjeankossaifi.com%2fblog%2fdeep-learning-framework.html&via=JeanKossaifi"
+ data-via="JeanKossaifi" >
+		<span class="icon">
+		<i class="fa fa-twitter" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2f%2fjeankossaifi.com%2fblog%2fdeep-learning-framework.html">
+		<span class="icon">
+		<i class="fa fa-facebook" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+	<div class="side-button">
+	<a class="button is-outlined" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2f%2fjeankossaifi.com%2fblog%2fdeep-learning-framework.html&title=Thoughts%20on%20designing%20a%20tensor%20algebra/%20deep%20learning%20framework&summary=%3Cp%20class%3D%22first%20last%22%3EA%20potpourri%20of%20thoughts%20on%20designing%20the%20ideal%20tensor%20algebra%20and%20deep%20learning%20framework%3C/p%3E%0A">
+		<span class="icon">
+			<i class="fa fa-linkedin" aria-hidden="true"></i>
+		</span>
+	</a>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="https://jeankossaifi.com/theme/scripts/sidescroll.js" />
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+	"@id": "https://jeankossaifi.com/blog/deep-learning-framework.html"
+  },
+  "headline": "Thoughts on designing a tensor algebra/ deep learning framework",
+  "image": "https://jeankossaifi.com/images/mozart.jpg",
+  "datePublished": "2018-01-13 00:00:00+00:00",
+  "dateModified": "2018-01-13 00:00:00+00:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+ "publisher": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "description": "A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework"
+}
+</script>
+
+
+</div>
+</section>
+
+<footer class="footer">
+	<p class="has-text-centered">
+	© <a href=https://jeankossaifi.com>Jean Kossaifi</a>
+	</p>
+	<br/><br/>
+
+	<div class="column is-two-fifths is-offset-two-fifths">
+		<p>
+		<a href="https://github.com/JeanKossaifi">
+			<i class="fa fa-github" aria-hidden="true"></i>
+			Github
+		</a>
+		</p>
+
+		<p>
+		<a href="http://twitter.com/JeanKossaifi">
+			<i class="fa fa-twitter" aria-hidden="true"></i>
+			Twitter
+		</a>
+		</p>
+		
+		<p>
+		<a href="https://uk.linkedin.com/in/jeankossaifi">
+			<i class="fa fa-linkedin" aria-hidden="true"></i>
+			Linkedin
+		</a>
+		</p>
+
+		<p>
+		<a href="https://scholar.google.com/citations?user=hJS2TXwAAAAJ">
+			<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+			Google Scholar
+		</a>
+		</p>
+
+    </div>
+</footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-89357746-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+</body>
+
+<script type="text/javascript" src="https://jeankossaifi.com/theme/scripts/burger.js" />
+</script>
+
+</html>
