@@ -18,6 +18,18 @@ a {
 .twitter-timeline {
 	padding-top: 4em!important;
 }
+@media screen and (max-width: 768px) {
+	.twitter-timeline {
+		/*height: 600px!important;*/
+		display:none!important;
+	}
+}
+@media screen and (min-width: 768px) {
+	.twitter-timeline {
+		height: 100%!important;
+	}
+}
+
 /* News summaries */
 .news-summary p.first {
 	margin-bottom: 0!important;
