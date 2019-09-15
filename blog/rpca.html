@@ -111,9 +111,124 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -192,12 +307,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -210,27 +333,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -426,7 +561,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -436,11 +573,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -688,6 +838,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -726,7 +879,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -848,6 +1001,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -864,16 +1021,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -889,6 +1054,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -939,8 +1109,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1079,129 +1256,114 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This post is meant to show you how to apply Robust Tensor PCA in practice using <a href="https://tensorly.github.io/">TensorLy</a>. I'll provide a little bit of mathematical background on Robust PCA, feel free to skip that parts if Math is not your cup of tea. Otherwise, grab some biscuits. Then I'll demonstrate how to easily apply Robust Tensor PCA on images using TensorLy.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="A-short-introduction-to-robust-PCA">A short introduction to robust PCA<a class="anchor-link" href="#A-short-introduction-to-robust-PCA">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This section is here to give a little bit of background on Robust PCA: you <em>do not</em> need this for the rest of the article, only read if you are interested!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In short, Robust PCA is analogous to traditional PCA but instead of recovering a low rank approximation of the matrix under some Gaussian noise assumption, it decomposes it as the sum of of a low rank matrix and a sparse one. Tensor Robust PCA further generalises this notion to tensors.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's start with traditional Principal Component Analysis. There are several ways to formulate the PCA problem, here we show the minimum reconstruction error formulation. Formally, we want to minimise the Frobenius norm of the reconstruction error under orthogonality constraint over the projection weights. Let $X \in \mathbb{R}^{M, N}$ be an $N$ by $M$ matrix. We want to find the orthonormal projection matrix $W \in \mathbb{R}^{M, K}, K \leq M$ that solves:</p>
-<p>\begin{equation*}
+\begin{equation*}
 \begin{aligned}
    & \min_{W} 
    & & \|X - XWW^T \|_F^2\\
    & \text{subject to} 
    & & W^TW = Id\\
 \end{aligned}
-\end{equation*}</p>
-<p>If we write $D$ the reconstructed matrix $D = XWW^T$, we can equivalently write the problem as:</p>
-<p>\begin{equation*}
+\end{equation*}<p>If we write $D$ the reconstructed matrix $D = XWW^T$, we can equivalently write the problem as:</p>
+\begin{equation*}
 \begin{aligned}
    & \min_{W} 
    & & \|X - D\|_F^2\\
    & \text{subject to} 
    & & rank(D) \leq K\\
 \end{aligned}
-\end{equation*}</p>
+\end{equation*}
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robust PCA still wants to minimise the error but this time under the asumption that the noise is gross but sparse: instead of minimising an $\ell_2$ norm, we minimise an $\ell_0$ norm of the reconstruction error. In addition, instead of setting an upper bound on the rank of the reconstruction,  we directly seek to minimze it:</p>
-<p>\begin{equation*}
+\begin{equation*}
 \begin{aligned}
    & \min_{D} 
    & & rank(D) +  \|X - D\|_0\\
 \end{aligned}
-\end{equation*}</p>
-<p>However, this problem is NP-hard, which means it cannot be solved in Polynomial time (i.e. as the size of your data increases, the time it takes to solve it increases exponentially).</p>
+\end{equation*}<p>However, this problem is NP-hard, which means it cannot be solved in Polynomial time (i.e. as the size of your data increases, the time it takes to solve it increases exponentially).</p>
 <p>A nice way around this is to relax the problem using the convex surrogate of the norm $\ell_0$ and of the rank operator as proposed by Cantes in his paper "Robust Principal Component Analysis" in ACM Journal, 2011.</p>
 <p>This turns the problem into a tractable one:</p>
-<p>\begin{equation*}
+\begin{equation*}
 \begin{aligned}
    & \min_{\tilde D} 
    & & \|D\|_* + \lambda \|X - D\|_1 \\
 \end{aligned}
-\end{equation*}</p>
-<p>Note that I have cheekily added a regularisation parameter on the norm $\ell_1$ of the error while you weren't looking: in practice, this parameter controls how sparse the error matrix will be and needs to be tuned to each particular data.</p>
+\end{equation*}<p>Note that I have cheekily added a regularisation parameter on the norm $\ell_1$ of the error while you weren't looking: in practice, this parameter controls how sparse the error matrix will be and needs to be tuned to each particular data.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robust Tensor PCA generalises this problem to tensors. Instead of minimizing the nuclear norm of the data tensor $\tilde{X}$, we minimise the nuclear norm of its unfoldings, $\tilde{X_{[i]}}$ along each mode $i, i \in \left[1, \cdots, N\right].$</p>
 <p>In other words, the problem robust tensor PCA solves is:</p>
-<p>\begin{equation*}
+\begin{equation*}
 \begin{aligned}
    & \min_{\tilde D} 
    & & \sum_{i=1}^N  \|\tilde D_{[i]}\|_* + \lambda \|\tilde X - \tilde D\|_1 \\
 \end{aligned}
-\end{equation*}</p>
-<p>This is implemented in TensorLy using the Alternating Direction Method of Multipliers (ADMM) and wraped in a nice API.</p>
+\end{equation*}<p>This is implemented in TensorLy using the Alternating Direction Method of Multipliers (ADMM) and wraped in a nice API.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Example-on-the-YaleB-dataset">Example on the YaleB dataset<a class="anchor-link" href="#Example-on-the-YaleB-dataset">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here we will apply Robust Tensor PCA on the <a href="http://vision.ucsd.edu/~leekc/ExtYaleDatabase/Yale%20Face%20Database.htm">YaleB dataset</a>. It consists images of the faces of several people taken from the same angle but with different illumniations. We will use the cropped version where the images have been cropped to contain only the faces.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Getting-the-data">Getting the data<a class="anchor-link" href="#Getting-the-data">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I wrote a convenience function to download the data if it hasn't been done already and load it into a dictionary you can easily use:</p>
 </div>
@@ -1212,7 +1374,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlretrieve</span>
 <span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="k">import</span> <span class="n">imread</span>
@@ -1286,8 +1448,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>All you need is define where you want to save the data on your disk and the function will download and unzip it for you:</p>
 </div>
@@ -1298,7 +1459,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset_path</span> <span class="o">=</span> <span class="s1">'/data/tensorly_data/'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">dataset_path</span> <span class="o">=</span> <span class="s1">'/data/tensorly_data/'</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_cropped_yaleb</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="n">zooming</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">max_n_subjects</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -1307,16 +1468,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Create-the-data-tensor">Create the data tensor<a class="anchor-link" href="#Create-the-data-tensor">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First we accumulate all the data into a tensor: each image is in grayscale and represented as a 2-dimensional numpy array of shape (height, width). We will stack them in a tensor of size (n_images, height, width):</p>
 </div>
@@ -1327,7 +1486,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">'images'</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">'images'</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
@@ -1347,8 +1506,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Optionally, one might want to normalise the values of the images (they are currently uint8 ranging from 0 to 255) so let's convert them into float64:</p>
 </div>
@@ -1359,7 +1517,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">-=</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1367,16 +1525,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Visualise-the-data">Visualise the data<a class="anchor-link" href="#Visualise-the-data">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's define a simple helper function to visualise the images:</p>
 </div>
@@ -1387,7 +1543,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="k">def</span> <span class="nf">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_images</span><span class="p">,</span> <span class="n">n_columns</span><span class="p">,</span> <span class="n">randomise</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -1413,7 +1569,7 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1422,7 +1578,7 @@ h6:hover .anchor-link {
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAHFCAYAAAAe+pb9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvWvMbVd13v/s9xyf43NMwGBz8QVfwYCNjbHBmNgQLq5D
 IFcBbdpIgSgqBUXph4qokaJIkdKqlXpRgtoPqarclFDSFEJS0TaEJIAJEMd2bIwN2BgbY2OuKRj7
@@ -2595,16 +2751,14 @@ NBqNxsGiX4QajUaj0WgcLPpFqNFoNBqNxsHifwHBOOJPX7b/PwAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Add-salt-and-pepper-noise">Add salt and pepper noise<a class="anchor-link" href="#Add-salt-and-pepper-noise">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To test the Robust PCA and its ability to recover the low rank structure under gross, sparse error, we will add some noise to the images using TensorLy's function <code>add_noise</code>:</p>
 </div>
@@ -2615,7 +2769,7 @@ NBqNxsGiX4QajUaj0WgcLPpFqNFoNBqNxsHifwHBOOJPX7b/PwAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorly.random.noise</span> <span class="k">import</span> <span class="n">add_noise</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorly.random.noise</span> <span class="k">import</span> <span class="n">add_noise</span>
 <span class="kn">from</span> <span class="nn">tensorly.random</span> <span class="k">import</span> <span class="n">check_random_state</span>
 
 <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1234</span>
@@ -2625,8 +2779,7 @@ NBqNxsGiX4QajUaj0WgcLPpFqNFoNBqNxsHifwHBOOJPX7b/PwAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that we define a random_state to fix the seed of the random generator and allow for reproducible results. Feel free to change the state or remove this altogether.</p>
 </div>
@@ -2637,7 +2790,7 @@ NBqNxsGiX4QajUaj0WgcLPpFqNFoNBqNxsHifwHBOOJPX7b/PwAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">add_noise</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="s1">'salt_pepper'</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">add_noise</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="s1">'salt_pepper'</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2648,7 +2801,7 @@ NBqNxsGiX4QajUaj0WgcLPpFqNFoNBqNxsHifwHBOOJPX7b/PwAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2657,7 +2810,7 @@ NBqNxsGiX4QajUaj0WgcLPpFqNFoNBqNxsHifwHBOOJPX7b/PwAAAABJRU5ErkJggg==
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAHFCAYAAAAe+pb9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvWmYXkW1/n13J5GZMCRMAYJIGAQVIYBBQDQQhgBBmQlD
 AEFGQUDASwZFOTIJXKBwGERRQRTxgKLMICKEIQwyK+AfEQSRKQKZu5/3A+e3972rV56k9XR7XW+v
@@ -3994,16 +4147,14 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Apply-Robust-PCA">Apply Robust PCA<a class="anchor-link" href="#Apply-Robust-PCA">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robust PCA decomposes the data tensor (X) into the sum of a low rank tensor (in this case, a denoised version) and a sparse tensor (the noise). In TensorLy, you can directly use the :function:<code>tensorly.decomposition.robust_pca</code> fuction.</p>
 </div>
@@ -4014,15 +4165,14 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorly.decomposition</span> <span class="k">import</span> <span class="n">robust_pca</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorly.decomposition</span> <span class="k">import</span> <span class="n">robust_pca</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The robust_pca functions returns two tensors with identical dimensions to the tensor decomposed: the low rank part and the sparse part:</p>
 </div>
@@ -4033,15 +4183,14 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can check that both term are tensor with the same shape as X:</p>
 </div>
@@ -4052,7 +4201,7 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'X.shape=</span><span class="si">{}</span><span class="s1"> == low_rank_part.shape=</span><span class="si">{}</span><span class="s1"> == sparse_part.shape=</span><span class="si">{}</span><span class="s1">.'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sparse_part</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'X.shape=</span><span class="si">{}</span><span class="s1"> == low_rank_part.shape=</span><span class="si">{}</span><span class="s1"> == sparse_part.shape=</span><span class="si">{}</span><span class="s1">.'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sparse_part</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -4070,16 +4219,14 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Visualise-the-result">Visualise the result<a class="anchor-link" href="#Visualise-the-result">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Again let's write a simple helper function to visualise the results of the Robust Tensor PCA:</p>
 </div>
@@ -4090,7 +4237,7 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">"""A little helper function to visualise the result of tensor RPCA</span>
 <span class="sd">    """</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -4133,7 +4280,7 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4142,7 +4289,7 @@ IpFIJBKJUYt8EUokEolEIjFq8b+6uqG11pFUaQAAAABJRU5ErkJggg==
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAq8AAAOBCAYAAADfsElvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsfXu8VVW59jPYsBENxDuKoOIdr3lDNK1UwE5ek6xPsywv
 xzpdztHUTnbT0lQ6ZdrpfKV2PPqlleatkyl4v4GKplKCiIJiKFdBEBRhz++PtZ45nznWu+eaa++N
@@ -6504,24 +6651,21 @@ ahC8AgAAoBoErwAAAKgGwSsAAACqQfAKAACAanwDibbQ6/sTKCMAAAAASUVORK5CYII=
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you can see, the Robust PCA was able to isolate the clean tensor from the noise.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Adding-some-missing-values">Adding some missing values<a class="anchor-link" href="#Adding-some-missing-values">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's now add some missing values. We will replace the pixels in random patches of size 20 by 20:</p>
 </div>
@@ -6532,15 +6676,14 @@ ahC8AgAAoBoErwAAAKgGwSsAAACqQfAKAACAanwDibbQ6/sTKCMAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorly.random.noise</span> <span class="k">import</span> <span class="n">patch_noise</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorly.random.noise</span> <span class="k">import</span> <span class="n">patch_noise</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will create a mask with the same shape as our data tensor which will have value one for pathces of size (20, 20) position randomly in each sample:</p>
 </div>
@@ -6551,15 +6694,14 @@ ahC8AgAAoBoErwAAAKgGwSsAAACqQfAKAACAanwDibbQ6/sTKCMAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">noise_mask</span> <span class="o">=</span> <span class="n">patch_noise</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">noise</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">noise_mask</span> <span class="o">=</span> <span class="n">patch_noise</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">noise</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Set the pixels inside the patches to zero:</p>
 </div>
@@ -6570,15 +6712,14 @@ ahC8AgAAoBoErwAAAKgGwSsAAACqQfAKAACAanwDibbQ6/sTKCMAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="n">noise_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="n">noise_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now, let's check the result:</p>
 </div>
@@ -6589,7 +6730,7 @@ ahC8AgAAoBoErwAAAKgGwSsAAACqQfAKAACAanwDibbQ6/sTKCMAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6598,7 +6739,7 @@ ahC8AgAAoBoErwAAAKgGwSsAAACqQfAKAACAanwDibbQ6/sTKCMAAAAASUVORK5CYII=
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAHFCAYAAAAe+pb9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXe8HVXV/p97CUW6dEKAhC69JEAIUkWUlyJSpMOHqnSk
 KiC9wwvSVBAVEBAUPzRLQJAiPYD0Il3qa4UfkEDIPb8/8DvzzJx1zz0XuAeTu55/crJn7syePWvv
@@ -7869,8 +8010,7 @@ mkBGHOIAAAAASUVORK5CYII=
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The robust_pca function can take a mask as a parameter that is 0/False wherever the values are missing and 1/True everywhere else.</p>
 </div>
@@ -7881,15 +8021,14 @@ mkBGHOIAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">mask</span><span class="o">=~</span><span class="n">noise_mask</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">mask</span><span class="o">=~</span><span class="n">noise_mask</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's visualise the results:</p>
 </div>
@@ -7900,7 +8039,7 @@ mkBGHOIAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7909,7 +8048,7 @@ mkBGHOIAAAAASUVORK5CYII=
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAq8AAAOBCAYAAADfsElvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsfXm4HFW1/TqXkDAEMhNyE5IQZjGAEkCQABKGIKA+UQEH
 xjA8QXyAiqIIOD7BAR+KKKP8ENQHCgI+JkEgEPDlAaIyE0hMAoQwBIKEDPf8/uheVatO71u3++Ze
@@ -10191,24 +10330,21 @@ x3Ecx3Gc0uDCq+M4juM4jlMaXHh1HMdxHMdxSoMLr47jOI7jOE5pcOHVcRzHcRzHKQ0uvDqO4ziO
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Once again the Robust Tensor PCA was able to isolate the gross error from the rest.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Example-on-the-Olivetti-dataset">Example on the Olivetti dataset<a class="anchor-link" href="#Example-on-the-Olivetti-dataset">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It seems that the website I had used to get the YaleB data is down, so as a backup data, we are going to use the Olivetti dataset. The excellent <a href="http://scikit-learn.org/dev/">scikit-learn</a> has utility function to download various datasets, including the one we are interested in:</p>
 </div>
@@ -10219,15 +10355,14 @@ x3Ecx3Gc0uDCq+M4juM4jlMaXHh1HMdxHMdxSoMLr47jOI7jOE5pcOHVcRzHcRzHKQ0uvDqO4ziO
 <div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">fetch_olivetti_faces</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">fetch_olivetti_faces</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We are going to use directly the images instead of the vectorized version:</p>
 </div>
@@ -10238,7 +10373,7 @@ x3Ecx3Gc0uDCq+M4juM4jlMaXHh1HMdxHMdxSoMLr47jOI7jOE5pcOHVcRzHcRzHKQ0uvDqO4ziO
 <div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_olivetti_faces</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_olivetti_faces</span><span class="p">()</span>
 <span class="c1"># We directly use the images as our data tensor</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">images</span>
 
@@ -10254,7 +10389,7 @@ x3Ecx3Gc0uDCq+M4juM4jlMaXHh1HMdxHMdxSoMLr47jOI7jOE5pcOHVcRzHcRzHKQ0uvDqO4ziO
 <div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10263,7 +10398,7 @@ x3Ecx3Gc0uDCq+M4juM4jlMaXHh1HMdxHMdxSoMLr47jOI7jOE5pcOHVcRzHcRzHKQ0uvDqO4ziO
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlUAAAHECAYAAAAQ1N/JAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvcuzrVdV9z/23ucWkhCO4YRDJJwkhBAuCRBQLC9EpLxU
 KeWlyoYdrdKGTats2rPjH2BD21bZs7SDWmVDC8oLWIByiVxCEgIhXAIGTMj1nL3X2+D3Wc9YnzXm
@@ -11658,8 +11793,7 @@ SUVORK5CYII=
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As previously, we add some noise and missing values:</p>
 </div>
@@ -11670,7 +11804,7 @@ SUVORK5CYII=
 <div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">add_noise</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="s1">'salt_pepper'</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">salt_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pepper_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">add_noise</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="s1">'salt_pepper'</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">salt_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pepper_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 <span class="n">noise_mask</span> <span class="o">=</span> <span class="n">patch_noise</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">noise</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
 <span class="n">X</span><span class="p">[</span><span class="n">noise_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
@@ -11683,7 +11817,7 @@ SUVORK5CYII=
 <div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11692,7 +11826,7 @@ SUVORK5CYII=
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlUAAAHECAYAAAAQ1N/JAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXm0XVWV/T8TekSCJPTp6DsR0KhgFETEhkZACCCIqGVR
 AvaI6ADb0qEI2FNF2ZQoQkBQYUgBQ0pQCoYgUUCaoEgbGgMBKUUJkHB/f/D9nL3OvPuc9x6VEZPf
@@ -13287,8 +13421,7 @@ A/wf9dKZhQS4qwsAAAAASUVORK5CYII=
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's apply Robust PCA on this mess:</p>
 </div>
@@ -13299,7 +13432,7 @@ A/wf9dKZhQS4qwsAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">mask</span><span class="o">=~</span><span class="n">noise_mask</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">mask</span><span class="o">=~</span><span class="n">noise_mask</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13310,7 +13443,7 @@ A/wf9dKZhQS4qwsAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13319,7 +13452,7 @@ A/wf9dKZhQS4qwsAAAAASUVORK5CYII=
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsIAAAOBCAYAAAD7qcavAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXm4XFWV9//dScglAZQhCZmECGGSIYABBAVCkLGhQWWe
 BEVs2ult9ae+3bZDazs1tvaPVroZJIyJDAKCzEMYgqIRRQaZk5CQACEQJkFJOO8fVZ86q1btqnvr
@@ -16130,24 +16263,21 @@ RU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The result is decent, though we could probably enhance it a bit by tuning the regularization parameter.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Example-on-a-video">Example on a video<a class="anchor-link" href="#Example-on-a-video">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Finally, I will conclude this with an example on a video. For this part, I will use my lightweight package <a href="https://github.com/JeanKossaifi/iopy">iopy</a> (because reading video should be easy...) that offers wraps ffmpeg to allows reading videos as a list of numpy arrays (under the hood it simply opens a pipe and streams the images directly to you):</p>
 </div>
@@ -16158,7 +16288,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">iopy.collection</span> <span class="k">import</span> <span class="n">ImageCollection</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">iopy.collection</span> <span class="k">import</span> <span class="n">ImageCollection</span>
 <span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="k">import</span> <span class="n">imresize</span>
 </pre></div>
 </div>
@@ -16166,8 +16296,7 @@ RU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's download a video to apply the Robust PCA on:</p>
 </div>
@@ -16178,7 +16307,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlretrieve</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlretrieve</span>
 <span class="n">video_filename</span> <span class="o">=</span> <span class="s1">'campus.avi'</span>
 <span class="n">urlretrieve</span> <span class="p">(</span><span class="s2">"http://cvrr.ucsd.edu/aton/shadow/data/campus_raw.AVI"</span><span class="p">,</span> <span class="n">video_filename</span><span class="p">)</span>
 </pre></div>
@@ -16197,8 +16326,7 @@ RU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will use iopy to load the video using the ImageCollection object. The result is a lazy list that only loads the images upon access.</p>
 </div>
@@ -16209,7 +16337,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="n">ImageCollection</span><span class="o">.</span><span class="n">from_video_filename</span><span class="p">(</span><span class="n">video_filename</span><span class="p">,</span> <span class="n">image_to_gray</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">image_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="n">ImageCollection</span><span class="o">.</span><span class="n">from_video_filename</span><span class="p">(</span><span class="n">video_filename</span><span class="p">,</span> <span class="n">image_to_gray</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">image_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -16220,7 +16348,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">collection</span>
 </pre></div>
 </div>
 </div>
@@ -16237,8 +16365,7 @@ RU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will resize the images so as to not explode our memory:</p>
 </div>
@@ -16249,7 +16376,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">imresize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -16261,7 +16388,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">(</span><span class="n">flatten_images</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_fun</span><span class="o">=</span><span class="n">resize</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">(</span><span class="n">flatten_images</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_fun</span><span class="o">=</span><span class="n">resize</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -16272,7 +16399,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -16289,8 +16416,7 @@ RU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's try to find some interesting images:</p>
 </div>
@@ -16301,7 +16427,7 @@ RU5ErkJggg==
 <div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">n_columns</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_images</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">n_columns</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -16310,7 +16436,7 @@ RU5ErkJggg==
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3UAAAI7CAYAAABLK7KIAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsfWmPXMlx7al937t6b7IpziLNaCRb8siSBRneIAMGZNj+
 4N9gwIZ/mj9IsgXL8qJ95NmkGYrDITlcupu9VNe+7/d9qHeiTyVvd3MGeHgQUAkQze66dW/ezMiI
@@ -23246,8 +23372,7 @@ wi8Y/h/6b5UjvJhc0gAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's apply the Robust Tensor PCA. Warning: given the size of the tensor to decompose, if you try this at home, it might take a while depending on your computer.</p>
 </div>
@@ -23258,15 +23383,14 @@ wi8Y/h/6b5UjvJhc0gAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span> <span class="o">=</span> <span class="n">robust_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reg_E</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">n_iter_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's visualise the results (run it several times and you will see different frames since the <code>visualise_pca</code> function selects random ones to display):</p>
 </div>
@@ -23277,7 +23401,7 @@ wi8Y/h/6b5UjvJhc0gAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [50]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">visualise_rpca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">low_rank_part</span><span class="p">,</span> <span class="n">sparse_part</span><span class="p">,</span> <span class="n">n_images</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -23286,7 +23410,7 @@ wi8Y/h/6b5UjvJhc0gAAAABJRU5ErkJggg==
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuAAAAOBCAYAAACwARVCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvWuwpdlZHvasfb/fzq37dPf0XCVm7IxGGkkRGsVQkhMs
 W6BUijg4xATKmJCUoeyQhAQbAy5bdmyqTAXHNjEkRL4AtuwQYRjACsPISEiApGGuGma6p7tPnz7X
@@ -30824,8 +30948,7 @@ UAh4tQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Just for your eyes pleasure, let's convert this into a video: iopy includes a function to stream numpy arrays back through ffmpeg to easily create videos:</p>
 </div>
@@ -30836,15 +30959,14 @@ UAh4tQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">iopy.video</span> <span class="k">import</span> <span class="n">ffmpeg_image_list_to_video</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">iopy.video</span> <span class="k">import</span> <span class="n">ffmpeg_image_list_to_video</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As the algorithm returns floating numbers, we need to renormalise the results to be correct images before saving them (I should probably include this directly in the function saving the video).</p>
 </div>
@@ -30855,7 +30977,7 @@ UAh4tQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">normalise</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">normalise</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
     <span class="sd">"""Renormalise the array in the range [0, 255]</span>
 <span class="sd">        </span>
 <span class="sd">        Return an array of uint8 with 3 channels</span>
@@ -30874,8 +30996,7 @@ UAh4tQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here I simply create the concatenation of the original video, the low rank part and the sparse error side to side.</p>
 </div>
@@ -30886,15 +31007,14 @@ UAh4tQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">video_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">normalise</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">normalise</span><span class="p">(</span><span class="n">low_rank_part</span><span class="p">),</span> <span class="n">normalise</span><span class="p">(</span><span class="n">sparse_part</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">video_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">normalise</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">normalise</span><span class="p">(</span><span class="n">low_rank_part</span><span class="p">),</span> <span class="n">normalise</span><span class="p">(</span><span class="n">sparse_part</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To save the whole as a video you can simply to do:</p>
 </div>
@@ -30905,7 +31025,7 @@ UAh4tQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ffmpeg_image_list_to_video</span><span class="p">(</span><span class="s1">'campus_RPCA.mp4'</span><span class="p">,</span> <span class="n">video_img</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ffmpeg_image_list_to_video</span><span class="p">(</span><span class="s1">'campus_RPCA.mp4'</span><span class="p">,</span> <span class="n">video_img</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -30922,8 +31042,7 @@ UAh4tQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here, I will save a shorter version (the first 500 frames) for demo:</p>
 </div>
@@ -30934,7 +31053,7 @@ UAh4tQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ffmpeg_image_list_to_video</span><span class="p">(</span><span class="s1">'campus_RPCA_short.mp4'</span><span class="p">,</span> <span class="n">video_img</span><span class="p">[:</span><span class="mi">500</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">fps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ffmpeg_image_list_to_video</span><span class="p">(</span><span class="s1">'campus_RPCA_short.mp4'</span><span class="p">,</span> <span class="n">video_img</span><span class="p">[:</span><span class="mi">500</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">fps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -30951,8 +31070,7 @@ UAh4tQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's now visualise the resulting video. First a convenience function to include the video in the notebook (I got the inspiration from <a href="https://kastnerkyle.github.io/posts/robust-matrix-decomposition/">https://kastnerkyle.github.io/posts/robust-matrix-decomposition/</a>, a very interesting website by the way!)</p>
 </div>
@@ -30963,7 +31081,7 @@ UAh4tQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [52]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span>
 
@@ -30983,8 +31101,7 @@ UAh4tQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>And finally, the results!</p>
 </div>
@@ -30995,7 +31112,7 @@ UAh4tQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In [54]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">video_to_html</span><span class="p">(</span><span class="s1">'campus_RPCA_short.mp4'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">video_to_html</span><span class="p">(</span><span class="s1">'campus_RPCA_short.mp4'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -31012,16 +31129,14 @@ UAh4tQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Final-words">Final words<a class="anchor-link" href="#Final-words">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I want to thank my colleague <a href="https://ibug.doc.ic.ac.uk/people/cgeorgakis">Christos Georgakis</a> for the productive discussions on Robust PCA. If you are interested in the subject you might want to read his latest <a href="https://ibug.doc.ic.ac.uk/media/uploads/documents/georgakis_ijcv.pdf">IJCV paper</a> on Dynamic Behavior Analysis via Structured Rank Minimization.</p>
 <p>Going forward, I am planning to adapt this as an example for TensorLy and add some more documentation. There are several possible improvements to the Tensor Robust PCA, starting with adding a term to gather the gaussian noise separately.</p>
