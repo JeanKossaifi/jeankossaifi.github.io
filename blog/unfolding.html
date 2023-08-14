@@ -5,11 +5,12 @@
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Deep Learning, Tensor Methods">
-    <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+	<link rel="canonical" href="http://jeankossaifi.com" />
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, Artificial Intelligence, TensorLy, Deep Learning, Tensor Methods">
+    <meta name="description" content="Jean Kossaifi's Home Page - Artificial Intelligence, Machine Learning">
 
 	<meta name="author" content="Jean Kossaifi">
-	<title>Tensor Unfolding - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+	<title>Tensor Unfolding - Jean Kossaifi's Home Page - Artificial Intelligence, Machine Learning</title>
 
 
 	<meta name="twitter:card" content="summary" />
@@ -235,10 +236,10 @@ j = \sum_{\substack{k=1,\\k \neq n}}^N i_k \times \prod_{m=k+1}^N I_m.
 \end{align*}
 </div>
 </div>
-<div class="section" id="id1">
+<div class="section" id="example-1">
 <h4>Example</h4>
 <p>Using the same tensor <span class="math">\(\tilde X\)</span> as defined previously, the unfoldings according to this new definition are given by:</p>
-<div class="section" id="id2">
+<div class="section" id="mode-0-unfolding-1">
 <h5>mode-0 unfolding:</h5>
 <div class="math">
 \begin{equation*}
@@ -251,7 +252,7 @@ j = \sum_{\substack{k=1,\\k \neq n}}^N i_k \times \prod_{m=k+1}^N I_m.
 \end{equation*}
 </div>
 </div>
-<div class="section" id="id3">
+<div class="section" id="mode-1-unfolding-1">
 <h5>mode-1 unfolding:</h5>
 <div class="math">
 \begin{equation*}
@@ -265,7 +266,7 @@ j = \sum_{\substack{k=1,\\k \neq n}}^N i_k \times \prod_{m=k+1}^N I_m.
 \end{equation*}
 </div>
 </div>
-<div class="section" id="id4">
+<div class="section" id="mode-2-unfolding-1">
 <h5>mode-2 unfolding:</h5>
 <div class="math">
 \begin{equation*}
@@ -278,7 +279,7 @@ j = \sum_{\substack{k=1,\\k \neq n}}^N i_k \times \prod_{m=k+1}^N I_m.
 </div>
 </div>
 </div>
-<div class="section" id="id5">
+<div class="section" id="properties-1">
 <h4>Properties</h4>
 <p>One of the nice things with this definition of the unfolding is that it offers nice properties.</p>
 <p>Firstly, you might have recognised a C-ordering of the elements: as a result, this formulation leads to much more natural implementations and achieves better performance when using C-ordering of the elements (as numpy does by default). All that is now required is to move the required dimension into the first position and reshape the result into a matrix.</p>
@@ -369,7 +370,7 @@ order, you obtain the mode-0 unfolding:</p>
 <p>Based on the above discussion, a simple function to unfold a tensor
 would be the following:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f_unfold</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Simple unfolding function</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple unfolding function</span>
 <span class="sd">        Moves the `mode` axis to the beginning and reshapes in Fortran order</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="p">),</span> <span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
@@ -433,7 +434,7 @@ corresponding to 2-mode unfoding should be:</p>
 </pre>
 <p>The function to do this is simple:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reorder</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Reorders the elements</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reorders the elements</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
     <span class="n">element</span> <span class="o">=</span> <span class="n">indices</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
@@ -443,7 +444,7 @@ corresponding to 2-mode unfoding should be:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.lib.stride_tricks</span> <span class="kn">import</span> <span class="n">as_strided</span>
 
 <span class="k">def</span> <span class="nf">c_unfold</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the mode-`mode` unfolding of `tensor`</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the mode-`mode` unfolding of `tensor`</span>
 <span class="sd">        (modes start at `0`)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -461,7 +462,7 @@ corresponding to 2-mode unfoding should be:</p>
 using numpy's built-in <tt class="docutils literal">transpose</tt> function that takes care of
 changing the strides and the shape for us:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unfold</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the mode-`mode` unfolding of `tensor`</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the mode-`mode` unfolding of `tensor`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">reorder</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">ndim</span><span class="p">),</span> <span class="n">mode</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
@@ -488,7 +489,7 @@ of an element (in bytes), and the number of elements per dimension, we
 can easily determine the number of bytes to skip to go to the next
 dimension (<em>strides</em>):</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">c_fold</span><span class="p">(</span><span class="n">unfolded</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the folded tensor of shape `shape` from the `mode`-mode unfolding `unfolded`.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the folded tensor of shape `shape` from the `mode`-mode unfolding `unfolded`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">column_size</span><span class="p">,</span> <span class="n">element_size</span> <span class="o">=</span> <span class="n">unfolded</span><span class="o">.</span><span class="n">strides</span>
     <span class="n">column_dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
@@ -511,7 +512,7 @@ dimension (<em>strides</em>):</p>
 reshape the unfolded tensor into a tensor after the transposition was
 done. Then we undo the transpose:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fold</span><span class="p">(</span><span class="n">unfolded</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the folded tensor of shape `shape` from the `mode`-mode unfolding `unfolded`.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the folded tensor of shape `shape` from the `mode`-mode unfolding `unfolded`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">unfolded_indices</span> <span class="o">=</span> <span class="n">reorder</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)),</span> <span class="n">mode</span><span class="p">)</span>
     <span class="n">original_shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">shape</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unfolded_indices</span><span class="p">]</span>
@@ -612,7 +613,7 @@ var disqus_config = function () {
 
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
-s.src = '//jeankossaifi.disqus.com/embed.js';
+s.src = '//.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
@@ -671,8 +672,8 @@ s.setAttribute('data-timestamp', +new Date());
   },
   "headline": "Tensor Unfolding",
   "image": "http://jeankossaifi.com/default_image.png",
-  "datePublished": "2017-03-19 00:00:00+00:00",
-  "dateModified": "2017-03-19 00:00:00+00:00",
+  "datePublished": "2017-03-19 00:00:00-07:00",
+  "dateModified": "2017-03-19 00:00:00-07:00",
   "author": {
     "@type": "Person",
 	"name": "Jean Kossaifi"
@@ -730,15 +731,6 @@ s.setAttribute('data-timestamp', +new Date());
 	</p>
 	
 </footer>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-89357746-1', 'auto');
-      ga('send', 'pageview');
-    </script>
 
 </body>
 

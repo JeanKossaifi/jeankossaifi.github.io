@@ -5,11 +5,12 @@
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Deep Learning, Tensor Methods">
-    <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+	<link rel="canonical" href="http://jeankossaifi.com" />
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, Artificial Intelligence, TensorLy, Deep Learning, Tensor Methods">
+    <meta name="description" content="Jean Kossaifi's Home Page - Artificial Intelligence, Machine Learning">
 
 	<meta name="author" content="Jean Kossaifi">
-	<title>2022 : The Year of The Tensor - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+	<title>2022 : The Year of The Tensor - Jean Kossaifi's Home Page - Artificial Intelligence, Machine Learning</title>
 
 
 	<meta name="twitter:card" content="summary" />
@@ -17,7 +18,7 @@
 	<meta name="twitter:creator" content="@JeanKossaifi" />
 	<meta name="twitter:title" content="2022 : The Year of The Tensor" />
 	<meta name="twitter:description" content="A retrospect on 2021 and looking ahead to 2022" />
-	<meta name="twitter:image" content="http://jeankossaifi.com/images/TheMatrixTensorizedBanner.jpg" />
+	<meta name="twitter:image" content="http://jeankossaifi.com/imagees/tensorly/TheMatrixTensorizedBanner.jpg" />
 
 
 	<script type="text/x-mathjax-config">
@@ -81,7 +82,7 @@
 <div class="column is-8 is-offset-2">
 <!-- START about -->
 	<div class="card article" href="http://jeankossaifi.com/blog/year_of_the_tensor_2022.html" id="article">
-		<img alt="page banner" src=http://jeankossaifi.com/images/TheMatrixTensorizedBanner.jpg class="large-image banner">
+		<img alt="page banner" src=http://jeankossaifi.com/imagees/tensorly/TheMatrixTensorizedBanner.jpg class="large-image banner">
 
 		<div class="card-content">
 		<!-- title -->
@@ -91,6 +92,16 @@
 			    2022 : The Year of The Tensor
 			</h1>
 			<h2 class="subtitle is-4">
+	
+					<a class="tag is-rounded is-dark" href="http://jeankossaifi.com/tag/machine-learning.html">
+						machine-learning
+					</a>
+					&thinsp;
+	
+					<a class="tag is-rounded is-dark" href="http://jeankossaifi.com/tag/tensorly.html">
+						TensorLy
+					</a>
+					&thinsp;
 	
 					<a class="tag is-rounded is-dark" href="http://jeankossaifi.com/tag/general.html">
 						general
@@ -115,46 +126,46 @@
             <p>2021 was, in many respects a tough year, if anything because of the pandemic, to state the obvious. Despite this, it was also a productive year for research. I got to advance my goals of democratising tensors for better AI and to develop new methodologies to improve our models and their training. So here are a few of this years achievements, a retrospect on 2021 and looking ahead to 2022, which may well be the year of the tensor!</p>
 <div class="section" id="tensorly-democratising-tensor-methods-for-all">
 <h2>TensorLy: Democratising Tensor Methods for All</h2>
-<p>Tensor methods generalise matrix algebraic methods to more than 2 dimensions and tensor algebra is a strict superset of matrix algebra. They’re a powerful tools (<a class="reference external" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1016284">the next big thing</a> to quote none other than Charles Van Loan!) but typically can come with a steeper learning curve.</p>
-<p>With <a class="reference external" href="tensorly.org/dev">TensorLy</a> , we aim at making them easily accessible through a simple, high-level Python API. It comes with a flexible backend system that allows anyone to use their favourite framework to run the computation, from the universal NumPy to PyTorch, JAX, TensorFlow and MXNet for GPU acceleration.</p>
-<img alt="TensorLy logo: Tensor Learning in Python" class="align-center" src="http://jeankossaifi.com/images/tensorly-logo-text.png" style="width: 40%;" />
+<p>Tensor methods generalise matrix algebraic methods to more than 2 dimensions and tensor algebra is a strict superset of matrix algebra. They’re a powerful tools (the <a class="reference external" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1016284">next big thing</a> to quote none other than Charles Van Loan!) but typically can come with a steeper learning curve.</p>
+<p>With <a class="reference external" href="http://tensorly.org/dev">TensorLy</a>, we aim at making them easily accessible through a simple, high-level Python API. It comes with a flexible backend system that allows anyone to use their favourite framework to run the computation, from the universal NumPy to PyTorch, JAX, TensorFlow and MXNet for GPU acceleration.</p>
+<img alt="TensorLy logo: Tensor Learning in Python" class="align-center" src="http://jeankossaifi.com/images/tensorly/TensorLy_logo.png" style="width: 70%;" />
 <p>With the amazing <a class="reference external" href="http://tensorly.org/dev/about.html">TensorLy dev team</a>, we released several <a class="reference external" href="https://github.com/tensorly/tensorly/releases">new versions</a> of the library and added many new features!</p>
 </div>
 <div class="section" id="tensorly-torch-tensorizing-deep-learning">
 <h2>TensorLy-Torch: Tensorizing Deep Learning</h2>
 <p>One particularly interesting application of tensor methods is to improve deep learning models, both performance, robustness, compression and speed.</p>
-<img alt="Advantages of tensor methods for deep learning" class="align-center" src="http://jeankossaifi.com/images/tensor-advantages.png" style="width: 60%;" />
+<img alt="Advantages of tensor methods for deep learning" class="align-center" src="http://jeankossaifi.com/images/tensorly/tensor-advantages.png" style="width: 45%;" />
 <p>However, doing so requires a lot of expertise, particularly when you want to compose different things, e.g. decomposing existing weights to express them in factorized form, replacing them by more efficient operations using directly the factors of the decomposition and adding things like tensor dropout. Training from scratch is no walk in the park either if you're not careful, and initializing correctly tensor factorizations can be tricky.</p>
-<p>To lower the barrier of entry and make it easy, I wrote <a class="reference external" href="http://tensorly.org/torch/dev/">TensorLy-Torch</a> which was released this year and provides all the above, and more, out of the box. You can manipulate transparently tensors in factorized form, define layers using them and add things like tensor dropout or l1 rank-regularization with just a few lines of PyTorch code!</p>
+<p>To lower the barrier of entry and make it easy, I wrote <a class="reference external" href="https://tensorly.org/torch/dev/">TensorLy-Torch</a> which was released this year and provides all the above, and more, out of the box. You can manipulate transparently tensors in factorized form, define layers using them and add things like tensor dropout or l1 rank-regularization with just a few lines of PyTorch code!</p>
 <p>Going beyond supervised learning, tensorization can also help for reinforcement learning. For instance to jointly model the action space of multiple agent in our <a class="reference external" href="https://arxiv.org/pdf/2106.00136.pdf">ICML paper</a>, in factorized form.</p>
 </div>
 <div class="section" id="making-neural-networks-robust">
 <h2>Making Neural Networks Robust</h2>
 <p>Tensor methods give us a rigorous way of studying machine learning methods and in many cases, improve upon existing models. We proposed one way to do so in IEEE Selected Topics in Signal Processing, through <a class="reference external" href="https://arxiv.org/pdf/1902.10758.pdf">tensor dropout</a>, which generalizes matrix dropout to tensors to improve performance.</p>
-<p>Based on tensor dropout, we proposed Defensive Tensorization, in <a class="reference external" href="https://arxiv.org/pdf/2110.13859.pdf">BMVC</a>, which greatly improves the robustness of neural networks, especially when combined with adversarial training. Beyond the tensor aspect, randomness is underutilized in ML. In <a class="reference external" href="https://proceedings.neurips.cc/paper/2021/file/01e9565cecc4e989123f9620c1d09c09-Paper.pdf">NeurIPS</a>, we also explored more robust training through adversarial composition of random augmentations.</p>
+<p>Based on tensor dropout, we proposed <a class="reference external" href="https://arxiv.org/pdf/2110.13859.pdf">Defensive Tensorization</a>, in BMVC, which greatly improves the robustness of neural networks, especially when combined with adversarial training. Beyond the tensor aspect, randomness is underutilized in ML. In NeurIPS, we also explored more robust training through <a class="reference external" href="https://proceedings.neurips.cc/paper/2021/file/01e9565cecc4e989123f9620c1d09c09-Paper.pdf">adversarial composition of random augmentations</a>.</p>
 </div>
 <div class="section" id="tensor-methods-and-quantum-computing">
 <h2>Tensor Methods and Quantum Computing</h2>
 <p>Tensor methods are a natural tool for quantum computing so it was an obvious application, one that's long interested me. While working on this, we developed Multi-Basis Encoding, a <a class="reference external" href="https://arxiv.org/pdf/2106.13304.pdf">new method</a> that, combined with efficient factorized representation of the states and operators, enabled solving the Ising problem for an unprecedented amount of qubits.</p>
-<p>Tensor methods, novel algorithms, factorized representations and quantum circuits all come together in a simple API with autograd support through PyTorch modules for quantum machine learning in a new open-source package, <a class="reference external" href="http://tensorly.org/quantum/dev/">TensorLy-Quantum</a> .</p>
-<img alt="pyramid representing the TensorLy ecosystem" class="large-image" src="http://jeankossaifi.com/images/tlquantum.jpg" />
-<p>Using TensorLy-Quantum and cuQuantum, we solved MaxCut for a <a class="reference external" href="https://blogs.nvidia.com/blog/2021/11/09/cuquantum-world-record/">record</a> number of 3375 qubits on 896 GPUs.</p>
+<p>Tensor methods, novel algorithms, factorized representations and quantum circuits all come together in a simple API with autograd support through PyTorch modules for quantum machine learning in a new open-source package, <a class="reference external" href="http://tensorly.org/quantum/dev/">TensorLy-Quantum</a>.</p>
+<img alt="pyramid representing the TensorLy ecosystem" class="align-center" src="http://jeankossaifi.com/images/tensorly/tlquantum.jpg" style="width: 90%;" />
+<p>Using TensorLy-Quantum and cuQuantum, we solved MaxCut for a record number of 3375 qubits on 896 GPUs.</p>
 </div>
 <div class="section" id="unsupervised-social-media-analysis">
 <h2>Unsupervised Social Media Analysis</h2>
-<p>When given a very large corpus of data, how do you study the evolution of the topics discussed, without requiring annotations? LDA is one way but prohibitive to run at scale. Going to higher-orders, however, we can do this efficiently with Tensor LDA. We've been working on this in collaboration with Caltech's awesome Professor Alvarez, Postdocs and PhD students - see Sara Kangashlahti <a class="reference external" href="https://m.youtube.com/watch?v=yMk6rAHXK04">SURF project talk</a>. Have a look at our <a class="reference external" href="https://www.nowpublishers.com/article/Details/MAL-057">monograph</a> for more detail. This project has been really fun, and we'll have more coming soon!!</p>
-<p>Similar underlying techniques can be used to control the generation of GANs, in a fully unsupervised manner. We <a class="reference external" href="https://ieeexplore.ieee.org/document/9534045">demonstrated this</a> by proposing a self-training framework for unsupervised controllable generation from a set of latent codes, sampled from a latent variable model. We used a normalized ICA which parameters were learned through a tensor factorization of higher-order moments.</p>
+<p>When given a very large corpus of data, how do you study the evolution of the topics discussed, without requiring annotations? LDA is one way but prohibitive to run at scale. Going to higher-orders, however, we can do this efficiently with Tensor LDA. We've been working on this in collaboration with Caltech's awesome Professor Alvarez, Postdocs and PhD students - see Sara Kangashlahti <a class="reference external" href="https://www.youtube.com/watch?app=desktop&amp;v=yMk6rAHXK04">SURF project talk</a>. Have a look at our <a class="reference external" href="https://www.nowpublishers.com/article/Details/MAL-057">monograph</a> for more detail. This project has been really fun, and we'll have more coming soon!!</p>
+<p>Similar underlying techniques can be used to control the generation of GANs, in a fully unsupervised manner. We <a class="reference external" href="https://ieeexplore.ieee.org/document/9534045">demonstrated</a> this by proposing a self-training framework for unsupervised controllable generation from a set of latent codes, sampled from a latent variable model. We used a normalized ICA which parameters were learned through a tensor factorization of higher-order moments.</p>
 </div>
 <div class="section" id="a-review">
 <h2>A Review</h2>
-<p>For a more general overview, in parallel to the code, we wrote extensive documentations and tutorials, as well as a <a class="reference external" href="https://developer.nvidia.com/blog/nvidia-research-tensors-are-the-future-of-deep-learning/">blog post</a>, a few talks, including <a class="reference external" href="https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s32385/">at GTC</a> and a <a class="reference external" href="https://arxiv.org/pdf/2107.03436.pdf">review</a> of tensor methods in computer vision and deep learning in IEEE proceedings.</p>
+<p>For a more general overview, in parallel to the code, we wrote extensive documentations and tutorials, as well as a <a class="reference external" href="https://developer.nvidia.com/blog/nvidia-research-tensors-are-the-future-of-deep-learning/">blog post</a> , a few talks, including at <a class="reference external" href="https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s32385/">GTC</a> and a <a class="reference external" href="https://arxiv.org/pdf/2107.03436.pdf">review</a> of tensor methods in computer vision and deep learning in IEEE proceedings.</p>
 </div>
 <div class="section" id="looking-ahead">
 <h2>Looking ahead</h2>
 <p>So what does this mean for the year to come? Plenty of exciting research! We’ve barely started to scratch the surface of what is possible by leveraging efficiently tensor methods, whether in Machine Learning or Quantum Computing.</p>
-<p>Stay tuned for more to come. Get involved by forking the <a class="reference external" href="https://github.com/tensorly">TensorLy repository</a> and reach out on <a class="reference external" href="zt-wqnts2sk-wbiRX6ml~Xt6~GDYWRPFfg">Slack</a>! And if you have comments, let me know, I'd love to hear from you and discuss!</p>
+<p>Stay tuned for more to come. Get involved by forking the <a class="reference external" href="https://github.com/tensorly">TensorLy repository</a> and reach out on <a class="reference external" href="https://join.slack.com/t/tensorly/shared_invite/zt-wqnts2sk-wbiRX6ml~Xt6~GDYWRPFfg">Slack</a> ! And if you have comments, let me know, I'd love to hear from you and discuss!</p>
 <p>Happy New Year to all and welcome to the Year of The Tensor!</p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Due to popular demand, the sequel is here to take you out of a flat 2021 and into higher-orders for a multi-dimensional 2022! Why? “Because I choose to.” <a href="https://twitter.com/hashtag/TheMatrix?src=hash&amp;ref_src=twsrc%5Etfw">#TheMatrix</a> <a href="https://twitter.com/hashtag/Tensorized?src=hash&amp;ref_src=twsrc%5Etfw">#Tensorized</a> <br><br>Happy new year! Wishing you all a wonderful 2022! <a href="https://twitter.com/hashtag/HAPPYNEWYEAR2022?src=hash&amp;ref_src=twsrc%5Etfw">#HAPPYNEWYEAR2022</a> <a href="https://twitter.com/kareem_carr?ref_src=twsrc%5Etfw">@kareem_carr</a> <a href="https://twitter.com/AnimaAnandkumar?ref_src=twsrc%5Etfw">@AnimaAnandkumar</a> <a href="https://t.co/lfYYHayOOw">https://t.co/lfYYHayOOw</a> <a href="https://t.co/VyB8B9OhK9">pic.twitter.com/VyB8B9OhK9</a></p>&mdash; Jean Kossaifi (@JeanKossaifi) <a href="https://twitter.com/JeanKossaifi/status/1477056295480008710?ref_src=twsrc%5Etfw">December 31, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+</div>
 
 		</div>
 		<!-- END content -->
@@ -239,7 +250,7 @@ var disqus_config = function () {
 
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
-s.src = '//jeankossaifi.disqus.com/embed.js';
+s.src = '//.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
@@ -297,9 +308,9 @@ s.setAttribute('data-timestamp', +new Date());
 	"@id": "http://jeankossaifi.com/blog/year_of_the_tensor_2022.html"
   },
   "headline": "2022 : The Year of The Tensor",
-  "image": "http://jeankossaifi.com/images/TheMatrixTensorizedBanner.jpg",
-  "datePublished": "2022-01-01 00:00:00+00:00",
-  "dateModified": "2022-01-01 00:00:00+00:00",
+  "image": "http://jeankossaifi.com/imagees/tensorly/TheMatrixTensorizedBanner.jpg",
+  "datePublished": "2022-01-01 00:00:00-08:00",
+  "dateModified": "2022-01-01 00:00:00-08:00",
   "author": {
     "@type": "Person",
 	"name": "Jean Kossaifi"
@@ -357,15 +368,6 @@ s.setAttribute('data-timestamp', +new Date());
 	</p>
 	
 </footer>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-89357746-1', 'auto');
-      ga('send', 'pageview');
-    </script>
 
 </body>
 

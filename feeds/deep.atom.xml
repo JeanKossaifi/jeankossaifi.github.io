@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Jean Kossaifi's Home Page - Artificial Intelligence, Machine Learning - deep</title><link href="http://jeankossaifi.com/" rel="alternate"></link><link href="http://jeankossaifi.com/feeds/deep.atom.xml" rel="self"></link><id>http://jeankossaifi.com/</id><updated>2018-01-13T00:00:00-08:00</updated><entry><title>Thoughts on designing a tensor algebra/ deep learning framework</title><link href="http://jeankossaifi.com/blog/deep-learning-framework.html" rel="alternate"></link><published>2018-01-13T00:00:00-08:00</published><updated>2018-01-13T00:00:00-08:00</updated><author><name>Jean Kossaifi</name></author><id>tag:jeankossaifi.com,2018-01-13:/blog/deep-learning-framework.html</id><summary type="html">&lt;p class="first last"&gt;A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;While adding various backends to &lt;a class="reference external" href="https://github.com/tensorly/tensorly"&gt;TensorLy&lt;/a&gt;, I had to deal with the various advantages and oddities of the many deep learning frameworks out there. Here, I am collecting some of the lessons I learnt, along with some thoughts on what an ideal deep learning framework should look like, for those of you also combating this interesting issue.&lt;/p&gt;
+&lt;p&gt;First and foremost, while diversity is good and tends to encourage novelty, I believe the deep learning field is in dire need of unification. Just like Travis Oliphant unified Numeric and Numarray in what we now know as the ubiquitous NumPy, there needs a big unification work for deep learning frameworks. Here are some elements to go forward.&lt;/p&gt;
+&lt;div class="section" id="tensors-vs-matrices"&gt;
+&lt;h2&gt;Tensors VS matrices&lt;/h2&gt;
+&lt;p&gt;Even though most frameworks manipulate tensors, a lot of the methods actually focus on matrices, or tensors of small order. Some frameworks even break if you try to manipulate tensors of too high an order... Tensor methods are powerful and multi-linear algebra is a strict superset of traditional linear algebra. As computational resources and tensor methods develop, leveraging the structure (spatio-temporal for instance) in the data will become increasingly important. We need to develop tools that work equally well with tensors of any order.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="imperative-of-symbolic"&gt;
+&lt;h2&gt;Imperative of symbolic?&lt;/h2&gt;
+&lt;p&gt;While both approaches have they pros and cons, I believe imperative will gain more traction, especially for research and prototyping. It is much more intuitive and flexible than symbolic approaches (that build computational graphs).&lt;/p&gt;
+&lt;p&gt;It does not have to be slower and can even combine the best of both worlds under the hood, whether with dynamical graphs (e.g. &lt;a class="reference external" href="http://pytorch.org/"&gt;PyTorch&lt;/a&gt;) or hybrid approach (e.g. &lt;a class="reference external" href="https://mxnet.incubator.apache.org/"&gt;MXNet&lt;/a&gt;'s Gluon). Tools like &lt;a class="reference external" href="http://tvmlang.org/"&gt;TVM&lt;/a&gt; will make it possible to automatically optimize the code and compile it for a large array of platforms and hardwares.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-ndarray-structure"&gt;
+&lt;h2&gt;The ndarray structure&lt;/h2&gt;
+&lt;p&gt;Rather than being monolithic, the framework should be broken down into a core multi-dimensional array structure, on which the rest of the framework would be built. NumPy has a proven and established interface so is the best candidate for the API.&lt;/p&gt;
+&lt;p&gt;One thing to consider is how to specify the context (or device) on which the tensor should reside.
+I do not want to have to explicitly call a method on my tensor every time, such as:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+T = tensor(data, dtype).gpu()
+&lt;/pre&gt;
+&lt;p&gt;Not only is it annoying, but, putting aside the relative lack of elegance of that solution, it also makes it harder to abstract the hardware. You no longer can set the context as one of the variables. Instead you have to either set a global context (i.e. module.use_gpu() ) or have conditional statements everywhere…&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+if use_gpu:
+   tensor.gpu()
+&lt;/pre&gt;
+&lt;p&gt;This needlessly crowds the code with logic that should be abstracted away in a context argument&lt;/p&gt;
+&lt;p&gt;Ideally, the structure should transparently support CPU and GPU (and even multi-CPU or GPU), via an additional argument, such as:
+.. code:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+T = tensor(data, dtype, context)
+&lt;/pre&gt;
+&lt;p&gt;An important aspect is to have parameters and function names as intuitive and informative as possible. But mostly &lt;strong&gt;consistent&lt;/strong&gt;. The choices of &lt;cite&gt;dim&lt;/cite&gt; instead of &lt;cite&gt;axis&lt;/cite&gt;, or &lt;cite&gt;view&lt;/cite&gt; instead of &lt;cite&gt;reshape&lt;/cite&gt;, while justified in some cases, are the best way to create errors and drive users mad.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="memory-handling"&gt;
+&lt;h2&gt;Memory handling&lt;/h2&gt;
+&lt;p&gt;In supporting GPU, frameworks should be transparent about how they use the memory. If by default, all the memory of a GPU is reserved, this should be explicit and there should be a clear variable or method to change that behaviour. Similarly, the garbage collector should work as expected, regardless of the device in which the array is declared.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fancy-indexing"&gt;
+&lt;h2&gt;Fancy-indexing&lt;/h2&gt;
+&lt;p&gt;While designing the ndarray structure, it is important not to over-simplify. Amongst necessary functionality are slicing and fancy indexing: the ability to index an array by slices or using, for instance, a list of indexes. Importantly, these operations should be differentiable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="building-up"&gt;
+&lt;h2&gt;Building up&lt;/h2&gt;
+&lt;p&gt;The actual deep learning / tensor frameworks should build on such a structure and leverage it. Chainer is a great example of this.&lt;/p&gt;
+&lt;p&gt;They have broken-up their package into &lt;a class="reference external" href="https://cupy.chainer.org/"&gt;CuPy&lt;/a&gt; which provides a drop-in replacement for NumPy on GPU, and the core &lt;a class="reference external" href="https://chainer.org/"&gt;Chainer&lt;/a&gt; framework which builds on top of it and adds deep learning capabilities.&lt;/p&gt;
+&lt;p&gt;In addition, a mature, drop-in replacement for NumPy with GPU and multi-machine support will be a tremendous addition for the whole Python community.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="zeroth-order-tensors-or-0-dimensional"&gt;
+&lt;h2&gt;Zeroth order tensors (or 0-dimensional)&lt;/h2&gt;
+&lt;p&gt;One important, most often neglected aspect of tensors is zeroth-order tensors, aka scalars. If you fully contract a tensor, for instance by taking its norm n, with an inner product or with tensor contraction, you get a scalar. This needs to be differentiable, i.e. have gradients attached. However, it also needs to be comparable to other scalars. For instance, if it is a loss, is this higher than a certain threshold, etc.&lt;/p&gt;
+&lt;p&gt;This might be a technical challenge to get right, but which must be addressed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="data-loading-and-augmentation"&gt;
+&lt;h2&gt;Data: loading and augmentation&lt;/h2&gt;
+&lt;p&gt;Data loading and processing as well as augmentation should be prime citizens in any serious framework, not an after thoughts like is sometimes the case.&lt;/p&gt;
+&lt;p&gt;In particular, if the framework has an ndarray structure as described above, a lot of the processing can be done directly on the target device. What we do not want is a pipeline where the image is loaded, for instance, with OpenCV, processed on CPU, converted to NumPy and finally to the target framework….&lt;/p&gt;
+&lt;p&gt;The other aspect is multi-processing: rather than having several classes for several classes, a parameter could control the number of threads (think &lt;cite&gt;n_jobs&lt;/cite&gt; in &lt;a class="reference external" href="http://scikit-learn.org/stable/"&gt;Scikit-Learn&lt;/a&gt;). Again, this makes the code more flexible and clearer.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="final-words"&gt;
+&lt;h2&gt;Final words&lt;/h2&gt;
+&lt;p&gt;Whilst there might be imprecisions in the list above, the goal is mainly to collect thoughts towards designing better frameworks for tensor methods and deep learning, to allow us to focus on the algorithms without having lower level considerations in the way.&lt;/p&gt;
+&lt;p&gt;I will update this list as I go but I am curious to get your thoughts, so don’t hesitate to leave a comment!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="deep"></category><category term="tech"></category><category term="deep-learning"></category><category term="python"></category></entry></feed>

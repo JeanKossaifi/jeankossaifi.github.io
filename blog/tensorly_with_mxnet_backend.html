@@ -5,11 +5,12 @@
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, TensorLy, Deep Learning, Tensor Methods">
-    <meta name="description" content="Jean Kossaifi's Home Page - Machine Learning & Computer Vision">
+	<link rel="canonical" href="http://jeankossaifi.com" />
+	<meta name="keywords" content="Machine Learning, Computer Vision, Research, AI, Artificial Intelligence, TensorLy, Deep Learning, Tensor Methods">
+    <meta name="description" content="Jean Kossaifi's Home Page - Artificial Intelligence, Machine Learning">
 
 	<meta name="author" content="Jean Kossaifi">
-	<title>TensorLy, with MXNet Backend - Jean Kossaifi's Home Page - Machine Learning & Computer Vision</title>
+	<title>TensorLy, with MXNet Backend - Jean Kossaifi's Home Page - Artificial Intelligence, Machine Learning</title>
 
 
 	<meta name="twitter:card" content="summary" />
@@ -124,8 +125,8 @@ Then install <a class="reference external" href="https://mxnet.incubator.apache.
 <div class="section" id="install-with-pip">
 <h3>Install with pip</h3>
 <p>We want the latest version of MXNet, and the latest version of TensorLy:</p>
-<div class="highlight"><pre><span></span>pip install --pre mxnet
-pip install -U tensorly
+<div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>mxnet
+pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>tensorly
 </pre></div>
 </div>
 <div class="section" id="install-from-source">
@@ -133,8 +134,8 @@ pip install -U tensorly
 <div class="section" id="install-mxnet-from-source">
 <h4>Install MXNet from source</h4>
 <p>To install from sources, you first want to clone the repository:</p>
-<div class="highlight"><pre><span></span>git clone --recursive https://github.com/apache/incubator-mxnet.git
-<span class="nb">cd</span> mxnet
+<div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/apache/incubator-mxnet.git
+<span class="nb">cd</span><span class="w"> </span>mxnet
 </pre></div>
 <p>Next, make the shared library:</p>
 <table border="1" class="docutils">
@@ -148,26 +149,26 @@ pip install -U tensorly
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><div class="first last"><div class="highlight"><pre><span></span>cp make/osx.mk ./config.mk
-make -j<span class="k">$(</span>sysctl -n hw.ncpu<span class="k">)</span>
+<tr><td><div class="first last"><div class="highlight"><pre><span></span>cp<span class="w"> </span>make/osx.mk<span class="w"> </span>./config.mk
+make<span class="w"> </span>-j<span class="k">$(</span>sysctl<span class="w"> </span>-n<span class="w"> </span>hw.ncpu<span class="k">)</span>
 </pre></div>
 </div></td>
-<td><div class="first last"><div class="highlight"><pre><span></span>make -j <span class="k">$(</span>nproc<span class="k">)</span>
+<td><div class="first last"><div class="highlight"><pre><span></span>make<span class="w"> </span>-j<span class="w"> </span><span class="k">$(</span>nproc<span class="k">)</span>
 </pre></div>
 </div></td>
 </tr>
 </tbody>
 </table>
 <p>Install the python binding:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> python
-pip install -e .
+<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>python
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
 </div>
 <div class="section" id="install-tensorly-from-source">
 <h4>Install TensorLy from source</h4>
-<div class="highlight"><pre><span></span>git clone https://github.com/tensorly/tensorly
-<span class="nb">cd</span> tensorly
-pip install -e .
+<div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/tensorly/tensorly
+<span class="nb">cd</span><span class="w"> </span>tensorly
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
 <p>That's it, you're ready to go!</p>
 </div>
@@ -272,7 +273,7 @@ var disqus_config = function () {
 
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
-s.src = '//jeankossaifi.disqus.com/embed.js';
+s.src = '//.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
@@ -331,8 +332,8 @@ s.setAttribute('data-timestamp', +new Date());
   },
   "headline": "TensorLy, with MXNet Backend",
   "image": "http://jeankossaifi.com/default_image.png",
-  "datePublished": "2017-08-28 00:00:00+01:00",
-  "dateModified": "2017-08-28 00:00:00+01:00",
+  "datePublished": "2017-08-28 00:00:00-07:00",
+  "dateModified": "2017-08-28 00:00:00-07:00",
   "author": {
     "@type": "Person",
 	"name": "Jean Kossaifi"
@@ -390,15 +391,6 @@ s.setAttribute('data-timestamp', +new Date());
 	</p>
 	
 </footer>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-89357746-1', 'auto');
-      ga('send', 'pageview');
-    </script>
 
 </body>
 
