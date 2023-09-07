@@ -120,7 +120,7 @@
 <div class="section" id="overview">
 <h2>Overview</h2>
 <p>This post was designed specifically with Python in mind, with the aim to help coders follow best practices while being minimally constraining.</p>
-<p>When coding in other languages, such as Java and C++, very different standards are sometimes used. Conversely, the wealth of guides written for those (typically, lower level languages) are not necessarily a good math for Python.
+<p>When coding in other languages, such as Java and C++, very different standards are sometimes used. Conversely, the wealth of guides written for those (typically, lower level languages) are not necessarily a good match for Python.
 One example is design patterns, best examplified and developed for Java, that don't always translate well to Python. Similarly, OOP (Object Oriented Programming) is now considered a little outdated. Encapsulation for instance makes little sense in Python where nothing is truly private.</p>
 <p>Here, I aim to give you broad guidance and direction on writing better code while restricting you as little as possible.</p>
 </div>
@@ -159,13 +159,12 @@ And the API to express it comes easily</blockquote>
 <div class="section" id="guiding-principles">
 <h2>Guiding principles</h2>
 <p>So, we agree on the need to write good code, and you are clear and what you want to achieve: now what?</p>
-<p>A trap many beginners fall is is to focus on trying to write the most impressive, cleverest piece code, just as some academics try to impress with hard to read math.
+<p>A trap many beginners fall is is to focus on trying to write the most impressive, cleverest piece of code, just as some academics try to impress with hard to read math.
 Both are equally bad.</p>
 <p>Write code to be <strong>read</strong> and <strong>maintained</strong> by someone who doesn't know the work or the code (this may be you in a few months/years!).
 As always, take all of these with a pinch of salt, and use your best judgment.</p>
-<p>Good code design can sometimes be a personal thing, this is about finding a common ground and set of common rules.
+<p>Good code design can sometimes be a personal thing, but this is about finding a common ground and set of common rules.
 When in doubt, discuss so you can converge to a shared <em>compromise</em>.</p>
-<p>For each function or class, we expect helpful docstrings in the NumPy format, as well as unit-tests to make sure it is working as expected (especially helpful for future refactoring to make sure no exising code is broken!)</p>
 </div>
 <div class="section" id="writing-clear-code">
 <h2>Writing clear code</h2>
@@ -234,7 +233,7 @@ This consists in comments (where needed to explain a particularly complex/unintu
 </span>   <span class="k">pass</span>
 </pre>
 <p>Notes and Examples are optional, but always describe the function/class' role and input parameters.</p>
-<p>In the docstring, use single backticks for variable's names: <cite>`variable`</cite>.</p>
+<p>In the docstring, use single backticks for variable's names: `variable`.</p>
 <p>Double backticks are used for inline code: <tt class="docutils literal">``inline code``</tt>.</p>
 <p>For blocks of code, use double colons, leave a white line and indent said lines of code</p>
 <pre class="code rst literal-block">
@@ -248,7 +247,7 @@ This consists in comments (where needed to explain a particularly complex/unintu
 </div>
 <div class="section" id="unit-tests-if-it-s-not-tested-it-s-broken">
 <h3>Unit-tests: if it's not tested, it's broken</h3>
-<p>Each new function should be accompagnied by a small function that checks the function's behaviour for correctness.
+<p>Each new function should be accompanied by a small function that checks the function's behaviour for correctness.
 Ideallly you want to test for mathematical/algorithmic correctness and API correctness at least.
 I would go further and suggest you write the unit-test <strong>before</strong> you write the actual function.
 And everytime you fix / find a bug, ideally, add a test case to make sure it does not happen again in the future!</p>
@@ -289,7 +288,7 @@ Life's better without braces.</blockquote>
 <div class="section" id="do-not-abuse-classes-and-inheritance">
 <h3>Do not abuse classes and inheritance</h3>
 <p>You might be tempted to adopt a Java or C++ approach to coding, but this is Python.
-Priviledge composition over inheritance. In general try to keep the number of classes to a minimum, and do not create virtual (abstract) classes unless really justified.</p>
+Privilege composition over inheritance. In general try to keep the number of classes to a minimum, and do not create virtual (abstract) classes unless really justified.</p>
 <p>As Zed Shaw puts it, in <em>Learn Python the HARD WAY</em> <a class="citation-reference" href="#learnpythonshaw" id="citation-reference-3">[LearnPythonShaw]</a>: &quot;Most of the uses of inheritance can be simplified or replaced with composition, and multiple inheritance should be avoided at all costs&quot;. He also gives the following three rules of thumb:</p>
 <blockquote class="epigraph">
 <ol class="arabic simple">
@@ -309,7 +308,7 @@ Priviledge composition over inheritance. In general try to keep the number of cl
 <blockquote class="epigraph">
 “The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.”</blockquote>
 <p>It was written by Sir Tony Hoare and made famous by none other than Donald Knuth.</p>
-<p>In practice: write a code that works and is test first.
+<p>In practice: write a code that works and is well tested first.
 Then, benchmark to find the bottlenecks.
 Lastly, optimize.</p>
 <p>The best way to end up with bad code or wrong code is to start optimizing too early. You may end up going down the rabbit hole and miss the important part. One obvious example is parallelism. You typically want to parallelize at the highest-level. Enabling parallelisation at a lower level would probably result in race conditions or unefficient code where the threads/processes are waiting for each other.</p>
