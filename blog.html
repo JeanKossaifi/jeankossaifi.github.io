@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog · Jean Kossaifi</title>
+    <meta name="description" content="Insights and thoughts on AI for Engineering, Tensor Methods, Neural Operators by Jean Kossaifi.">
+    
+<!-- Enhanced SEO Meta Tags -->
+<meta property="og:title" content="Blog · Jean Kossaifi">
+<meta property="og:description" content="Insights and thoughts on AI for Engineering, Tensor Methods, Neural Operators by Jean Kossaifi.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/static/profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog · Jean Kossaifi">
+<meta name="twitter:description" content="Insights and thoughts on AI for Engineering, Tensor Methods, Neural Operators by Jean Kossaifi.">
+<meta name="twitter:image" content="/static/profile.jpg"><meta name="twitter:creator" content="@JeanKossaifi">
+
+<!-- Structured Data (JSON-LD) -->
+    
+    <link rel="stylesheet" href="static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- MathJax for LaTeX math rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="blog.html" class="text-sm font-medium transition-colors text-teal-600 dark:text-teal-400 font-semibold">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main><div class="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
+    <h1 class="fluid-heading-hero heading text-text dark:text-dark-text mb-12 reveal">Blog</h1>
+    
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <a href="blog/coding.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2023-08-14</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">Coding guidelines</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>It doesn't just matter what you have to say. How you say it is what matters. This holds true of information, mathematics but also coding. In this post, I cover best practices to make sure you are understood when you write Python code.</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/year_of_the_tensor_2022.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2022-01-01</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">2022 : The Year of The Tensor</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>A retrospect on 2021 and looking ahead to 2022</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/practice_makes_what.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2018-01-13</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">Practice Makes... What?</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>Is work enough to reach true mastery?</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/deep-learning-framework.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2018-01-13</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">Thoughts on designing a tensor algebra/ deep learning framework</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/new_year_new_website_v2.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2018-01-01</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">New Year, New Website [Reloaded]</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>Born again personal website - how to quickly refresh a blog</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/tensorly_with_pytorch_backend.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2017-09-11</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">TensorLy, Now Also with PyTorch Backend</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch code with tensor methods. In this post we demonstrate this by performing Tucker tensor decomposition using autograd and gradient descent.</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/tensorly_with_mxnet_backend.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2017-08-28</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">TensorLy, with MXNet Backend</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/unfolding.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2017-03-19</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">Tensor Unfolding</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>A look at tensor unfolding and its different definitions. We go through their mathematical properties, and python implementation with NumPy.</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a><a href="blog/new_year_new_post.html" class="block elysian-card p-8 reveal">
+    <time class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2 block">2017-01-01</time>
+    <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">New Year, New Website</h3>
+<p class="text-base mt-2 text-gray-900 dark:text-white"><p>Hello world!</p></p>    <span class="inline-block mt-4 text-sm font-semibold text-teal-600 dark:text-teal-400">Read More <i class="fas fa-arrow-right text-xs"></i></span>
+</a>
+    </div>
+</div></main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>

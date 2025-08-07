@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TensorLy, Now Also with PyTorch Backend · Jean Kossaifi</title>
+    <meta name="description" content="In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch...">
+    
+<!-- Enhanced SEO Meta Tags -->
+<link rel="canonical" href="/blog/tensorly_with_pytorch_backend.html"><meta property="og:title" content="TensorLy, Now Also with PyTorch Backend · Jean Kossaifi">
+<meta property="og:description" content="In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch...">
+<meta property="og:type" content="website">
+<meta property="og:url" content="/blog/tensorly_with_pytorch_backend.html"><meta property="og:image" content="/static/profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TensorLy, Now Also with PyTorch Backend · Jean Kossaifi">
+<meta name="twitter:description" content="In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch...">
+<meta name="twitter:image" content="/static/profile.jpg"><meta name="twitter:creator" content="@JeanKossaifi">
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TensorLy, Now Also with PyTorch Backend",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "datePublished": "2017-09-11",
+  "description": "<p>In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch code with tensor methods. In this post we demonstrate this by performing Tucker tensor decomposition using autograd and gradient descent.</p>",
+  "url": "/blog/tensorly_with_pytorch_backend.html"
+}
+</script>
+    
+    <link rel="stylesheet" href="../static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- MathJax for LaTeX math rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="../static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="../index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="../publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="../projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="../news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="../blog.html" class="text-sm font-medium transition-colors text-teal-600 dark:text-teal-400 font-semibold">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="../publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="../projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="../news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="../blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main><article class="max-w-4xl mx-auto px-6 lg:px-8 py-32">
+    <header class="text-center mb-16 reveal">
+        <time class="text-base font-semibold text-teal-600 dark:text-teal-400">2017-09-11</time>
+        <h1 class="mt-4 text-5xl sm:text-6xl md:text-7xl heading text-gray-900 dark:text-white">TensorLy, Now Also with PyTorch Backend</h1>
+    </header>
+    <div class="prose-main reveal delay-200"><p>Since <a href="https://github.com/tensorly/tensorly">TensorLy</a> was refactored to support backends, it is fairly easy to add new backends, so as a proof of concepts I put together a Pytorch backend. There are most likely a few optimisations to do and some things could be done better but all the tests pass. Here is a quick demonstration.</p>
+<h1>Requirements</h1>
+<p>For the pytorch backend you will need the master version of TensorLy as well as the master version of PyTorch.</p>
+<p>We need pytorch Variables to have a shape property, as added in this <a href="https://github.com/pytorch/pytorch/pull/2306">pull-request</a>, so either install pytorch from master or do the modification yourself!</p>
+<h1>Tucker decomposition using SGD and autograd</h1>
+<p>Let's see how we can use TensorLy and the pytorch backend to perform Tucker tensor decomposition via gradient descent.</p>
+<p>First let's import all the necessary stuff:</p>
+<pre class="codehilite"><code class="language-python">&gt;&gt; import numpy as np
+&gt;&gt; import torch
+&gt;&gt; from torch.autograd import Variable
+&gt;&gt; import tensorly as tl
+&gt;&gt; from tensorly.tucker_tensor import tucker_to_tensor
+&gt;&gt; from tensorly.random import check_random_state
+Using mxnet backend.
+</code></pre>
+
+<p>Now let's switch to the PyTorch backend:</p>
+<pre class="codehilite"><code class="language-python">&gt;&gt; tl.set_backend('pytorch')
+Using pytorch backend.
+</code></pre>
+
+<p>We just fix the random seed for reproducibility</p>
+<pre class="codehilite"><code class="language-python">&gt;&gt; random_state = 1234
+&gt;&gt; rng = check_random_state(random_state)
+</code></pre>
+
+<p>Define a random tensor which we will try to decompose. We wrap our tensors in Variables so we can backpropagate through them:</p>
+<pre class="codehilite"><code class="language-python">&gt;&gt; shape = [5, 5, 5]
+&gt;&gt; tensor = Variable(tl.tensor(rng.random_sample(shape)), requires_grad=True)
+</code></pre>
+
+<p>Initialise a random Tucker decomposition of that tensor</p>
+<pre class="codehilite"><code class="language-python">&gt;&gt; ranks = [5, 5, 5]
+&gt;&gt; core = Variable(tl.tensor(rng.random_sample(ranks)), requires_grad=True)
+&gt;&gt; factors = [Variable(tl.tensor(rng.random_sample((tensor.shape[i], ranks[i]))),
+                       requires_grad=True) for i in range(tl.ndim(tensor))]
+</code></pre>
+
+<p>Now we just iterate through the training loop and backpropagate...</p>
+<pre class="codehilite"><code class="language-python">n_iter = 10000
+lr = 0.00005
+penalty = 0.1
+
+optimizer = torch.optim.Adam([core]+factors, lr=lr)
+
+for i in range(1, n_iter):
+    # Important: do not forget to reset the gradients
+    optimizer.zero_grad()
+
+    # Reconstruct the tensor from the decomposed form
+    rec = tucker_to_tensor(core, factors)
+
+    # squared l2 loss 
+    loss = (rec - tensor).pow(2).sum()
+
+    # squared l2 penalty on the factors of the decomposition
+    for f in factors:
+        loss = loss + penalty * f.pow(2).sum()
+
+    loss.backward()
+    optimizer.step()
+
+    if i % 1000 == 0:
+        rec_error = tl.norm(rec.data - tensor.data, 2)/tl.norm(tensor.data, 2)
+        print(&quot;Epoch %s,. Rec. error: %s&quot; % (i, rec_error))
+</code></pre>
+
+<p>You should see the reconstruction error go down:</p>
+<p>Epoch 1000,. Rec. error: 9.85501529153 Epoch 2000,. Rec. error: 5.4266791947 Epoch 3000,. Rec. error: 2.93432695168 Epoch 4000,. Rec. error: 1.58708802561 Epoch 5000,. Rec. error: 1.03465270384 Epoch 6000,. Rec. error: 0.94976522999 Epoch 7000,. Rec. error: 0.979246423375 Epoch 8000,. Rec. error: 0.996610962433 Epoch 9000,. Rec. error: 0.999994015288</p>
+<h1>What next?</h1>
+<p>This is very much a proof of concept so there might be bugs. If you see something that can be improved or if you have any suggestions, feel free to comment here or open an issue on the <a href="https://github.com/tensorly/tensorly">Github</a> page.</p></div>
+</article>
+</main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>

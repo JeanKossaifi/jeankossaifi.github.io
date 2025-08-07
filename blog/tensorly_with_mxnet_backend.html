@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TensorLy, with MXNet Backend · Jean Kossaifi</title>
+    <meta name="description" content="From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and...">
+    
+<!-- Enhanced SEO Meta Tags -->
+<link rel="canonical" href="/blog/tensorly_with_mxnet_backend.html"><meta property="og:title" content="TensorLy, with MXNet Backend · Jean Kossaifi">
+<meta property="og:description" content="From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and...">
+<meta property="og:type" content="website">
+<meta property="og:url" content="/blog/tensorly_with_mxnet_backend.html"><meta property="og:image" content="/static/profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TensorLy, with MXNet Backend · Jean Kossaifi">
+<meta name="twitter:description" content="From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and...">
+<meta name="twitter:image" content="/static/profile.jpg"><meta name="twitter:creator" content="@JeanKossaifi">
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TensorLy, with MXNet Backend",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "datePublished": "2017-08-28",
+  "description": "<p>From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.</p>",
+  "url": "/blog/tensorly_with_mxnet_backend.html"
+}
+</script>
+    
+    <link rel="stylesheet" href="../static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- MathJax for LaTeX math rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="../static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="../index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="../publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="../projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="../news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="../blog.html" class="text-sm font-medium transition-colors text-teal-600 dark:text-teal-400 font-semibold">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="../publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="../projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="../news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="../blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main><article class="max-w-4xl mx-auto px-6 lg:px-8 py-32">
+    <header class="text-center mb-16 reveal">
+        <time class="text-base font-semibold text-teal-600 dark:text-teal-400">2017-08-28</time>
+        <h1 class="mt-4 text-5xl sm:text-6xl md:text-7xl heading text-gray-900 dark:text-white">TensorLy, with MXNet Backend</h1>
+    </header>
+    <div class="prose-main reveal delay-200"><p>The goal of TensorLy is to make tensor operations easy and accessible. I originally developed it to have minimum dependency and depend only on NumPy, SciPy and optionally on Matplotlib for plotting. However, as Deep Learning becomes more ubiquitous, we need better tools to i) combine tensor methods and Deep Learning and ii) run the algorithms at scale, on several machines and both CPU and GPU. It so happens that MXNet, in addition to shining in both of these areas, has an NDArray structure that is very similar to NumPy and aims at feature parity with it. Furthermore, its ability to use to define deep networks imperatively made it a prime candidate.</p>
+<p>I therefore refactored TensorLy to accept both MXNet and NumPy as backends, which now allows to run tensor methods on CPU and GPU transparently and to seemlessly combine them with Deep Learning using MXNet's Gluon interface (for a great tutorial on Gluon and deep learning, check out this interactive <a href="https://github.com/zackchase/mxnet-the-straight-dope">book</a>).</p>
+<p>Here is a quick guide on getting started with the new version of TensorLy.</p>
+<h1>Installation</h1>
+<h2>Pre-requisite</h2>
+<p>If you don't already have Python I recommend you use <a href="https://www.anaconda.com/download/">Anaconda</a> (choose Python 3, it's 2017). Then install <a href="https://mxnet.incubator.apache.org/get_started/install.html">MXNet</a>.</p>
+<h2>Install with pip</h2>
+<p>We want the latest version of MXNet, and the latest version of TensorLy:</p>
+<pre class="codehilite"><code class="language-bash">pip install --pre mxnet
+pip install -U tensorly
+</code></pre>
+
+<h2>Install from source</h2>
+<h3>Install MXNet from source</h3>
+<p>To install from sources, you first want to clone the repository:</p>
+<pre class="codehilite"><code class="language-bash">git clone --recursive https://github.com/apache/incubator-mxnet.git
+cd mxnet
+</code></pre>
+
+<p>Next, make the shared library:</p>
+<p><strong>OSX:</strong></p>
+<pre class="codehilite"><code class="language-bash">cp make/osx.mk ./config.mk
+make -j$(sysctl -n hw.ncpu)
+</code></pre>
+
+<p><strong>Linux:</strong></p>
+<pre class="codehilite"><code class="language-bash">make -j $(nproc)
+</code></pre>
+
+<p>Install the python binding:</p>
+<pre class="codehilite"><code class="language-bash">cd python
+pip install -e .
+</code></pre>
+
+<h3>Install TensorLy from source</h3>
+<pre class="codehilite"><code class="language-bash">git clone https://github.com/tensorly/tensorly
+cd tensorly
+pip install -e .
+</code></pre>
+
+<p>That's it, you're ready to go!</p>
+<h1>Checking all is good</h1>
+<p>You can now check everything is working as expected in Python:</p>
+<pre class="codehilite"><code class="language-python">&gt;&gt;&gt; import tensorly as tl
+Using mxnet backend.
+&gt;&gt;&gt; print(tensorly.__version__)
+'0.2.0'
+</code></pre>
+
+<h1>What's next</h1>
+<p>For documentation, check the <a href="https://tensorly.github.io/">documentation</a>.</p>
+<p>For source code, head to TensorLy's <a href="https://github.com/tensorly/tensorly">github repository</a>.</p>
+<p>For examples of use, check out the jupyter <a href="https://github.com/JeanKossaifi/tensorly_notebooks">Notebooks</a>.</p></div>
+</article>
+</main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>
