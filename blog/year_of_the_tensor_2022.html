@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022 : The Year of The Tensor</title>
+    <meta name="description" content="A retrospect on 2021 and looking ahead to 2022">
+
+    
+<meta name="author" content="Jean Kossaifi">
+
+<meta property="og:title" content="2022 : The Year of The Tensor">
+<meta property="og:description" content="A retrospect on 2021 and looking ahead to 2022">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeankossaifi.com/blog/year_of_the_tensor_2022.html">
+<meta property="og:image" content="https://jeankossaifi.com/static/images/tensorly/TheMatrixTensorizedBanner.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2022 : The Year of The Tensor">
+<meta name="twitter:description" content="A retrospect on 2021 and looking ahead to 2022">
+<meta name="twitter:image" content="https://jeankossaifi.com/static/images/tensorly/TheMatrixTensorizedBanner.jpg">
+
+<link rel="canonical" href="https://jeankossaifi.com/blog/year_of_the_tensor_2022.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2022 : The Year of The Tensor",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "datePublished": "2022-01-01",
+  "description": "<p>A retrospect on 2021 and looking ahead to 2022</p>",
+  "url": "https://jeankossaifi.com/blog/year_of_the_tensor_2022.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jeankossaifi.com/blog/year_of_the_tensor_2022.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jean Kossaifi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jeankossaifi.com/static/profile.jpg"
+    }
+  },
+  "image": "https://jeankossaifi.com/static/images/tensorly/TheMatrixTensorizedBanner.jpg"
+}
+</script>
+    
+    <link rel="stylesheet" href="https://jeankossaifi.com/static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+    
+    <script src="https://jeankossaifi.com/static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="https://jeankossaifi.com/index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="https://jeankossaifi.com/publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="https://jeankossaifi.com/projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="https://jeankossaifi.com/news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="https://jeankossaifi.com/blog.html" class="text-sm font-medium transition-colors text-teal-600 dark:text-teal-400 font-semibold">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="https://jeankossaifi.com/publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="https://jeankossaifi.com/projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="https://jeankossaifi.com/news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="https://jeankossaifi.com/blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main>
+<div class="px-4 md:px-6 lg:px-8 pt-8">
+    <div class="hero-section relative mb-16 reveal max-w-6xl mx-auto">
+        <div class="relative h-80 md:h-96 lg:h-[28rem] rounded-xl overflow-hidden">
+            <img src="../static/images/tensorly/TheMatrixTensorizedBanner.jpg" alt="2022 : The Year of The Tensor" class="hero-image w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl heading text-white mb-4 drop-shadow-lg">2022 : The Year of The Tensor</h1>
+                    <p class="text-lg text-white/90 mb-2 drop-shadow">2022-01-01</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 lg:px-8 pb-20">
+    <div class="max-w-4xl mx-auto">
+
+        <article class="prose-main">
+            <p>2021 was, in many respects a tough year, if anything because of the pandemic, to state the obvious. Despite this, it was also a productive year for research. I got to advance my goals of democratising tensors for better AI and to develop new methodologies to improve our models and their training. So here are a few of this years achievements, a retrospect on 2021 and looking ahead to 2022, which may well be the year of the tensor!</p>
+<h1>TensorLy: Democratising Tensor Methods for All</h1>
+<p>Tensor methods generalise matrix algebraic methods to more than 2 dimensions and tensor algebra is a strict superset of matrix algebra. They're a powerful tools (the <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1016284">next big thing</a> to quote none other than Charles Van Loan!) but typically can come with a steeper learning curve.</p>
+<p>With <a href="http://tensorly.org/dev">TensorLy</a>, we aim at making them easily accessible through a simple, high-level Python API. It comes with a flexible backend system that allows anyone to use their favourite framework to run the computation, from the universal NumPy to PyTorch, JAX, TensorFlow and MXNet for GPU acceleration.</p>
+<p><img alt="TensorLy logo: Tensor Learning in Python" class="center" src="https://jeankossaifi.com/static/images/tensorly/TensorLy_logo.png" width="70.0%" /></p>
+<p>With the amazing <a href="http://tensorly.org/dev/about.html">TensorLy dev team</a>, we released several <a href="https://github.com/tensorly/tensorly/releases">new versions</a> of the library and added many new features!</p>
+<h1>TensorLy-Torch: Tensorizing Deep Learning</h1>
+<p>One particularly interesting application of tensor methods is to improve deep learning models, both performance, robustness, compression and speed.</p>
+<p><img alt="Advantages of tensor methods for deep learning" class="center" src="https://jeankossaifi.com/static/images/tensorly/tensor-advantages.png" width="45.0%" /></p>
+<p>However, doing so requires a lot of expertise, particularly when you want to compose different things, e.g. decomposing existing weights to express them in factorized form, replacing them by more efficient operations using directly the factors of the decomposition and adding things like tensor dropout. Training from scratch is no walk in the park either if you're not careful, and initializing correctly tensor factorizations can be tricky.</p>
+<p>To lower the barrier of entry and make it easy, I wrote <a href="https://tensorly.org/torch/dev/">TensorLy-Torch</a> which was released this year and provides all the above, and more, out of the box. You can manipulate transparently tensors in factorized form, define layers using them and add things like tensor dropout or l1 rank-regularization with just a few lines of PyTorch code!</p>
+<p>Going beyond supervised learning, tensorization can also help for reinforcement learning. For instance to jointly model the action space of multiple agent in our <a href="https://arxiv.org/pdf/2106.00136.pdf">ICML paper</a>, in factorized form.</p>
+<h1>Making Neural Networks Robust</h1>
+<p>Tensor methods give us a rigorous way of studying machine learning methods and in many cases, improve upon existing models. We proposed one way to do so in IEEE Selected Topics in Signal Processing, through <a href="https://arxiv.org/pdf/1902.10758.pdf">tensor dropout</a>, which generalizes matrix dropout to tensors to improve performance.</p>
+<p>Based on tensor dropout, we proposed <a href="https://arxiv.org/pdf/2110.13859.pdf">Defensive Tensorization</a>, in BMVC, which greatly improves the robustness of neural networks, especially when combined with adversarial training. Beyond the tensor aspect, randomness is underutilized in ML. In NeurIPS, we also explored more robust training through <a href="https://proceedings.neurips.cc/paper/2021/file/01e9565cecc4e989123f9620c1d09c09-Paper.pdf">adversarial composition of random augmentations</a>.</p>
+<h1>Tensor Methods and Quantum Computing</h1>
+<p>Tensor methods are a natural tool for quantum computing so it was an obvious application, one that's long interested me. While working on this, we developed Multi-Basis Encoding, a <a href="https://arxiv.org/pdf/2106.13304.pdf">new method</a> that, combined with efficient factorized representation of the states and operators, enabled solving the Ising problem for an unprecedented amount of qubits.</p>
+<p>Tensor methods, novel algorithms, factorized representations and quantum circuits all come together in a simple API with autograd support through PyTorch modules for quantum machine learning in a new open-source package, <a href="http://tensorly.org/quantum/dev/">TensorLy-Quantum</a>.</p>
+<p><img alt="pyramid representing the TensorLy ecosystem" class="center" src="https://jeankossaifi.com/static/images/tensorly/tlquantum.jpg" width="90.0%" /></p>
+<p>Using TensorLy-Quantum and cuQuantum, we solved MaxCut for a record number of 3375 qubits on 896 GPUs.</p>
+<h1>Unsupervised Social Media Analysis</h1>
+<p>When given a very large corpus of data, how do you study the evolution of the topics discussed, without requiring annotations? LDA is one way but prohibitive to run at scale. Going to higher-orders, however, we can do this efficiently with Tensor LDA. We've been working on this in collaboration with Caltech's awesome Professor Alvarez, Postdocs and PhD students - see Sara Kangashlahti <a href="https://www.youtube.com/watch?app=desktop&amp;v=yMk6rAHXK04">SURF project talk</a>. Have a look at our <a href="https://www.nowpublishers.com/article/Details/MAL-057">monograph</a> for more detail. This project has been really fun, and we'll have more coming soon!!</p>
+<p>Similar underlying techniques can be used to control the generation of GANs, in a fully unsupervised manner. We <a href="https://ieeexplore.ieee.org/document/9534045">demonstrated</a> this by proposing a self-training framework for unsupervised controllable generation from a set of latent codes, sampled from a latent variable model. We used a normalized ICA which parameters were learned through a tensor factorization of higher-order moments.</p>
+<h1>A Review</h1>
+<p>For a more general overview, in parallel to the code, we wrote extensive documentations and tutorials, as well as a <a href="https://developer.nvidia.com/blog/nvidia-research-tensors-are-the-future-of-deep-learning/">blog post</a> , a few talks, including at <a href="https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s32385/">GTC</a> and a <a href="https://arxiv.org/pdf/2107.03436.pdf">review</a> of tensor methods in computer vision and deep learning in IEEE proceedings.</p>
+<h1>Looking ahead</h1>
+<p>So what does this mean for the year to come? Plenty of exciting research! We've barely started to scratch the surface of what is possible by leveraging efficiently tensor methods, whether in Machine Learning or Quantum Computing.</p>
+<p>Stay tuned for more to come. Get involved by forking the <a href="https://github.com/tensorly">TensorLy repository</a> and reach out on <a href="https://join.slack.com/t/tensorly/shared_invite/zt-wqnts2sk-wbiRX6ml~Xt6~GDYWRPFfg">Slack</a> ! And if you have comments, let me know, I'd love to hear from you and discuss!</p>
+<p>Happy New Year to all and welcome to the Year of The Tensor!</p>
+        </article>
+
+    </div>
+</div></main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>

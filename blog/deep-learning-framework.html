@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoughts on designing a tensor algebra/ deep learning framework</title>
+    <meta name="description" content="A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework">
+
+    
+<meta name="author" content="Jean Kossaifi">
+
+<meta property="og:title" content="Thoughts on designing a tensor algebra/ deep learning framework">
+<meta property="og:description" content="A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeankossaifi.com/blog/deep-learning-framework.html">
+<meta property="og:image" content="https://jeankossaifi.com/static/images/deep.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thoughts on designing a tensor algebra/ deep learning framework">
+<meta name="twitter:description" content="A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework">
+<meta name="twitter:image" content="https://jeankossaifi.com/static/images/deep.jpg">
+
+<link rel="canonical" href="https://jeankossaifi.com/blog/deep-learning-framework.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Thoughts on designing a tensor algebra/ deep learning framework",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "datePublished": "2018-01-13",
+  "description": "<p>A potpourri of thoughts on designing the ideal tensor algebra and deep learning framework</p>",
+  "url": "https://jeankossaifi.com/blog/deep-learning-framework.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jeankossaifi.com/blog/deep-learning-framework.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jean Kossaifi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jeankossaifi.com/static/profile.jpg"
+    }
+  },
+  "image": "https://jeankossaifi.com/static/images/deep.jpg"
+}
+</script>
+    
+    <link rel="stylesheet" href="https://jeankossaifi.com/static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+    
+    <script src="https://jeankossaifi.com/static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="https://jeankossaifi.com/index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="https://jeankossaifi.com/publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="https://jeankossaifi.com/projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="https://jeankossaifi.com/news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="https://jeankossaifi.com/blog.html" class="text-sm font-medium transition-colors text-teal-600 dark:text-teal-400 font-semibold">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="https://jeankossaifi.com/publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="https://jeankossaifi.com/projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="https://jeankossaifi.com/news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="https://jeankossaifi.com/blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main>
+<div class="px-4 md:px-6 lg:px-8 pt-8">
+    <div class="hero-section relative mb-16 reveal max-w-6xl mx-auto">
+        <div class="relative h-80 md:h-96 lg:h-[28rem] rounded-xl overflow-hidden">
+            <img src="../static/images/deep.jpg" alt="Thoughts on designing a tensor algebra/ deep learning framework" class="hero-image w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl heading text-white mb-4 drop-shadow-lg">Thoughts on designing a tensor algebra/ deep learning framework</h1>
+                    <p class="text-lg text-white/90 mb-2 drop-shadow">2018-01-13</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 lg:px-8 pb-20">
+    <div class="max-w-4xl mx-auto">
+
+        <article class="prose-main">
+            <p>While adding various backends to <a href="https://github.com/tensorly/tensorly">TensorLy</a>, I had to deal with the various advantages and oddities of the many deep learning frameworks out there. Here, I am collecting some of the lessons I learnt, along with some thoughts on what an ideal deep learning framework should look like, for those of you also combating this interesting issue.</p>
+<p>First and foremost, while diversity is good and tends to encourage novelty, I believe the deep learning field is in dire need of unification. Just like Travis Oliphant unified Numeric and Numarray in what we now know as the ubiquitous NumPy, there needs a big unification work for deep learning frameworks. Here are some elements to go forward.</p>
+<h1>Tensors VS matrices</h1>
+<p>Even though most frameworks manipulate tensors, a lot of the methods actually focus on matrices, or tensors of small order. Some frameworks even break if you try to manipulate tensors of too high an order... Tensor methods are powerful and multi-linear algebra is a strict superset of traditional linear algebra. As computational resources and tensor methods develop, leveraging the structure (spatio-temporal for instance) in the data will become increasingly important. We need to develop tools that work equally well with tensors of any order.</p>
+<h1>Imperative of symbolic?</h1>
+<p>While both approaches have they pros and cons, I believe imperative will gain more traction, especially for research and prototyping. It is much more intuitive and flexible than symbolic approaches (that build computational graphs).</p>
+<p>It does not have to be slower and can even combine the best of both worlds under the hood, whether with dynamical graphs (e.g. <a href="http://pytorch.org/">PyTorch</a>) or hybrid approach (e.g. <a href="https://mxnet.incubator.apache.org/">MXNet</a>'s Gluon). Tools like <a href="http://tvmlang.org/">TVM</a> will make it possible to automatically optimize the code and compile it for a large array of platforms and hardwares.</p>
+<h1>The ndarray structure</h1>
+<p>Rather than being monolithic, the framework should be broken down into a core multi-dimensional array structure, on which the rest of the framework would be built. NumPy has a proven and established interface so is the best candidate for the API.</p>
+<p>One thing to consider is how to specify the context (or device) on which the tensor should reside. I do not want to have to explicitly call a method on my tensor every time, such as:</p>
+<div class="codehilite"><pre><span></span><code><span class="nx">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tensor</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">dtype</span><span class="p">).</span><span class="nx">gpu</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Not only is it annoying, but, putting aside the relative lack of elegance of that solution, it also makes it harder to abstract the hardware. You no longer can set the context as one of the variables. Instead you have to either set a global context (i.e. module.use_gpu() ) or have conditional statements everywhere...</p>
+<div class="codehilite"><pre><span></span><code>if use_gpu:
+   tensor.gpu()
+</code></pre></div>
+
+<p>This needlessly crowds the code with logic that should be abstracted away in a context argument</p>
+<p>Ideally, the structure should transparently support CPU and GPU (and even multi-CPU or GPU), via an additional argument, such as: .. code:</p>
+<div class="codehilite"><pre><span></span><code><span class="nx">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tensor</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">dtype</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">)</span>
+</code></pre></div>
+
+<p>An important aspect is to have parameters and function names as intuitive and informative as possible. But mostly <strong>consistent</strong>. The choices of <code>dim</code> instead of <code>axis</code>, or <code>view</code> instead of <code>reshape</code>, while justified in some cases, are the best way to create errors and drive users mad.</p>
+<h1>Memory handling</h1>
+<p>In supporting GPU, frameworks should be transparent about how they use the memory. If by default, all the memory of a GPU is reserved, this should be explicit and there should be a clear variable or method to change that behaviour. Similarly, the garbage collector should work as expected, regardless of the device in which the array is declared.</p>
+<h1>Fancy-indexing</h1>
+<p>While designing the ndarray structure, it is important not to over-simplify. Amongst necessary functionality are slicing and fancy indexing: the ability to index an array by slices or using, for instance, a list of indexes. Importantly, these operations should be differentiable.</p>
+<h1>Building up</h1>
+<p>The actual deep learning / tensor frameworks should build on such a structure and leverage it. Chainer is a great example of this.</p>
+<p>They have broken-up their package into <a href="https://cupy.chainer.org/">CuPy</a> which provides a drop-in replacement for NumPy on GPU, and the core <a href="https://chainer.org/">Chainer</a> framework which builds on top of it and adds deep learning capabilities.</p>
+<p>In addition, a mature, drop-in replacement for NumPy with GPU and multi-machine support will be a tremendous addition for the whole Python community.</p>
+<h1>Zeroth order tensors (or 0-dimensional)</h1>
+<p>One important, most often neglected aspect of tensors is zeroth-order tensors, aka scalars. If you fully contract a tensor, for instance by taking its norm n, with an inner product or with tensor contraction, you get a scalar. This needs to be differentiable, i.e. have gradients attached. However, it also needs to be comparable to other scalars. For instance, if it is a loss, is this higher than a certain threshold, etc.</p>
+<p>This might be a technical challenge to get right, but which must be addressed.</p>
+<h1>Data: loading and augmentation</h1>
+<p>Data loading and processing as well as augmentation should be prime citizens in any serious framework, not an after thoughts like is sometimes the case.</p>
+<p>In particular, if the framework has an ndarray structure as described above, a lot of the processing can be done directly on the target device. What we do not want is a pipeline where the image is loaded, for instance, with OpenCV, processed on CPU, converted to NumPy and finally to the target framework....</p>
+<p>The other aspect is multi-processing: rather than having several classes for several classes, a parameter could control the number of threads (think <code>n_jobs</code> in <a href="http://scikit-learn.org/stable/">Scikit-Learn</a>). Again, this makes the code more flexible and clearer.</p>
+<h1>Final words</h1>
+<p>Whilst there might be imprecisions in the list above, the goal is mainly to collect thoughts towards designing better frameworks for tensor methods and deep learning, to allow us to focus on the algorithms without having lower level considerations in the way.</p>
+<p>I will update this list as I go but I am curious to get your thoughts, so don't hesitate to leave a comment!</p>
+        </article>
+
+    </div>
+</div></main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>

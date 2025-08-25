@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding guidelines</title>
+    <meta name="description" content="It doesn't just matter what you have to say. How you say it is what matters. This holds true of information, mathematics but also coding. In this post, I c...">
+
+    
+<meta name="author" content="Jean Kossaifi">
+
+<meta property="og:title" content="Coding guidelines">
+<meta property="og:description" content="It doesn't just matter what you have to say. How you say it is what matters. This holds true of information, mathematics but also coding. In this post, I c...">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeankossaifi.com/blog/coding.html">
+<meta property="og:image" content="https://jeankossaifi.com/static/profile.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Coding guidelines">
+<meta name="twitter:description" content="It doesn't just matter what you have to say. How you say it is what matters. This holds true of information, mathematics but also coding. In this post, I c...">
+<meta name="twitter:image" content="https://jeankossaifi.com/static/profile.jpg">
+
+<link rel="canonical" href="https://jeankossaifi.com/blog/coding.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Coding guidelines",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "datePublished": "2023-08-14",
+  "description": "<p>It doesn't just matter what you have to say. How you say it is what matters. This holds true of information, mathematics but also coding. In this post, I cover best practices to make sure you are understood when you write Python code.</p>",
+  "url": "https://jeankossaifi.com/blog/coding.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jeankossaifi.com/blog/coding.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jean Kossaifi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jeankossaifi.com/static/profile.jpg"
+    }
+  },
+  "image": "https://jeankossaifi.com/static/profile.jpg"
+}
+</script>
+    
+    <link rel="stylesheet" href="https://jeankossaifi.com/static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+    
+    <script src="https://jeankossaifi.com/static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="https://jeankossaifi.com/index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="https://jeankossaifi.com/publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="https://jeankossaifi.com/projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="https://jeankossaifi.com/news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="https://jeankossaifi.com/blog.html" class="text-sm font-medium transition-colors text-teal-600 dark:text-teal-400 font-semibold">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="https://jeankossaifi.com/publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="https://jeankossaifi.com/projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="https://jeankossaifi.com/news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="https://jeankossaifi.com/blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main>
+<div class="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-16 reveal">
+            <h1 class="text-5xl lg:text-6xl heading text-gray-900 dark:text-white mb-4">Coding guidelines</h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400 mb-8">2023-08-14</p>
+        </header>
+
+        <article class="prose-main">
+            <p>It doesn't just matter what you have to say. How you say it is what matters. This holds true of information, mathematics but also coding. In this post, I try to give a brief introduction to best practices to make sure you are understood when you write Python code.</p>
+<h1>Overview</h1>
+<p>This post was designed specifically with Python in mind, with the aim to help coders follow best practices while being minimally constraining.</p>
+<p>When coding in other languages, such as Java and C++, very different standards are sometimes used. Conversely, the wealth of guides written for those (typically, lower level languages) are not necessarily a good match for Python. One example is design patterns, best examplified and developed for Java, that don't always translate well to Python. Similarly, OOP (Object Oriented Programming) is now considered a little outdated. Encapsulation for instance makes little sense in Python where nothing is truly private.</p>
+<p>Here, I aim to give you broad guidance and direction on writing better code while restricting you as little as possible.</p>
+<h1>Motivation: the why</h1>
+<p>Let's say you just created an amazing piece of code and contributed it to your favourite open-source project, or even internal project. You wrote the code, you should understand it - but others may not.</p>
+<p>Fortunately, it should be straighforward to make it clear for others. If you truly understand your code, you should be able to explain it clearly to others, through a clean flow, and clear documentation, examples and comments.</p>
+<p>I can already hear some of you asking why they would have to follow best practices and change anything - "After all, existing conventions are wrong, my own ones are better, I'm just faster, better smarter". Let's admit it is the case and leave the Dunning--Kruger effect aside for a moment.</p>
+<p>Instead of arguing with you, I'll quote Richard Feyman, who wrote about this very topic in his biograph "*Surely you're joking, Mr. Feynman*". Speaking of trigonometry, and how he originally came up with a new notation before realizing the importance of established, understood notation, he said:</p>
+<blockquote>
+<p>"I thought my symbols were just as good, if not better, than the regular symbols --- it doesn't make any difference what symbols you use --- but I discovered later that it does make a difference. Once when I was explaining something to another kid in high school, without thinking I started to make these symbols, and he said, "What the hell are those?" I realized then that if I'm going to talk to anybody else, I'll have to use the standard symbols, so I eventually gave up my own symbols."</p>
+</blockquote>
+<p>And here lays the core of it: (at least in most cases) you're not writing in a cave, you're not writing code for yourself. You're writing code to be <strong>read</strong> by others, who may not have your knowledge of the problem not be familiar with the context or the way <strong>you</strong> typically write code.</p>
+<p>The goal of good code writing is to write <strong>correct</strong> code, that can be <strong>easily used</strong> and <strong>easily read, understood and maintained</strong>. The rest of this document aims to giving guidelines for this, in Python.</p>
+<h1>What do you have to say?</h1>
+<p>This should be an obvious one, but the first step is to get intimately familiar with what you are trying to accomplish. What will your code do, how and why?</p>
+<blockquote>
+<p>Ce que l'on conçoit bien s'énonce clairement, Et les mots pour le dire arrivent aisément</p>
+</blockquote>
+<p>This was said by famous French poet Nicolas Boileau, who also happened to be passionate about style and wrote a book on how to write well (<em>Art Poétique</em>). It translates roughtly to:</p>
+<blockquote>
+<p>What we conceive well can be clearly expressed, And the words to express it come easily</p>
+</blockquote>
+<p>"But Jean, you're talking about literature, this is science, it doesn't work the same", some might say. I'd respond that in literature as in science it is all about rigour and I'd adapt Boileau's saying to for Machine Learning to:</p>
+<blockquote>
+<p>What we conceive well can be clearly coded, And the API to express it comes easily</p>
+</blockquote>
+<p>And if you don't trust me, ask ChatGPT.</p>
+<h1>Guiding principles</h1>
+<p>So, we agree on the need to write good code, and you are clear and what you want to achieve: now what?</p>
+<p>A trap many beginners fall is is to focus on trying to write the most impressive, cleverest piece of code, just as some academics try to impress with hard to read math. Both are equally bad.</p>
+<p>Write code to be <strong>read</strong> and <strong>maintained</strong> by someone who doesn't know the work or the code (this may be you in a few months/years!). As always, take all of these with a pinch of salt, and use your best judgment.</p>
+<p>Good code design can sometimes be a personal thing, but this is about finding a common ground and set of common rules. When in doubt, discuss so you can converge to a shared <em>compromise</em>.</p>
+<h1>Writing clear code</h1>
+<p>Your code should be self-explanatory. This means following existing syntactic conventions so anyone read the codebase in the same way, choosing good variable names, writing documentation, unit-tests.</p>
+<p>This means:</p>
+<ul>
+<li>Use clear variables</li>
+<li>Adopt the PEP8 syntax</li>
+<li>Document and comment your code</li>
+<li>Verify correctness with self-contained unit-tests</li>
+</ul>
+<h2>A rose by any other name</h2>
+<p>Use clear, descriptive variable names, including (and especially) internal variables not exposed to the user.</p>
+<p>For instance, avoid names such as <code>aa</code>, <code>NcD</code> etc unless there is a specific reason. No need to be extra verbose (e.g. <code>number_of_dimensions</code> is overkill, <code>D</code> is ambiguous, <code>n_dim</code> or <code>n_dimensions</code> are good).</p>
+<p>Reserve CamelCase (a variable name without spaces where each word starts with a capital letter) for Class names. For variable, use <code>underscore_separated_words</code>. Typically, all caps is reserved for global variable which are almost never used in Python <code>DONOTUSETHISUNLESS YOUKNOWWHAT YOUAREDOING</code>.</p>
+<p>A common pitfall I often see, especially from researchers/students coding a paper, is to follow verbatim the notation from the paper being implemented. While variables such as the ubiquitous <code>x</code> are common in math, we try to avoid them in coding. Instead, try to give your variable descriptive and helpful names such as <code>n_dim</code>, <code>ground_truth</code>, <code>prediction</code>, etc.</p>
+<h2>Syntax: PEP8</h2>
+<p>Before you submit your changes, you should also make sure your code adheres to the style-guide of the project you are contributing to, as well as PEP8<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Note that PEP stands for Python Enhancement Proposal. PEP8 is an early one establishing what has become the standard for the language. The easiest way to make sure your code is complient is with <code>black</code>:</p>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>black
+black<span class="w"> </span>.
+</code></pre></div>
+
+<p>As a side note, when in doubt, follow the established standards of the project you are contributing to, rather than rigidly follow a given rule.</p>
+<h2>Documentation</h2>
+<p>A crutial part of good code is its documentation. The same way you'd have a notation table in a paper, and prose to explain an equation. This consists in comments (where needed to explain a particularly complex/unintuitive line of code) and docstring, which details a function's (or class') role, as well as its input parameters, what it returns and potential notes and examples of use.</p>
+<p>I tend to use the <a href="https://numpydoc.readthedocs.io/en/latest/format.html">Numpy style</a>. For instance, for a function, we expect a docstring with the following structure:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;One line description</span>
+
+<span class="sd">   Longer description,</span>
+<span class="sd">   possibly in several lines</span>
+
+<span class="sd">   Parameters</span>
+<span class="sd">   ----------</span>
+<span class="sd">   arg : type</span>
+<span class="sd">      description</span>
+<span class="sd">      **Notice the space before and after the colon!**</span>
+
+<span class="sd">   Returns</span>
+<span class="sd">   -------</span>
+<span class="sd">   variable : type</span>
+<span class="sd">      description</span>
+
+<span class="sd">   Examples</span>
+<span class="sd">   --------</span>
+<span class="sd">   text</span>
+<span class="sd">   &gt;&gt;&gt; code</span>
+<span class="sd">   expected result</span>
+
+<span class="sd">   Notes</span>
+<span class="sd">   -----</span>
+<span class="sd">   Detailed explanation</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="k">pass</span>
+</code></pre></div>
+
+<p>Notes and Examples are optional, but always describe the function/class' role and input parameters.</p>
+<p>In the docstring, use single backticks for variable's names: <code>variable</code>.</p>
+<p>Double backticks are used for inline code: <code>inline code</code>.</p>
+<p>For blocks of code, use double colons, leave a white line and indent said lines of code</p>
+<div class="codehilite"><pre><span></span><code><span class="se">::</span>
+
+<span class="s">   block of code</span>
+<span class="s">   on </span>
+<span class="s">   several </span>
+<span class="s">   lines...</span>
+</code></pre></div>
+
+<h2>Unit-tests: if it's not tested, it's broken</h2>
+<p>Each new function should be accompanied by a small function that checks the function's behaviour for correctness. Ideallly you want to test for mathematical/algorithmic correctness and API correctness at least. I would go further and suggest you write the unit-test <strong>before</strong> you write the actual function. And everytime you fix / find a bug, ideally, add a test case to make sure it does not happen again in the future!</p>
+<p>For a function <code>foo</code>, contained in <code>module.py</code> you should add a function <code>test_module.py</code> which contains one (or more) test function(s) for all the functions in that module (in our case, <code>foo</code>). This allows for continuous integration tests to be run automatically everytime a change is made in the repository and ensure the changes are not breaking any functionality.</p>
+<p>I like to use <a href="https://docs.pytest.org/en">PyTest</a> for this, as I find it very intuitive and it allows me to easily run the tests without getting in my way.</p>
+<p>That test should be in a file <code>test_foo.py</code> and look like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_foo</span><span class="p">():</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;Unit-test for foo</span>
+
+<span class="sd">   Notice that the function does not take any argument</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p>You can simply run <code>pytest</code> in your folder to run all these tests.</p>
+<p>We typically don't use the syntax:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">do</span> <span class="n">something</span>
+</code></pre></div>
+
+<p>This induces a bunch of unintuitive behaviours that lead to hard to debug issues (e.g. local imports failing, using a local module instead of looking in the global path, etc).</p>
+<p>If you remember one thing, let it be this, quote, from Bruce Eckel:</p>
+<blockquote>
+<p>If it is not tested, it is broken!</p>
+</blockquote>
+<p>You might know Bruce from his excellent book <em>Thinking in C++</em><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>. Why am I using Python then? And why am I quoting the author of a famous C++ book? Well, first of all, I started with C and C++ long before I made the jump to Python. A jump I do not regret, Python is much more adapted to my research - but that is a story for another post.</p>
+<p>For now, I will leave you with these other quotes by Bruce Eckel:</p>
+<blockquote>
+<p>| Life is short
+| (You need Python)</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>Life's better without braces.</p>
+</blockquote>
+<h2>Do not abuse classes and inheritance</h2>
+<p>You might be tempted to adopt a Java or C++ approach to coding, but this is Python. Privilege composition over inheritance. In general try to keep the number of classes to a minimum, and do not create virtual (abstract) classes unless really justified.</p>
+<p>As Zed Shaw puts it, in <em>Learn Python the HARD WAY</em><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>: "Most of the uses of inheritance can be simplified or replaced with composition, and multiple inheritance should be avoided at all costs". He also gives the following three rules of thumb:</p>
+<blockquote>
+<ol>
+<li>Avoid multiple inheritance at all costs, as it's too complex to be useful reliably. If you're stuck with it, then be prepared to know the class hierarchy and spend time finding where everything is coming from.</li>
+<li>Use composition to package up code into modules that are used in many different unrelated places and situations.</li>
+<li>Use inheritance only when there are clearly related reusable pieces of code that fit under a single common concept or if you have to because of something you're using</li>
+</ol>
+</blockquote>
+<p>Once again, in summary, the goal is to make the code easy to read and maintain, and save the readers/maintainers to have to browse recursively through the files to understand some odd behaviour.</p>
+<h1>Writing code efficiently</h1>
+<h2>Premature Optimization</h2>
+<p>You probably have head this quote before:</p>
+<blockquote>
+<p>"The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming."</p>
+</blockquote>
+<p>It was written by Sir Tony Hoare and made famous by none other than Donald Knuth.</p>
+<p>In practice: write a code that works and is well tested first. Then, benchmark to find the bottlenecks. Lastly, optimize.</p>
+<p>The best way to end up with bad code or wrong code is to start optimizing too early. You may end up going down the rabbit hole and miss the important part. One obvious example is parallelism. You typically want to parallelize at the highest-level. Enabling parallelisation at a lower level would probably result in race conditions or unefficient code where the threads/processes are waiting for each other.</p>
+<p>As always, apply good judgment: we are not saying that you should not <strong>think</strong> about optimization or put thoughts about efficiency during the design/planning phase<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>!</p>
+<h2>Communicate!</h2>
+<p>You might be surprised to hear that coding is actually a small portion of writing software. Most of the time should be spent designing, planning and, most importantly, communicating.</p>
+<p>Communication is core to any good collorative effort, especially software. Communicate efficiently and often. Don't go off coding what you <em>think</em> is needed in the way <strong>you</strong> <em>think</em> is best without talking to others: it is the best way to add work for everyone. In that way, failure to communicate could be seen as a special case of premature optimization.</p>
+<p>Finally, remember that everyone is here to contribute to the same project and make it successful - be kind and assume best intentions. A lot of subtelty is lost when communicated through messages or emails. If you are having a bad day, it's ok, it happens, but take time of and do not take it out on others.</p>
+<h1>Good User-Interface design</h1>
+<p>We now can write elegant code that is tested and be be easily read and maintained. However it also needs to be easily <strong>used</strong> by end users, which means having a nice UI.</p>
+<p>A nice API needs to be</p>
+<ul>
+<li>Easy to understand</li>
+<li>The user should not have to read pages of documentation to understand it</li>
+<li>Simple to use:</li>
+<li>Intuitve</li>
+<li>Enable the desired behaviours</li>
+<li>The functions should do what they say they do..</li>
+<li>Be easily extensible</li>
+</ul>
+<p>In this section I will have a more Machine-Learning oriented focus but the principles should be widely applicable. I recommend anyone interested in Python API design to read the API design paper<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> by the Scikit-Learn<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> authors, and to look at Scikit-Learn in general as it is incredibly well designed.</p>
+<p>The Scikit-Learn project follows the following guidelines (from the API design paper<sup id="fnref2:5"><a class="footnote-ref" href="#fn:5">5</a></sup>):</p>
+<ul>
+<li><strong>Consistency</strong>: consistent interface with a limited set of objects</li>
+<li><strong>Inspection</strong>: parameters and their values should be easy to access and find</li>
+<li><strong>Non-proliferation of classes</strong>: this also relates to the consistency point and keeps the library manageable</li>
+<li><strong>Composition</strong>: make it easy to chain operations</li>
+<li><strong>Sensible defaults</strong>: unless the parameter needs to always be set, make it optional with a good default value</li>
+</ul>
+<h1>Contributing on Github</h1>
+<p>An important part of any codebase is version control, which allows several people to work on the same codebase over time without (totally) loosing their sanity.</p>
+<p>Here, I give the basics Git based workflow. If you've never heard of Git, I encourage you to read about it, a good start is <em>the Git parable</em><sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup></p>
+<p>I use a single branch, main rather than the old dev/main paradigm.</p>
+<p>When you want to add a feature, you first fork the repository (create your own copy of the repo) which you then clone on your machine.</p>
+<p>First clone the original repository.</p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>my_local_fork
+</code></pre></div>
+
+<p>You can then add a remote (link) to your own copy.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>original_repo
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>original_repository
+</code></pre></div>
+
+<p>You then make your changes, either on the main branch or a local branch</p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>new_feature
+</code></pre></div>
+
+<p>You make your changes, commit them and push them to <em>your own fork</em>.</p>
+<p>First, make sure your fork is up to date with the main repository:</p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>merge<span class="w"> </span>upstream<span class="w"> </span>main
+</code></pre></div>
+
+<p>Then add your changes:</p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;My awesome fix&#39;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>new_feature
+</code></pre></div>
+
+<p>Github then provides a convenient UI to create a Pull-Request, which will allow upstream maintainers (from the original repository) to review your code, potentially ask for changes and eventually merge the PR into the main repository.</p>
+<h1>Conclusion</h1>
+<p>I hope you found this little guide helpful. Whenever writing code, remember these principles but also use your intuition and never stick rigidly to a given rule, take into account the specific context! When in doubt, use the standards use by your community: they are the ones you primarily need to communicate with.</p>
+<p>Please let me know in email/messages/comments if you have any feedback, suggestions or if you spot any error!</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>PEP8, Guido van Rossum, Barry Warsaw, Nick Coghlan, 2001-2013, <a href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Thinking in C++, Vol. 1: Introduction to Standard C++, Bruce Eckel, 2000&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Learn Python the HARD WAY, A Very Simple Introduction to the Terrifyingly Beautiful World of Computers and Code (Zed Shaw's Hard Way Series), Zed A. Shaw, 2013, <a href="https://shop.learncodethehardway.org/">https://shop.learncodethehardway.org/</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>The Fallacy of Premature Optimization, Randall Hyde, 2009, <a href="https://ubiquity.acm.org/article.cfm?id=1513451">https://ubiquity.acm.org/article.cfm?id=1513451</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>API design for machine learning software: experiences from the scikit-learn project, Buitinck et al, 2013&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Scikit-learn: Machine Learning in Python, Pedregosa et al, 2011, <a href="https://jmlr.org/papers/v12/pedregosa11a.html">https://jmlr.org/papers/v12/pedregosa11a.html</a>&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>The Git parable, Tom Preston-Werner, 2009, <a href="https://tom.preston-werner.com/2009/05/19/the-git-parable.html">https://tom.preston-werner.com/2009/05/19/the-git-parable.html</a>&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </article>
+
+    </div>
+</div></main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>

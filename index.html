@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean Kossaifi | AI for Scientific Simulation</title>
+    <meta name="description" content="Pioneering new paradigms in AI for Scientific Simulation. Jean Kossaifi specializes in Neural Operators and Tensor Methods to solve the world's most complex physics-based problems.">
+
+    
+<meta name="author" content="Jean Kossaifi">
+
+<meta property="og:title" content="Jean Kossaifi | AI for Scientific Simulation">
+<meta property="og:description" content="Pioneering new paradigms in AI for Scientific Simulation. Jean Kossaifi specializes in Neural Operators and Tensor Methods to solve the world's most complex physics-based problems.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeankossaifi.com/index.html">
+<meta property="og:image" content="https://jeankossaifi.com/static/profile.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jean Kossaifi | AI for Scientific Simulation">
+<meta name="twitter:description" content="Pioneering new paradigms in AI for Scientific Simulation. Jean Kossaifi specializes in Neural Operators and Tensor Methods to solve the world's most complex physics-based problems.">
+<meta name="twitter:image" content="https://jeankossaifi.com/static/profile.jpg">
+
+<link rel="canonical" href="https://jeankossaifi.com/index.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jean Kossaifi",
+  "url": "https://jeankossaifi.com",
+  "jobTitle": "Senior Research Scientist",
+  "description": "Pioneering new paradigms in AI for Scientific Simulation. Jean Kossaifi specializes in Neural Operators and Tensor Methods to solve the world's most complex physics-based problems.",
+  "image": "https://jeankossaifi.com/static/profile.jpg",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "NVIDIA"
+  },
+  "sameAs": [
+    "https://github.com/JeanKossaifi",
+    "https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ",
+    "https://uk.linkedin.com/in/jeankossaifi",
+    "https://twitter.com/JeanKossaifi"
+  ],
+  "email": "jean.kossaifi@nvidia.com",
+  "knowsAbout": [
+    "AI for Engineering",
+    "Tensor Methods",
+    "Neural Operators",
+    "Scientific Machine Learning",
+    "Deep Learning"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "NVIDIA"
+  },
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Imperial College London"
+  }
+}
+</script>
+    
+    <link rel="stylesheet" href="https://jeankossaifi.com/static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+    
+    <script src="https://jeankossaifi.com/static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="https://jeankossaifi.com/index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="https://jeankossaifi.com/publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="https://jeankossaifi.com/projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="https://jeankossaifi.com/news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="https://jeankossaifi.com/blog.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="https://jeankossaifi.com/publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="https://jeankossaifi.com/projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="https://jeankossaifi.com/news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="https://jeankossaifi.com/blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main>
+    <section class="relative pt-40 pb-24 sm:pt-48 sm:pb-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+            <div class="lg:col-span-3 text-center lg:text-left">
+                <div class="space-y-8">
+                    <h1 class="fluid-heading-hero heading text-gray-900 dark:text-white reveal">Jean Kossaifi</h1>
+<p class="fluid-text-large text-gray-600 dark:text-gray-300 max-w-xl mx-auto lg:mx-0 reveal delay-200">Pioneering tensor methods and neural operators for scientific machine learning</p>                    <div class="space-y-6">
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4 reveal delay-400">
+                                        <a href="projects.html" class="inline-block px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-base font-semibold rounded-full shadow-lg hover:-translate-y-1 transition-transform" >View Projects</a>
+                                        <a href="publications.html" class="inline-block px-6 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white font-semibold rounded-full shadow-sm hover:-translate-y-1 transition-transform" >View Publications</a>
+                        </div>
+                        <div class="flex justify-center lg:justify-start gap-4 text-gray-500 dark:text-gray-400 reveal delay-600">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon-link"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="social-icon-link"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon-link"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="social-icon-link"><i class="fab fa-twitter fa-lg"></i></a>                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-2 relative flex justify-center order-first lg:order-last">
+                <div class="relative w-72 h-72 lg:w-96 lg:h-96 reveal delay-200">
+                     <div class="absolute inset-0 bg-gradient-to-br from-cyan-200 via-purple-200 to-pink-200 dark:from-cyan-900/50 dark:via-purple-900/50 dark:to-pink-900/50 rounded-full blur-3xl animate-slow-pulse"></div>
+                     <img src="static/profile.jpg" alt="Jean Kossaifi" class="relative w-full h-full object-cover rounded-full shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="py-24 sm:py-32 ">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-16 reveal">
+            <h2 class="fluid-heading-medium heading text-gray-900 dark:text-white">About Me</h2>
+        </div>
+
+            <div class="prose-bio max-w-4xl mx-auto">
+                <p>I lead research at NVIDIA in the field of AI for Engineering and Scientific Simulation, where my work focuses on advancing new algorithmic paradigms to solve complex physics-based problems. My core research combines tensor methods with deep learning to develop efficient and powerful neural architectures.</p>
+<p>A central part of my mission is to democratize advanced computational techniques. To that end, I created and lead the development to two widely-used open-source libraries: <strong>TensorLy</strong>, for tensor methods, and <strong>NeuralOperator</strong>, for scientific machine learning, helping to accelerate scientific discovery for the broader research community.</p>
+<p>Prior to NVIDIA, I was a founding member of the Samsung AI Center in Cambridge. My academic foundation includes a French Engineering Diploma in Mathematics, Computer Science, and Finance and a BSc in advanced mathematics. I then completed my PhD in Artificial Intelligence at Imperial College London.</p>
+            </div>
+            <div class="mt-12 max-w-4xl mx-auto">
+                <h3 class="text-2xl heading text-gray-900 dark:text-white">Research Interests</h3>
+                <div class="mt-6 flex flex-wrap justify-start gap-3">
+                    <span class="inline-block px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
+                        AI for Engineering
+                    </span>
+                    <span class="inline-block px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
+                        Tensor Methods
+                    </span>
+                    <span class="inline-block px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
+                        Neural Operators
+                    </span>
+                    <span class="inline-block px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
+                        Scientific Machine Learning
+                    </span>
+                    <span class="inline-block px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
+                        Deep Learning
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <div class="elysian-divider"></div>
+        <section class="py-24 sm:py-32 ">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-16 reveal">
+            <h2 class="text-5xl sm:text-6xl heading text-gray-900 dark:text-white">Featured Work</h2>
+<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">A selection of projects and research I'm particularly proud of.</p>        </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col h-full elysian-card overflow-hidden reveal project-card">
+    <div class="w-full h-48 flex items-center justify-center bg-gray-50/50 dark:bg-gray-800/50 project-image-container p-4">
+        <img src="static/tensorly-logo.png" alt="TensorLy: Democratizing Tensor Methods" class="max-w-full max-h-full object-contain project-image">
+    </div>
+    <div class="flex flex-col flex-grow p-8">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">TensorLy: Democratizing Tensor Methods</h3>
+            <span class="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400 bg-teal-600/10 dark:bg-teal-400/10 px-3 py-1 rounded-full">
+                Open-Source Software
+            </span>
+        </div>
+        
+        <div class="prose-secondary flex-grow">
+            <p>Created the leading Python library for tensor methods, now with 1,000+ GitHub stars and used by researchers worldwide. TensorLy provides a high-level API for tensor decomposition and tensorized neural networks.</p>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-2 mt-6 publication-actions">
+            
+            <a href="https://jmlr.org/papers/v20/18-277.html" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-file-pdf text-red-500/70"></i>                PDF
+            </a>
+            <a href="https://github.com/tensorly/tensorly" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-code text-blue-500/70"></i>                Code
+            </a>
+            <a href="https://tensorly.org" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-book text-purple-500/70"></i>                Docs
+            </a>
+        </div>
+    </div>
+</div><div class="flex flex-col h-full elysian-card overflow-hidden reveal project-card">
+    <div class="w-full h-48 flex items-center justify-center bg-gray-50/50 dark:bg-gray-800/50 project-image-container p-4">
+        <img src="static/ZenCFG-landscape.png" alt="ZenCFG" class="max-w-full max-h-full object-contain project-image">
+    </div>
+    <div class="flex flex-col flex-grow p-8">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">ZenCFG</h3>
+            <span class="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400 bg-teal-600/10 dark:bg-teal-400/10 px-3 py-1 rounded-full">
+                Open-Source Software
+            </span>
+        </div>
+        
+        <div class="prose-secondary flex-grow">
+            <p><strong>Easy configuration</strong> of Python projects with minimal boilerplate.
+A <em>clean, Pythonic</em> approach to configuration management, 
+particularly adapted for <a href="https://github.com/JeanKossaifi/zencfg">deep learning research</a>.</p>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-2 mt-6 publication-actions">
+            
+            <a href="https://github.com/JeanKossaifi/zencfg" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-code text-blue-500/70"></i>                Code
+            </a>
+        </div>
+    </div>
+</div><div class="flex flex-col h-full elysian-card overflow-hidden reveal project-card">
+    <div class="w-full h-48 flex items-center justify-center bg-gray-50/50 dark:bg-gray-800/50 project-image-container p-4">
+        <img src="static/images/neuraloperator_logo.png" alt="Neural Operator" class="max-w-full max-h-full object-contain project-image">
+    </div>
+    <div class="flex flex-col flex-grow p-8">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">Neural Operator</h3>
+            <span class="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400 bg-teal-600/10 dark:bg-teal-400/10 px-3 py-1 rounded-full">
+                Open-Source Software
+            </span>
+        </div>
+        
+        <div class="prose-secondary flex-grow">
+            <p>Learning operators that map between function spaces for solving PDEs and scientific computing problems. A new paradigm for AI in science.</p>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-2 mt-6 publication-actions">
+            
+            <a href="https://github.com/neuraloperator/neuraloperator" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-code text-blue-500/70"></i>                Code
+            </a>
+            <a href="https://neuraloperator.github.io" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-book text-purple-500/70"></i>                Docs
+            </a>
+        </div>
+    </div>
+</div><div class="flex flex-col h-full elysian-card overflow-hidden reveal project-card">
+    <div class="w-full h-48 flex items-center justify-center bg-gray-50/50 dark:bg-gray-800/50 project-image-container p-4">
+        <img src="static/images/tensorly/TensorLy_Torch_logo.png" alt="TensorLy-Torch" class="max-w-full max-h-full object-contain project-image">
+    </div>
+    <div class="flex flex-col flex-grow p-8">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white">TensorLy-Torch</h3>
+        </div>
+        
+        <div class="prose-secondary flex-grow">
+            <p>Deep tensorized neural networks in PyTorch. Provides out-of-the-box tensor layers, decomposition methods, and utilities for building efficient deep learning models.</p>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-2 mt-6 publication-actions">
+            
+            <a href="https://github.com/tensorly/tensorly-torch" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-code text-blue-500/70"></i>                Code
+            </a>
+            <a href="https://tensorly.org/torch" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-book text-purple-500/70"></i>                Docs
+            </a>
+        </div>
+    </div>
+</div>            </div>
+        </div>
+        <div class="mt-16 text-center">
+            <a href="projects.html" class="text-base font-semibold text-teal-600 dark:text-teal-400 hover:underline">View all projects <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+        </div>
+    </div>
+</section>
+        <div class="elysian-divider"></div>
+        <section class="py-24 sm:py-32 ">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-16 reveal">
+            <h2 class="text-5xl sm:text-6xl heading text-gray-900 dark:text-white">Academic Service</h2>
+        </div>
+
+            <div class="grid grid-cols-1 gap-8">
+                <h3 class="text-2xl font-semibold heading text-gray-900 dark:text-white mb-6 mt-0">Leadership & Editorial</h3>
+<div class="flex items-start justify-between gap-6 py-4 reveal">
+    <div class="flex-1">
+        <div class="space-y-1">
+            <p class="font-semibold text-gray-900 dark:text-white leading-relaxed">
+                <a href="https://neurips.cc/Conferences/2025/Committees" target="_blank" rel="noopener" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Organizing Committee, Communication Chair</a>
+            </p>
+            <p class="text-lg font-semibold italic text-teal-600 dark:text-teal-400 tracking-wide">NeurIPS</p>
+        </div>
+    </div>
+    <span class="text-sm font-medium text-teal-600 dark:text-teal-400 whitespace-nowrap">2025</span>
+</div><div class="flex items-start justify-between gap-6 py-4 reveal">
+    <div class="flex-1">
+        <div class="space-y-1">
+            <p class="font-semibold text-gray-900 dark:text-white leading-relaxed">
+                <a href="https://jmlr.org/tmlr/editorial-board.html" target="_blank" rel="noopener" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Editorial Board, Action Editor</a>
+            </p>
+            <p class="text-lg font-semibold italic text-teal-600 dark:text-teal-400 tracking-wide">TMLR</p>
+        </div>
+    </div>
+    <span class="text-sm font-medium text-teal-600 dark:text-teal-400 whitespace-nowrap">2024 – Present</span>
+</div><div class="flex items-start justify-between gap-6 py-4 reveal">
+    <div class="flex-1">
+        <div class="space-y-1">
+            <p class="font-semibold text-gray-900 dark:text-white leading-relaxed">
+                <a href="https://www.frontiersin.org/research-topics/15336/tensor-methods-for-deep-learning" target="_blank" rel="noopener" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Editor, Special Topic 'Tensor Methods for Deep Learning'</a>
+            </p>
+            <p class="text-lg font-semibold italic text-teal-600 dark:text-teal-400 tracking-wide">Frontiers</p>
+        </div>
+    </div>
+    <span class="text-sm font-medium text-teal-600 dark:text-teal-400 whitespace-nowrap">2024</span>
+</div>
+                <h3 class="text-2xl font-semibold heading text-gray-900 dark:text-white mb-6 mt-8">Peer Review</h3>
+                    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 mb-2">Area Chair</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">NeurIPS</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2022 – 2024</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">ICML</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2023 – 2025</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">ICLR</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2023</span>
+                        </span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 mb-2">Reviewer</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">TPAMI</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2020 – 2021</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">JMLR</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2017 - 2022</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">ICCV</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2019 - 2021</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">SciPy</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2021</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">NeurIPS</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2018, 2020, 2021</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">ICLR</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2019 - 2020</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">ICML</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2019</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">CVPR</span>
+                            <span class="text-xs bg-yellow-200 dark:bg-yellow-400/30 text-gray-900 dark:text-yellow-100 px-1.5 py-0.5 rounded font-medium">Outstanding Reviewer 2020</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2019 -2020</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">AAAI</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2020</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">ECCV</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2020</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">Transactions on Signal Processing</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2021 - 2022</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">Image and Vision Computing Journal</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2014 - 2018</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">IEEE Transactions on Emerging Topics in Computing</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2019</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium mr-2 mb-2 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                            <span class="font-medium">IEEE Sensors</span>
+                            <span class="text-xs font-medium text-teal-600 dark:text-teal-400">2022</span>
+                        </span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <div class="elysian-divider"></div>
+        <section class="py-24 sm:py-32 ">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-16 reveal">
+            <h2 class="text-5xl sm:text-6xl heading text-gray-900 dark:text-white">Selected Publications</h2>
+        </div>
+
+            <div class="grid grid-cols-1  gap-8">
+<article class="elysian-card p-8 reveal" data-pub-item data-title="TensorGRaD: Tensor Gradient Robust Decomposition for Memory-Efficient Neural Operator Training" data-highlighted="true">
+        <!-- Content: Main publication information with actions -->
+        <div class="flex flex-col">
+            <!-- Primary Focus: Title -->
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white leading-tight" style="font-family: 'Playfair Display', serif;">TensorGRaD: Tensor Gradient Robust Decomposition for Memory-Efficient Neural Operator Training</h3>
+            
+            <!-- Secondary Focus: Authors (more subtle) -->
+            <p class="text-sm mt-3 text-gray-600 dark:text-gray-400">Sebastian Loeschcke, David Pitt, Robert Joseph George, Jiawei Zhao, Cheng Luo, Yuandong Tian, <span class="highlight">Jean Kossaifi</span>, Anima Anandkumar</p>
+            
+            <!-- Academic Convention: Italicized venue with proper hierarchy -->
+            <div class="mt-4 mb-6">
+                <span class="text-sm"><em class="font-medium text-teal-600 dark:text-teal-400">arXiv preprint arXiv:2501.02379</em>, 2025</span>
+            </div>
+            
+            <!-- Unified Action Bar: Clear pill-style buttons positioned under text -->
+            <div class="flex flex-wrap items-center gap-2 publication-actions">
+                <button onclick="copyBibtex(this)" data-bibtex="@article{loeschcke2025tensorgrad,
+ author = {Loeschcke, Sebastian and Pitt, David and George, Robert Joseph and Zhao, Jiawei and Luo, Cheng and Tian, Yuandong and Kossaifi, Jean and Anandkumar, Anima},
+ journal = {arXiv preprint arXiv:2501.02379},
+ title = {TensorGRaD: Tensor Gradient Robust Decomposition for Memory-Efficient Neural Operator Training},
+ year = {2025}
+}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-full transition-all cite-btn">
+                    <i class="fas fa-quote-left"></i>
+                    Cite
+                </button>
+            </div>
+        </div>
+        
+</article><article class="elysian-card p-8 reveal" data-pub-item data-title="Neural operators for accelerating scientific simulations and design" data-highlighted="true">
+        <!-- Content: Main publication information with actions -->
+        <div class="flex flex-col">
+            <!-- Primary Focus: Title -->
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white leading-tight" style="font-family: 'Playfair Display', serif;">Neural operators for accelerating scientific simulations and design</h3>
+            
+            <!-- Secondary Focus: Authors (more subtle) -->
+            <p class="text-sm mt-3 text-gray-600 dark:text-gray-400">Kamyar Azizzadenesheli, Nikola Kovachki, Zongyi Li, Miguel Liu-Schiaffini, <span class="highlight">Jean Kossaifi</span>, Anima Anandkumar</p>
+            
+            <!-- Academic Convention: Italicized venue with proper hierarchy -->
+            <div class="mt-4 mb-6">
+                <span class="text-sm"><em class="font-medium text-teal-600 dark:text-teal-400">Nature Reviews Physics</em>, 2024</span>
+            </div>
+            
+            <!-- Unified Action Bar: Clear pill-style buttons positioned under text -->
+            <div class="flex flex-wrap items-center gap-2 publication-actions">
+                <button onclick="copyBibtex(this)" data-bibtex="@article{azizzadenesheli2024neural,
+ author = {Azizzadenesheli, Kamyar and Kovachki, Nikola and Li, Zongyi and Liu-Schiaffini, Miguel and Kossaifi, Jean and Anandkumar, Anima},
+ journal = {Nature Reviews Physics},
+ number = {5},
+ pages = {320--328},
+ publisher = {Nature Publishing Group UK London},
+ title = {Neural operators for accelerating scientific simulations and design},
+ volume = {6},
+ year = {2024}
+}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-full transition-all cite-btn">
+                    <i class="fas fa-quote-left"></i>
+                    Cite
+                </button>
+            </div>
+        </div>
+        
+</article><article class="elysian-card p-8 reveal" data-pub-item data-title="A library for learning neural operators" data-highlighted="true">
+        <!-- Content: Main publication information with actions -->
+        <div class="flex flex-col">
+            <!-- Primary Focus: Title -->
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white leading-tight" style="font-family: 'Playfair Display', serif;">A library for learning neural operators</h3>
+            
+            <!-- Secondary Focus: Authors (more subtle) -->
+            <p class="text-sm mt-3 text-gray-600 dark:text-gray-400"><span class="highlight">Jean Kossaifi</span>, Nikola Kovachki, Zongyi Li, David Pitt, Miguel Liu-Schiaffini, Robert Joseph George, Boris Bonev, Kamyar Azizzadenesheli, Julius Berner, Valentin Duruisseaux, others</p>
+            
+            <!-- Academic Convention: Italicized venue with proper hierarchy -->
+            <div class="mt-4 mb-6">
+                <span class="text-sm"><em class="font-medium text-teal-600 dark:text-teal-400">arXiv preprint arXiv:2412.10354</em>, 2024</span>
+            </div>
+            
+            <!-- Unified Action Bar: Clear pill-style buttons positioned under text -->
+            <div class="flex flex-wrap items-center gap-2 publication-actions">
+                <button onclick="copyBibtex(this)" data-bibtex="@article{kossaifi2024library,
+ author = {Kossaifi, Jean and Kovachki, Nikola and Li, Zongyi and Pitt, David and Liu-Schiaffini, Miguel and George, Robert Joseph and Bonev, Boris and Azizzadenesheli, Kamyar and Berner, Julius and Duruisseaux, Valentin and others},
+ journal = {arXiv preprint arXiv:2412.10354},
+ title = {A library for learning neural operators},
+ year = {2024}
+}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-full transition-all cite-btn">
+                    <i class="fas fa-quote-left"></i>
+                    Cite
+                </button>
+            </div>
+        </div>
+        
+</article><article class="elysian-card p-8 reveal" data-pub-item data-title="Estimation of continuous valence and arousal levels from faces in naturalistic conditions" data-highlighted="true">
+        <!-- Content: Main publication information with actions -->
+        <div class="flex flex-col">
+            <!-- Primary Focus: Title -->
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white leading-tight" style="font-family: 'Playfair Display', serif;">Estimation of continuous valence and arousal levels from faces in naturalistic conditions</h3>
+            
+            <!-- Secondary Focus: Authors (more subtle) -->
+            <p class="text-sm mt-3 text-gray-600 dark:text-gray-400">Antoine Toisoul, <span class="highlight">Jean Kossaifi</span>, Adrian Bulat, Georgios Tzimiropoulos, Maja Pantic</p>
+            
+            <!-- Academic Convention: Italicized venue with proper hierarchy -->
+            <div class="mt-4 mb-6">
+                <span class="text-sm"><em class="font-medium text-teal-600 dark:text-teal-400">Nature Machine Intelligence</em>, 2021</span>
+            </div>
+            
+            <!-- Unified Action Bar: Clear pill-style buttons positioned under text -->
+            <div class="flex flex-wrap items-center gap-2 publication-actions">
+                <button onclick="copyBibtex(this)" data-bibtex="@article{toisoul2021estimation,
+ author = {Toisoul, Antoine and Kossaifi, Jean and Bulat, Adrian and Tzimiropoulos, Georgios and Pantic, Maja},
+ journal = {Nature Machine Intelligence},
+ pages = {1--9},
+ publisher = {Nature Publishing Group},
+ title = {Estimation of continuous valence and arousal levels from faces in naturalistic conditions},
+ year = {2021}
+}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-full transition-all cite-btn">
+                    <i class="fas fa-quote-left"></i>
+                    Cite
+                </button>
+            </div>
+        </div>
+        
+</article><article class="elysian-card p-8 reveal" data-pub-item data-title="Factorized Higher-Order CNNs with an Application to Spatio-Temporal Emotion Estimation" data-highlighted="true">
+        <!-- Content: Main publication information with actions -->
+        <div class="flex flex-col">
+            <!-- Primary Focus: Title -->
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white leading-tight" style="font-family: 'Playfair Display', serif;">Factorized Higher-Order CNNs with an Application to Spatio-Temporal Emotion Estimation</h3>
+            
+            <!-- Secondary Focus: Authors (more subtle) -->
+            <p class="text-sm mt-3 text-gray-600 dark:text-gray-400"><span class="highlight">Jean Kossaifi</span>, Antoine Toisoul, Adrian Bulat, Yannis Panagakis, Maja Pantic</p>
+            
+            <!-- Academic Convention: Italicized venue with proper hierarchy -->
+            <div class="mt-4 mb-6">
+                <span class="text-sm"><em class="font-medium text-teal-600 dark:text-teal-400">IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2020</span>
+            </div>
+            
+            <!-- Unified Action Bar: Clear pill-style buttons positioned under text -->
+            <div class="flex flex-wrap items-center gap-2 publication-actions">
+                <button onclick="copyBibtex(this)" data-bibtex="@inproceedings{kossaifi2020factorized,
+ author = {Kossaifi, Jean and Toisoul, Antoine and Bulat, Adrian and Panagakis, Yannis and Pantic, Maja},
+ booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+ title = {Factorized Higher-Order CNNs with an Application to Spatio-Temporal Emotion Estimation},
+ year = {2020}
+}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-full transition-all cite-btn">
+                    <i class="fas fa-quote-left"></i>
+                    Cite
+                </button>
+            </div>
+        </div>
+        
+</article><article class="elysian-card p-8 reveal publication-with-image relative pr-40" data-pub-item data-title="TensorLy: Tensor Learning in Python" data-highlighted="true">
+        <!-- Content: Main publication information with actions -->
+        <div class="flex flex-col">
+            <!-- Primary Focus: Title -->
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white leading-tight" style="font-family: 'Playfair Display', serif;">TensorLy: Tensor Learning in Python</h3>
+            
+            <!-- Secondary Focus: Authors (more subtle) -->
+            <p class="text-sm mt-3 text-gray-600 dark:text-gray-400"><span class="highlight">Jean Kossaifi</span>, Yannis Panagakis, Anima Anandkumar, Maja Pantic</p>
+            
+            <!-- Academic Convention: Italicized venue with proper hierarchy -->
+            <div class="mt-4 mb-6">
+                <span class="text-sm"><em class="font-medium text-teal-600 dark:text-teal-400">Journal of Machine Learning Research (JMLR)</em>, 2019</span>
+            </div>
+            
+            <!-- Unified Action Bar: Clear pill-style buttons positioned under text -->
+            <div class="flex flex-wrap items-center gap-2 publication-actions">
+                <a href="pdfs/tensorly.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-file-pdf text-red-500/70"></i>                    PDF
+                </a>
+                <a href="https://github.com/tensorly/tensorly" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-code text-blue-500/70"></i>                    Code
+                </a>
+                <a href="http://tensorly.org/dev/index.html" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-globe text-teal-600/70"></i>                    Website
+                </a>
+                <button onclick="copyBibtex(this)" data-bibtex="@article{kossaifi2019tensorly,
+ author = {Kossaifi, Jean and Panagakis, Yannis and Anandkumar, Anima and Pantic, Maja},
+ journal = {Journal of Machine Learning Research (JMLR)},
+ pages = {1--6},
+ title = {TensorLy: Tensor Learning in Python},
+ volume = {20},
+ year = {2019}
+}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-full transition-all cite-btn">
+                    <i class="fas fa-quote-left"></i>
+                    Cite
+                </button>
+            </div>
+        </div>
+        
+        <!-- Publication Image: Absolute positioned to span full height -->
+        <div class="publication-image-container">
+            <img src="static/tensorly-logo.png" alt="TensorLy: Tensor Learning in Python" class="publication-image">
+            <div class="publication-image-overlay"></div>
+        </div>
+</article><article class="elysian-card p-8 reveal" data-pub-item data-title="Spectral learning on matrices and tensors" data-highlighted="true">
+        <!-- Content: Main publication information with actions -->
+        <div class="flex flex-col">
+            <!-- Primary Focus: Title -->
+            <h3 class="text-xl font-semibold heading text-gray-900 dark:text-white leading-tight" style="font-family: 'Playfair Display', serif;">Spectral learning on matrices and tensors</h3>
+            
+            <!-- Secondary Focus: Authors (more subtle) -->
+            <p class="text-sm mt-3 text-gray-600 dark:text-gray-400">Majid Janzamin, Rong Ge, <span class="highlight">Jean Kossaifi</span>, Anima Anandkumar</p>
+            
+            <!-- Academic Convention: Italicized venue with proper hierarchy -->
+            <div class="mt-4 mb-6">
+                <span class="text-sm"><em class="font-medium text-teal-600 dark:text-teal-400">Foundations and Trends{\textregistered} in Machine Learning</em>, 2019</span>
+            </div>
+            
+            <!-- Unified Action Bar: Clear pill-style buttons positioned under text -->
+            <div class="flex flex-wrap items-center gap-2 publication-actions">
+                <button onclick="copyBibtex(this)" data-bibtex="@article{janzamin2019spectral,
+ author = {Janzamin, Majid and Ge, Rong and Kossaifi, Jean and Anandkumar, Anima},
+ journal = {Foundations and Trends{\textregistered} in Machine Learning},
+ pages = {393--536},
+ publisher = {Now Publishers},
+ title = {Spectral learning on matrices and tensors},
+ volume = {12},
+ year = {2019}
+}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-full transition-all cite-btn">
+                    <i class="fas fa-quote-left"></i>
+                    Cite
+                </button>
+            </div>
+        </div>
+        
+</article>            </div>
+        </div>
+        <div class="mt-16 text-center">
+            <a href="publications.html" class="text-base font-semibold text-teal-600 dark:text-teal-400 hover:underline">View all publications <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+        </div>
+    </div>
+</section>
+        <div class="elysian-divider"></div>
+        <section class="py-24 sm:py-32 ">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-16 reveal">
+            <h2 class="text-5xl sm:text-6xl heading text-gray-900 dark:text-white">Recent News</h2>
+        </div>
+
+            <div class="timeline-container">
+<article class="timeline-item">
+    <div class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2">May 2025</div>
+    
+    <div class="text-gray-700 dark:text-gray-300 mb-3">
+        <p>Guest speaker at the Oak Ridge National Laboratory's AI Expo, where I presented my work on Neural Operators for AI in Science and Engineering</p>
+    </div>
+    
+    <div class="flex flex-wrap items-center gap-2 mt-3 publication-actions">
+        
+        <a href="https://www.ornl.gov/news/ornl-hosts-ai-expo-features-openai-and-anthropic-models" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-globe text-teal-600/70"></i>            Website
+        </a>
+    </div>
+</article><article class="timeline-item">
+    <div class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2">2024</div>
+    
+    <div class="text-gray-700 dark:text-gray-300 mb-3">
+        <p>Co-authored a book chapter, "Tensor methods in deep learning", in the book Signal Processing and Machine Learning Theory</p>
+    </div>
+    
+    <div class="flex flex-wrap items-center gap-2 mt-3 publication-actions">
+        
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/B9780323917728000211" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-globe text-teal-600/70"></i>            Website
+        </a>
+    </div>
+</article><article class="timeline-item">
+    <div class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2">November 2024</div>
+    
+    <div class="text-gray-700 dark:text-gray-300 mb-3">
+        <p>Co-organized workshop with Topal team at INRIA Bordeaux on efficient scaling of neural architectures, covering re-materialization, offloading, scheduling and model pipelining</p>
+    </div>
+    
+</article><article class="timeline-item">
+    <div class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2">July 2024</div>
+    
+    <div class="text-gray-700 dark:text-gray-300 mb-3">
+        <p>Co-organizer, ICML Workshop on Advancing Neural Network Training (WANT): Computational Efficiency, Scalability, and Resource Optimization</p>
+    </div>
+    
+    <div class="flex flex-wrap items-center gap-2 mt-3 publication-actions">
+        
+        <a href="https://want-ai-hpc.github.io/icml2024/about/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 border border-gray-200 dark:border-gray-700 rounded-full transition-all">
+<i class="fas fa-globe text-teal-600/70"></i>            Website
+        </a>
+    </div>
+</article>            </div>
+        </div>
+        <div class="mt-16 text-center">
+            <a href="news.html" class="text-base font-semibold text-teal-600 dark:text-teal-400 hover:underline">View all news <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+        </div>
+    </div>
+</section>
+</main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>

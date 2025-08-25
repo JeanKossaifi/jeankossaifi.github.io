@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TensorLy, Now Also with PyTorch Backend</title>
+    <meta name="description" content="In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch...">
+
+    
+<meta name="author" content="Jean Kossaifi">
+
+<meta property="og:title" content="TensorLy, Now Also with PyTorch Backend">
+<meta property="og:description" content="In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch...">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeankossaifi.com/blog/tensorly_with_pytorch_backend.html">
+<meta property="og:image" content="https://jeankossaifi.com/static/profile.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TensorLy, Now Also with PyTorch Backend">
+<meta name="twitter:description" content="In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch...">
+<meta name="twitter:image" content="https://jeankossaifi.com/static/profile.jpg">
+
+<link rel="canonical" href="https://jeankossaifi.com/blog/tensorly_with_pytorch_backend.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TensorLy, Now Also with PyTorch Backend",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi"
+  },
+  "datePublished": "2017-09-11",
+  "description": "<p>In version 0.2.0, TensorLy was refactored to support backends. As proof of concept I put together a PyTorch backend. It makes it trivial to combine pytorch code with tensor methods. In this post we demonstrate this by performing Tucker tensor decomposition using autograd and gradient descent.</p>",
+  "url": "https://jeankossaifi.com/blog/tensorly_with_pytorch_backend.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jeankossaifi.com/blog/tensorly_with_pytorch_backend.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jean Kossaifi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jeankossaifi.com/static/profile.jpg"
+    }
+  },
+  "image": "https://jeankossaifi.com/static/profile.jpg"
+}
+</script>
+    
+    <link rel="stylesheet" href="https://jeankossaifi.com/static/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+    
+    <script src="https://jeankossaifi.com/static/theme.js"></script>
+</head>
+<body class="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
+    <div class="elysian-background noise-texture"></div>
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 border-b border-gray-200/80 dark:border-gray-800/80">
+                <a href="https://jeankossaifi.com/index.html" class="text-xl font-bold heading text-gray-900 dark:text-white">Jean Kossaifi</a>
+                <div class="flex items-center gap-4">
+                    <ul class="hidden lg:flex items-center gap-6">
+                        <li><a href="https://jeankossaifi.com/publications.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Publications</a></li>
+                        <li><a href="https://jeankossaifi.com/projects.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Projects</a></li>
+                        <li><a href="https://jeankossaifi.com/news.html" class="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">News</a></li>
+                        <li><a href="https://jeankossaifi.com/blog.html" class="text-sm font-medium transition-colors text-teal-600 dark:text-teal-400 font-semibold">Blog</a></li>
+                    </ul>
+                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300" aria-label="Open Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg z-50 flex items-center justify-center
+                                opacity-0 invisible transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-gray-600 dark:text-gray-300" aria-label="Close Menu">
+            <i class="fas fa-times fa-lg"></i>
+        </button>
+        <ul class="text-center space-y-8">
+            <li><a href="https://jeankossaifi.com/publications.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Publications</a></li>
+            <li><a href="https://jeankossaifi.com/projects.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Projects</a></li>
+            <li><a href="https://jeankossaifi.com/news.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">News</a></li>
+            <li><a href="https://jeankossaifi.com/blog.html" onclick="toggleMobileMenu()" class="text-3xl heading text-gray-900 dark:text-white">Blog</a></li>
+        </ul>
+    </div>
+</header>    <main>
+<div class="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-16 reveal">
+            <h1 class="text-5xl lg:text-6xl heading text-gray-900 dark:text-white mb-4">TensorLy, Now Also with PyTorch Backend</h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400 mb-8">2017-09-11</p>
+        </header>
+
+        <article class="prose-main">
+            <p>Since <a href="https://github.com/tensorly/tensorly">TensorLy</a> was refactored to support backends, it is fairly easy to add new backends, so as a proof of concepts I put together a Pytorch backend. There are most likely a few optimisations to do and some things could be done better but all the tests pass. Here is a quick demonstration.</p>
+<h1>Requirements</h1>
+<p>For the pytorch backend you will need the master version of TensorLy as well as the master version of PyTorch.</p>
+<p>We need pytorch Variables to have a shape property, as added in this <a href="https://github.com/pytorch/pytorch/pull/2306">pull-request</a>, so either install pytorch from master or do the modification yourself!</p>
+<h1>Tucker decomposition using SGD and autograd</h1>
+<p>Let's see how we can use TensorLy and the pytorch backend to perform Tucker tensor decomposition via gradient descent.</p>
+<p>First let's import all the necessary stuff:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="o">&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="o">&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">torch.autograd</span><span class="w"> </span><span class="kn">import</span> <span class="n">Variable</span>
+<span class="o">&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">tensorly</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tl</span>
+<span class="o">&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tensorly.tucker_tensor</span><span class="w"> </span><span class="kn">import</span> <span class="n">tucker_to_tensor</span>
+<span class="o">&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tensorly.random</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_random_state</span>
+<span class="n">Using</span> <span class="n">mxnet</span> <span class="n">backend</span><span class="o">.</span>
+</code></pre></div>
+
+<p>Now let's switch to the PyTorch backend:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
+<span class="n">Using</span> <span class="n">pytorch</span> <span class="n">backend</span><span class="o">.</span>
+</code></pre></div>
+
+<p>We just fix the random seed for reproducibility</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1234</span>
+<span class="o">&gt;&gt;</span> <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Define a random tensor which we will try to decompose. We wrap our tensors in Variables so we can backpropagate through them:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="n">tensor</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">shape</span><span class="p">)),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Initialise a random Tucker decomposition of that tensor</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="n">core</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">ranks</span><span class="p">)),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span> <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ranks</span><span class="p">[</span><span class="n">i</span><span class="p">]))),</span>
+                       <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">tensor</span><span class="p">))]</span>
+</code></pre></div>
+
+<p>Now we just iterate through the training loop and backpropagate...</p>
+<div class="codehilite"><pre><span></span><code><span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.00005</span>
+<span class="n">penalty</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">([</span><span class="n">core</span><span class="p">]</span><span class="o">+</span><span class="n">factors</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+    <span class="c1"># Important: do not forget to reset the gradients</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+    <span class="c1"># Reconstruct the tensor from the decomposed form</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">tucker_to_tensor</span><span class="p">(</span><span class="n">core</span><span class="p">,</span> <span class="n">factors</span><span class="p">)</span>
+
+    <span class="c1"># squared l2 loss </span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">rec</span> <span class="o">-</span> <span class="n">tensor</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># squared l2 penalty on the factors of the decomposition</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">:</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span> <span class="o">+</span> <span class="n">penalty</span> <span class="o">*</span> <span class="n">f</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">rec_error</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">tensor</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">tl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch </span><span class="si">%s</span><span class="s2">,. Rec. error: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">rec_error</span><span class="p">))</span>
+</code></pre></div>
+
+<p>You should see the reconstruction error go down:</p>
+<p>Epoch 1000,. Rec. error: 9.85501529153 Epoch 2000,. Rec. error: 5.4266791947 Epoch 3000,. Rec. error: 2.93432695168 Epoch 4000,. Rec. error: 1.58708802561 Epoch 5000,. Rec. error: 1.03465270384 Epoch 6000,. Rec. error: 0.94976522999 Epoch 7000,. Rec. error: 0.979246423375 Epoch 8000,. Rec. error: 0.996610962433 Epoch 9000,. Rec. error: 0.999994015288</p>
+<h1>What next?</h1>
+<p>This is very much a proof of concept so there might be bugs. If you see something that can be improved or if you have any suggestions, feel free to comment here or open an issue on the <a href="https://github.com/tensorly/tensorly">Github</a> page.</p>
+        </article>
+
+    </div>
+</div></main>
+<footer class="bg-surface dark:bg-dark-surface mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <p class="text-secondary dark:text-dark-secondary">© 2025 Jean Kossaifi</p>
+            <div class="flex justify-center gap-6 text-secondary dark:text-dark-secondary">
+<a href="https://github.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-github fa-lg"></i></a><a href="https://scholar.google.co.uk/citations?user=hJS2TXwAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fas fa-graduation-cap fa-lg"></i></a><a href="https://uk.linkedin.com/in/jeankossaifi" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://twitter.com/JeanKossaifi" target="_blank" rel="noopener" aria-label="Twitter" class="hover:text-accent dark:hover:text-dark-accent transition-colors"><i class="fab fa-twitter fa-lg"></i></a>            </div>
+        </div>
+    </div>
+</footer></body>
+</html>
