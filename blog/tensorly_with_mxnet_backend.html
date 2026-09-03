@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TensorLy, with MXNet Backend | Jean Kossaifi</title>
+    <meta name="description" content="From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.">
+<meta name="author" content="Jean Kossaifi">    <meta name="robots" content="index, follow">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f2ea">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0f0c">
+
+<link rel="canonical" href="https://jeankossaifi.com/blog/tensorly_with_mxnet_backend.html">    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Jean Kossaifi">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="TensorLy, with MXNet Backend">
+    <meta property="og:description" content="From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.">
+<meta property="og:url" content="https://jeankossaifi.com/blog/tensorly_with_mxnet_backend.html">    <meta property="og:image" content="https://jeankossaifi.com/static/images/social/blog/tensorly_with_mxnet_backend.png">
+<meta property="og:image:secure_url" content="https://jeankossaifi.com/static/images/social/blog/tensorly_with_mxnet_backend.png"><meta property="og:image:type" content="image/png">    <meta property="og:image:alt" content="TensorLy, with MXNet Backend — Jean Kossaifi">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TensorLy, with MXNet Backend">
+    <meta name="twitter:description" content="From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.">
+<meta name="twitter:url" content="https://jeankossaifi.com/blog/tensorly_with_mxnet_backend.html">    <meta name="twitter:image" content="https://jeankossaifi.com/static/images/social/blog/tensorly_with_mxnet_backend.png">
+    <meta name="twitter:image:alt" content="TensorLy, with MXNet Backend — Jean Kossaifi">
+
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TensorLy, with MXNet Backend",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi",
+    "url": "https://jeankossaifi.com/",
+    "@id": "https://jeankossaifi.com/#person"
+  },
+  "datePublished": "2017-08-28",
+  "description": "From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.",
+  "url": "https://jeankossaifi.com/blog/tensorly_with_mxnet_backend.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jeankossaifi.com/blog/tensorly_with_mxnet_backend.html"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Jean Kossaifi",
+    "url": "https://jeankossaifi.com/",
+    "@id": "https://jeankossaifi.com/#person",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://jeankossaifi.com/static/profile-800.jpg"
+    }
+  },
+  "image": "https://jeankossaifi.com/static/profile-800.jpg"
+}</script>
+
+    <script>
+    /* pre-paint boot — URL param > localStorage > system; runs before first paint */
+    (function(){
+      var d = document.documentElement;
+      var p = new URLSearchParams(location.search);
+      var theme = p.get('theme');
+      if (theme !== 'light' && theme !== 'dark'){
+        try { theme = localStorage.getItem('jean-site-theme'); } catch(e){ theme = null; }
+      }
+      if (theme !== 'light' && theme !== 'dark'){
+        theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      }
+      d.dataset.theme = theme;
+      d.classList.add('js');
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: no-preference)').matches){
+        d.classList.add('motion');
+      }
+    })();
+    </script>
+    <link rel="icon" href="../static/theme/favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="icon" href="../static/theme/favicon.svg?v=jk2" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="../static/theme/favicon-192.png">
+    <link rel="preload" href="../static/theme/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../static/theme/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../static/theme.css?v=b0d43a182e7d">
+    <script src="../static/theme.js?v=4c26877d9171" defer></script>
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="sr-only" role="status" id="live"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site site--flow">
+    <div class="wrap site-row">
+        <a class="wordmark" href="../">Jean Kossaifi</a>
+        <div class="nav-right">
+            <nav class="primary" aria-label="Primary">
+                <ul>
+                    <li><a class="lnk"
+                           href="../#about"
+                           data-nav="about"
+data-spy="about">About</a></li>
+                    <li><a class="lnk"
+                           href="../publications.html"
+                           data-nav="publications"
+data-spy="publications">Publications</a></li>
+                    <li><a class="lnk"
+                           href="../projects.html"
+                           data-nav="projects"
+data-spy="work">Projects</a></li>
+                    <li><a class="lnk"
+                           href="../news.html"
+                           data-nav="news"
+data-spy="writing">Updates</a></li>
+                    <li><a class="lnk current"
+                           href="../blog.html"
+                           data-nav="blog"
+aria-current="page">Blog</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+                <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4.4"/>
+                    <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/>
+                </svg>
+                <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+    <main id="main" tabindex="-1"><article class="blog-post" data-blog-post>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+    <header class="article-header">
+        <div class="article-header__inner shell">
+            <a class="eyebrow article-header__kicker" href="../blog.html">Blog</a>
+            <h1>TensorLy, with MXNet Backend</h1>
+<div class="article-header__deck"><p>From version 0.2.0, TensorLy has an MXNet Backend, in addition to the NumPy backend. This allows to perform tensor operations on multi-machines, on CPU and GPU seemlessly, as well as to integrate with Deep Neural Networks. This posts goes over this new version and how to install it.</p></div>            <div class="article-header__meta">
+<time datetime="2017-08-28" data-format-date>2017-08-28</time><span>2 min read</span>                <ul class="article-tags" aria-label="Topics">
+<li>machine-learning</li><li>TensorLy</li><li>MXNet</li>                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="blog-post__content">
+        <div class="article-reading-shell">
+            <div class="prose"><p>The goal of TensorLy is to make tensor operations easy and accessible. I originally developed it to have minimum dependency and depend only on NumPy, SciPy and optionally on Matplotlib for plotting. However, as Deep Learning becomes more ubiquitous, we need better tools to i) combine tensor methods and Deep Learning and ii) run the algorithms at scale, on several machines and both CPU and GPU. It so happens that MXNet, in addition to shining in both of these areas, has an NDArray structure that is very similar to NumPy and aims at feature parity with it. Furthermore, its ability to use to define deep networks imperatively made it a prime candidate.</p>
+<p>I therefore refactored TensorLy to accept both MXNet and NumPy as backends, which now allows to run tensor methods on CPU and GPU transparently and to seemlessly combine them with Deep Learning using MXNet's Gluon interface (for a great tutorial on Gluon and deep learning, check out this interactive <a href="https://github.com/zackchase/mxnet-the-straight-dope">book</a>).</p>
+<p>Here is a quick guide on getting started with the new version of TensorLy.</p>
+<h2>Installation</h2>
+<h3>Pre-requisite</h3>
+<p>If you don't already have Python I recommend you use <a href="https://www.anaconda.com/download/">Anaconda</a> (choose Python 3, it's 2017). Then install <a href="https://mxnet.incubator.apache.org/get_started/install.html">MXNet</a>.</p>
+<h3>Install with pip</h3>
+<p>We want the latest version of MXNet, and the latest version of TensorLy:</p>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>mxnet
+pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>tensorly
+</code></pre></div>
+
+<h3>Install from source</h3>
+<h4>Install MXNet from source</h4>
+<p>To install from sources, you first want to clone the repository:</p>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/apache/incubator-mxnet.git
+<span class="nb">cd</span><span class="w"> </span>mxnet
+</code></pre></div>
+
+<p>Next, make the shared library:</p>
+<p>+-----------------------------------------------------------+---------------------------------------+
+| OSX                                                       | &gt; Linux                               |
++===========================================================+=======================================+
+| .. code-block:: bash                                      | .. code-block:: bash                  |
+|                                                           |                                       |
+| &gt; cp make/osx.mk ./config.mk make -j\$(sysctl -n hw.ncpu) | &gt; make -j \$(nproc)                   |
++-----------------------------------------------------------+---------------------------------------+</p>
+<p>Install the python binding:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>python
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</code></pre></div>
+
+<h4>Install TensorLy from source</h4>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/tensorly/tensorly
+<span class="nb">cd</span><span class="w"> </span>tensorly
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</code></pre></div>
+
+<p>That's it, you're ready to go!</p>
+<h2>Checking all is good</h2>
+<p>You can now check everything is working as expected in Python:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">tensorly</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tl</span>
+<span class="n">Using</span> <span class="n">mxnet</span> <span class="n">backend</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">tensorly</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="s1">'0.2.0'</span>
+</code></pre></div>
+
+<h2>What's next</h2>
+<p>For documentation, check the <a href="https://tensorly.github.io/">documentation</a>.</p>
+<p>For source code, head to TensorLy's <a href="https://github.com/tensorly/tensorly">github repository</a>.</p>
+<p>For examples of use, check out the jupyter <a href="https://github.com/JeanKossaifi/tensorly_notebooks">Notebooks</a>.</p></div>
+        </div>
+    </div>
+
+    <footer class="article-footer">
+        <div class="article-footer__inner shell">
+            <ul class="article-tags" aria-label="Article topics">
+<li>machine-learning</li><li>TensorLy</li><li>MXNet</li>            </ul>
+            <nav class="article-pagination" aria-label="More posts">
+                <a href="../blog/tensorly_with_pytorch_backend.html">
+                    <span>Newer</span>
+                    <strong>TensorLy, Now Also with PyTorch Backend</strong>
+                </a>
+                <a href="../blog/tensorly-release-0-5.html">
+                    <span>Older</span>
+                    <strong>TensorLy 0.5 is out!</strong>
+                </a>
+            </nav>
+            <a class="article-footer__all" href="../blog.html"><span class="m" aria-hidden="true">←</span>&nbsp;Back to the blog</a>
+        </div>
+    </footer>
+</article></main>
+    <footer class="site" role="contentinfo">
+    <div class="wrap">
+        <div class="inner">
+            <p class="copyright">©&nbsp;2026 Jean Kossaifi</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a class="lnk" href="../">Home</a></li>
+                    <li><a class="lnk" href="../publications.html">Publications</a></li>
+                    <li><a class="lnk" href="../projects.html">Projects</a></li>
+                    <li><a class="lnk" href="../news.html">Updates</a></li>
+                    <li><a class="lnk" href="../blog.html">Blog</a></li>
+<li><a class="lnk" href="mailto:jean.kossaifi@nvidia.com">Email</a></li>                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

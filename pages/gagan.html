@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GAGAN: Geometry-Aware Generative Adversarial Networks | Jean Kossaifi</title>
+    <meta name="description" content="GAGAN (Geometry-Aware Generative Adversarial Networks) generates objects that respect a given geometric prior—for instance, human or cat faces with arbitrary morphology and shape.">
+<meta name="author" content="Jean Kossaifi">    <meta name="robots" content="index, follow">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f2ea">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0f0c">
+
+<link rel="canonical" href="https://jeankossaifi.com/pages/gagan.html">    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Jean Kossaifi">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GAGAN: Geometry-Aware Generative Adversarial Networks">
+    <meta property="og:description" content="GAGAN (Geometry-Aware Generative Adversarial Networks) generates objects that respect a given geometric prior—for instance, human or cat faces with arbitrary morphology and shape.">
+<meta property="og:url" content="https://jeankossaifi.com/pages/gagan.html">    <meta property="og:image" content="https://jeankossaifi.com/static/images/social/pages/gagan.png">
+<meta property="og:image:secure_url" content="https://jeankossaifi.com/static/images/social/pages/gagan.png"><meta property="og:image:type" content="image/png">    <meta property="og:image:alt" content="GAGAN: Geometry-Aware Generative Adversarial Networks — Jean Kossaifi">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GAGAN: Geometry-Aware Generative Adversarial Networks">
+    <meta name="twitter:description" content="GAGAN (Geometry-Aware Generative Adversarial Networks) generates objects that respect a given geometric prior—for instance, human or cat faces with arbitrary morphology and shape.">
+<meta name="twitter:url" content="https://jeankossaifi.com/pages/gagan.html">    <meta name="twitter:image" content="https://jeankossaifi.com/static/images/social/pages/gagan.png">
+    <meta name="twitter:image:alt" content="GAGAN: Geometry-Aware Generative Adversarial Networks — Jean Kossaifi">
+
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+    <script>
+    /* pre-paint boot — URL param > localStorage > system; runs before first paint */
+    (function(){
+      var d = document.documentElement;
+      var p = new URLSearchParams(location.search);
+      var theme = p.get('theme');
+      if (theme !== 'light' && theme !== 'dark'){
+        try { theme = localStorage.getItem('jean-site-theme'); } catch(e){ theme = null; }
+      }
+      if (theme !== 'light' && theme !== 'dark'){
+        theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      }
+      d.dataset.theme = theme;
+      d.classList.add('js');
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: no-preference)').matches){
+        d.classList.add('motion');
+      }
+    })();
+    </script>
+    <link rel="icon" href="../static/theme/favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="icon" href="../static/theme/favicon.svg?v=jk2" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="../static/theme/favicon-192.png">
+    <link rel="preload" href="../static/theme/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../static/theme/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../static/theme.css?v=b0d43a182e7d">
+    <script src="../static/theme.js?v=4c26877d9171" defer></script>
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="sr-only" role="status" id="live"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site site--flow">
+    <div class="wrap site-row">
+        <a class="wordmark" href="../">Jean Kossaifi</a>
+        <div class="nav-right">
+            <nav class="primary" aria-label="Primary">
+                <ul>
+                    <li><a class="lnk"
+                           href="../#about"
+                           data-nav="about"
+data-spy="about">About</a></li>
+                    <li><a class="lnk"
+                           href="../publications.html"
+                           data-nav="publications"
+data-spy="publications">Publications</a></li>
+                    <li><a class="lnk"
+                           href="../projects.html"
+                           data-nav="projects"
+data-spy="work">Projects</a></li>
+                    <li><a class="lnk"
+                           href="../news.html"
+                           data-nav="news"
+data-spy="writing">Updates</a></li>
+                    <li><a class="lnk"
+                           href="../blog.html"
+                           data-nav="blog"
+>Blog</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+                <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4.4"/>
+                    <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/>
+                </svg>
+                <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+    <main id="main" tabindex="-1"><div class="page" data-page="gagan">
+    <section class="page-header">
+        <div class="grid shell">
+<p class="page-header__tagline eyebrow">Research project</p>            <div class="page-header__main">
+                <h1>GAGAN: Geometry-Aware Generative Adversarial Networks.</h1>
+<p class="page-header__intro">GAGAN (Geometry-Aware Generative Adversarial Networks) generates objects that respect a given geometric prior—for instance, human or cat faces with arbitrary morphology and shape.</p>            </div>
+        </div>
+    </section>
+
+    <section class="archive-content">
+        <div class="grid shell">
+            <article class="page-content prose section__intro">
+                <p>(Lady) GAGAN generates objects that respect a given geometric prior—for
+instance, human or cat faces with arbitrary morphology and shape. The samples
+below were generated by the method.</p>
+<p><img alt="Random face samples generated with GAGAN" class="center" src="../static/images/gagan/gagan_celebA.png" /></p>
+<h2>Abstract</h2>
+<p>Deep generative models learned through adversarial training have become
+increasingly popular for their ability to generate naturalistic image textures.
+However, aside from their texture, the visual appearance of objects is
+significantly influenced by their shape geometry—information that is not taken
+into account by existing generative models. This paper introduces
+Geometry-Aware Generative Adversarial Networks (GAGAN) for incorporating
+geometric information into the image generation process. Specifically, in
+GAGAN, the generator samples latent variables from the probability space of a
+statistical shape model. By mapping the output of the generator to a canonical
+coordinate frame through a differentiable geometric transformation, we enforce
+the geometry of the objects and add an implicit connection from the prior to
+the generated object.</p>
+<p>Experimental results on face generation indicate that GAGAN can generate
+realistic images of faces with arbitrary facial attributes such as facial
+expression, pose, and morphology, with better quality than contemporary
+GAN-based methods. The method can augment an existing GAN architecture and
+improve the quality of the generated images.</p>
+<p><a href="../static/pdfs/gagan.pdf">PDF</a> ·
+<a href="https://arxiv.org/abs/1712.00684">arXiv</a></p>
+<p><strong>BibTeX</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">kossaifi2018gagan</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{J. Kossaifi and L. Tran and Y. Panagakis and M. Pantic}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{GAGAN: Geometry-Aware Generative Adversarial Networks}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2018}</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Show me your poker face</h2>
+<p>By changing the shape parameters, GAGAN generates a face that follows the
+specified shape. Notice how Alejandro (row 1) starts smiling as we vary the
+corresponding shape parameter. More complex movements can be obtained by
+varying more than one shape parameter, as shown with Donatella in the final
+row.</p>
+<p>Conversely, by fixing the shape and changing only the non-geometric prior,
+GAGAN can generate varied appearances while keeping a straight—and
+geometrically fixed—face.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Varying only the shape parameters</th>
+<th style="text-align: center;">Varying only the non-geometric parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Generated male face changing from neutral to smiling as a shape parameter varies" src="../static/images/gagan/1_shape.png" /></td>
+<td style="text-align: center;"><img alt="Different generated appearances sharing the same facial geometry" src="../static/images/gagan/2appearance.png" /></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img alt="Generated female face and landmarks changing expression as a shape parameter varies" src="../static/images/gagan/2s_shape.png" /></td>
+<td style="text-align: center;"><img alt="Different generated male appearances with fixed facial landmarks" src="../static/images/gagan/1sappearance.png" /></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img alt="Generated male face with glasses changing from neutral to smiling" src="../static/images/gagan/4_shape.png" /></td>
+<td style="text-align: center;"><img alt="Different generated female appearances sharing the same facial geometry" src="../static/images/gagan/3appearance.png" /></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img alt="Generated female face and landmarks changing from neutral to smiling" src="../static/images/gagan/3s_shape.png" /></td>
+<td style="text-align: center;"><img alt="Different generated female appearances with fixed facial landmarks" src="../static/images/gagan/4sappearance.png" /></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img alt="Generated female face changing expression through shape interpolation" src="../static/images/gagan/interp_3_cropped.png" /></td>
+<td style="text-align: center;"><img alt="Different generated male appearances sharing the same facial geometry" src="../static/images/gagan/5appearance.png" /></td>
+</tr>
+</tbody>
+</table>
+<h2>Bore me with the details</h2>
+<p><img alt="Overview of the GAGAN architecture" src="../static/images/gagan/overview.png" /></p>
+<p><strong>(i)</strong> For each training image \(\mathbf{i}\), we use the corresponding shape \(\mathbf{s}\). Using the object geometry learned by the statistical shape model, we create perturbations \(\mathbf{\hat{s}}_1, \ldots, \mathbf{\hat{s}}_n\) of that shape.</p>
+<p><strong>(ii)</strong> The perturbed shapes are projected onto a normally distributed latent subspace using the normalized statistical shape model. The projection \(\phi\left(\mathbf{s}\right)\) is concatenated with a latent component \(\mathbf{c}\), shared by all perturbed versions of the same shape.</p>
+<p><strong>(iii)</strong> The resulting vectors \(\mathbf{\hat z}_1, \ldots, \mathbf{\hat z}_n\) are passed to the generator, which produces fake images \(\mathbf{\hat i}_1, \ldots, \mathbf{\hat i}_n\). The geometry imposed by the shape prior is enforced by a geometric transformation \(\mathcal{w}\) (a piecewise affine warp) that maps each generated image onto the canonical shape. The discriminator classifies these shape-normalized images as fake or real. The final objective combines the GAN loss with an \(\ell_1\) loss, encouraging images generated from perturbations of the same shape to remain visually similar in the canonical coordinate frame.</p>
+<h2>The shape model</h2>
+<p>The shape model efficiently represents facial structure. I used it extensively
+in my work on
+<a href="../static/pdfs/newton_and_bidirectional_aam.pdf">Active Appearance Models</a>
+for landmark localization. The general idea is to represent facial shape as a
+linear model by applying PCA to a set of aligned facial shapes.</p>
+<p><img alt="Principal components of the facial shape model" src="../static/images/gagan/shape_space.png" /></p>
+<p>The components of the model can be interpreted as modeling pose (components 1
+and 2), smile or expression (component 3), and other geometric variations.</p>
+<h2>Enforcing the geometry: piecewise affine warping</h2>
+<p>Also known as a <em>motion model</em> in the AAM literature, piecewise affine warping
+maps pixels from any shape onto a canonical shape. Its main advantage is that
+objects—for instance, faces—with different poses and shapes can be compared
+once mapped onto the canonical frame. This also provides an implicit check that
+the face is correctly aligned with its corresponding landmarks.</p>
+<p><img alt="Piecewise affine warping between facial shapes" class="center" src="../static/images/gagan/warp_illustration.png" /></p>
+<p>The warp is computed by first triangulating both shapes, typically with a
+Delaunay triangulation. Points inside each simplex of the source shape are then
+mapped to the corresponding triangle in the target shape using barycentric
+coordinates, with pixel values determined through nearest-neighbor or
+interpolated sampling.</p>
+            </article>
+
+
+
+        </div>
+    </section>
+</div></main>
+    <footer class="site" role="contentinfo">
+    <div class="wrap">
+        <div class="inner">
+            <p class="copyright">©&nbsp;2026 Jean Kossaifi</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a class="lnk" href="../">Home</a></li>
+                    <li><a class="lnk" href="../publications.html">Publications</a></li>
+                    <li><a class="lnk" href="../projects.html">Projects</a></li>
+                    <li><a class="lnk" href="../news.html">Updates</a></li>
+                    <li><a class="lnk" href="../blog.html">Blog</a></li>
+<li><a class="lnk" href="mailto:jean.kossaifi@nvidia.com">Email</a></li>                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

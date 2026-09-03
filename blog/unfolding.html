@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tensor Unfolding | Jean Kossaifi</title>
+    <meta name="description" content="A look at tensor unfolding and its different definitions. We go through their mathematical properties, and python implementation with NumPy.">
+<meta name="author" content="Jean Kossaifi">    <meta name="robots" content="index, follow">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f2ea">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0f0c">
+
+<link rel="canonical" href="https://jeankossaifi.com/blog/unfolding.html">    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Jean Kossaifi">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Tensor Unfolding">
+    <meta property="og:description" content="A look at tensor unfolding and its different definitions. We go through their mathematical properties, and python implementation with NumPy.">
+<meta property="og:url" content="https://jeankossaifi.com/blog/unfolding.html">    <meta property="og:image" content="https://jeankossaifi.com/static/images/social/blog/unfolding.png">
+<meta property="og:image:secure_url" content="https://jeankossaifi.com/static/images/social/blog/unfolding.png"><meta property="og:image:type" content="image/png">    <meta property="og:image:alt" content="Tensor Unfolding — Jean Kossaifi">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tensor Unfolding">
+    <meta name="twitter:description" content="A look at tensor unfolding and its different definitions. We go through their mathematical properties, and python implementation with NumPy.">
+<meta name="twitter:url" content="https://jeankossaifi.com/blog/unfolding.html">    <meta name="twitter:image" content="https://jeankossaifi.com/static/images/social/blog/unfolding.png">
+    <meta name="twitter:image:alt" content="Tensor Unfolding — Jean Kossaifi">
+
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tensor Unfolding",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi",
+    "url": "https://jeankossaifi.com/",
+    "@id": "https://jeankossaifi.com/#person"
+  },
+  "datePublished": "2017-03-19",
+  "description": "A look at tensor unfolding and its different definitions. We go through their mathematical properties, and python implementation with NumPy.",
+  "url": "https://jeankossaifi.com/blog/unfolding.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jeankossaifi.com/blog/unfolding.html"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Jean Kossaifi",
+    "url": "https://jeankossaifi.com/",
+    "@id": "https://jeankossaifi.com/#person",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://jeankossaifi.com/static/profile-800.jpg"
+    }
+  },
+  "image": "https://jeankossaifi.com/static/profile-800.jpg"
+}</script>
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+    <script>
+    /* pre-paint boot — URL param > localStorage > system; runs before first paint */
+    (function(){
+      var d = document.documentElement;
+      var p = new URLSearchParams(location.search);
+      var theme = p.get('theme');
+      if (theme !== 'light' && theme !== 'dark'){
+        try { theme = localStorage.getItem('jean-site-theme'); } catch(e){ theme = null; }
+      }
+      if (theme !== 'light' && theme !== 'dark'){
+        theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      }
+      d.dataset.theme = theme;
+      d.classList.add('js');
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: no-preference)').matches){
+        d.classList.add('motion');
+      }
+    })();
+    </script>
+    <link rel="icon" href="../static/theme/favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="icon" href="../static/theme/favicon.svg?v=jk2" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="../static/theme/favicon-192.png">
+    <link rel="preload" href="../static/theme/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../static/theme/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../static/theme.css?v=b0d43a182e7d">
+    <script src="../static/theme.js?v=4c26877d9171" defer></script>
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="sr-only" role="status" id="live"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site site--flow">
+    <div class="wrap site-row">
+        <a class="wordmark" href="../">Jean Kossaifi</a>
+        <div class="nav-right">
+            <nav class="primary" aria-label="Primary">
+                <ul>
+                    <li><a class="lnk"
+                           href="../#about"
+                           data-nav="about"
+data-spy="about">About</a></li>
+                    <li><a class="lnk"
+                           href="../publications.html"
+                           data-nav="publications"
+data-spy="publications">Publications</a></li>
+                    <li><a class="lnk"
+                           href="../projects.html"
+                           data-nav="projects"
+data-spy="work">Projects</a></li>
+                    <li><a class="lnk"
+                           href="../news.html"
+                           data-nav="news"
+data-spy="writing">Updates</a></li>
+                    <li><a class="lnk current"
+                           href="../blog.html"
+                           data-nav="blog"
+aria-current="page">Blog</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+                <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4.4"/>
+                    <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/>
+                </svg>
+                <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+    <main id="main" tabindex="-1"><article class="blog-post" data-blog-post>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+    <header class="article-header">
+        <div class="article-header__inner shell">
+            <a class="eyebrow article-header__kicker" href="../blog.html">Blog</a>
+            <h1>Tensor Unfolding</h1>
+<div class="article-header__deck"><p>A look at tensor unfolding and its different definitions. We go through their mathematical properties, and python implementation with NumPy.</p></div>            <div class="article-header__meta">
+<time datetime="2017-03-19" data-format-date>2017-03-19</time><span>13 min read</span>                <ul class="article-tags" aria-label="Topics">
+<li>machine-learning</li><li>TensorLy</li>                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="blog-post__content">
+        <div class="article-reading-shell">
+            <div class="prose"><p>It is hard, if not impossible, to produce good software in Machine Learning without touching both programming and mathematics. Implementation of tensor unfolding is a very good example of that.</p>
+<p>Tensor unfolding, or <strong>matrization</strong>, is a fundamental operation and a building block for most tensor methods. Considering a tensor as a multi-dimensional array, <strong>unfolding</strong> it consists of reading its element in such a way as to obtain a matrix instead of a tensor. mode-k unfolding is obtained by considering the \(k^{th}\) mode as the first dimension of a matrix and collapsing the other into the other dimension of that matrix. For a tensor of size \((I_1, I_2, \cdots, I_n)\), the k-mode unfolding of this tensor will be of size \((I_k, I_1 \times \cdots \times I_{k-1} \times I_{k+1} \cdots \times I_n)\). There are different ways of doing this, differing by the order in which the dimensions are collapsed, and each definition impacts the mathematical properties and the performance.</p>
+<p>In TensorLy, to offer competitive speed, we had to depart from the traditional definition of <em>unfolding</em> to a formulation offering both better performance in NumPy <em>and</em> nice mathematical properties.</p>
+<h2>Performance comparison in NumPy</h2>
+<p>To compare the performance of the various implementations of tensor unfolding in NumPy using both defitions, we timed them on a tensor of size \((100, 10, 15, 10, 100)\), for each mode. This graph presents the average accross the modes of the unfolding time (obtained using the timeit module):</p>
+<p><img alt="Comparison of the unfolding in NumPy with Kolda&amp;Bader and TensorLy definitions" class="center" height="15em" src="../static/images/tensorly/unfolding_comparison.png" /></p>
+<p>If you want more details on the implementations, read on!</p>
+<h3>Unfolding as defined by Kolda and Bader</h3>
+<h4>Formal defintion</h4>
+<p>The most common definition of unfolding is the one defined and popularised by the seminal of Kolda and Bader (if you are interested, read their comprehensive paper "Tensor Decompositions and Applications"in SIAM REVIEW, 2009).</p>
+<p>We will call that definition of unfolding, that of... Kolda&amp;Bader! They define unfolding as follows:</p>
+<p>Let \(\tilde X \in \mathbb{R}^{I_1 \times I_2 \times \cdots \times I_N}\) be a size \((I_1 \times I_2 \times \cdots \times I_N)\) tensor, then element \((i_1 \times i_2 \times \cdots \times i_N)\) of \(\tilde X\) maps to element \((i_n, j)\) of \(\tilde X^{Kolda}_{[n]}\), the n-mode unfolding of \(\tilde X\), with:</p>
+$$\begin{aligned}
+j = 1 + \sum_{\substack{k=1\\ k \neq n}}^N \left[ (i_k - 1) \prod_{\substack{m=1\\m \neq n}}^{k-1} I_m \right]
+\end{aligned}$$
+
+<p>Note that if indexing starts at zero, the previous formula simplifies to:</p>
+$$\begin{aligned}
+j = \sum_{\substack{k=1\\ k \neq n}}^N \left[ i_k \times \prod_{\substack{m=1\\m \neq n}}^{k-1} I_m \right]
+\end{aligned}$$
+
+<p>For those used to manipulating arrays, you might recognise here the Fortran ordering of elements!</p>
+<h4>Example</h4>
+<p>Note that we index the modes (dimensions) of a tensor from 0, not 1.</p>
+<p>Let's take for this example the tensor \(\tilde X\) of size \((3, 4, 2)\) defined by the frontal slices as follows:</p>
+$$\begin{aligned}
+X_0 = 
+\left[
+\begin{matrix}
+0  & 2  & 4  & 6\\
+8  & 10 & 12 & 14\\
+16 & 18 & 20 & 22
+\end{matrix}
+\right]
+\end{aligned}$$
+
+<p>and</p>
+$$\begin{aligned}
+X_1 =
+\left[
+\begin{matrix}
+1  & 3  & 5  & 7\\
+9  & 11 & 13 & 15\\
+17 & 19 & 21 & 23
+\end{matrix}
+\right]
+\end{aligned}$$
+
+<p>Then, according to Kolda's definition, its unfolding are given by:</p>
+<h5>mode-0 unfolding:</h5>
+$$\begin{aligned}
+\tilde X^{Kolda}_{[0]} = 
+\left[ \begin{matrix}
+   0 & 2 & 4 & 6 & 1 & 3 & 5 & 7\\ 
+   8 & 10 & 12 & 14 & 9 & 11 & 13 & 15\\ 
+   16 & 18 & 20 & 22 & 17 & 19 & 21 & 23\\ 
+ \end{matrix} \right]
+\end{aligned}$$
+
+<h5>mode-1 unfolding:</h5>
+$$\begin{aligned}
+\tilde X^{Kolda}_{[1]} = 
+ \left[ \begin{matrix}
+   0 & 8 & 16 & 1 & 9 & 17\\ 
+   2 & 10 & 18 & 3 & 11 & 19\\ 
+   4 & 12 & 20 & 5 & 13 & 21\\ 
+   6 & 14 & 22 & 7 & 15 & 23\\ 
+ \end{matrix} \right]
+\end{aligned}$$
+
+<h5>mode-2 unfolding:</h5>
+$$\begin{aligned}
+\tilde X^{Kolda}_{[2]} = 
+\left[ \begin{matrix}
+   0 & 8 & 16 & 2 & 10 & 18 & 4 & 12 & 20 & 6 & 14 & 22\\ 
+   1 & 9 & 17 & 3 & 11 & 19 & 5 & 13 & 21 & 7 & 15 & 23\\ 
+ \end{matrix} \right]
+\end{aligned}$$
+
+<h4>Properties</h4>
+<p>Given a tensor \(\tilde{X} \in \mathbb{R}^{I_1 \times I_2 \times \cdots \times I_N}\) and its Tucker decomposition \([\!\![~\tilde{G};~\mathbf{U}^{(1)}, \cdots, \mathbf{U}^{(N)}~]\!\!]\), we can express the mode-\(n\) unfolding of \(\tilde{X}\) as:</p>
+\[\mathbf{X}_{[n]} = \mathbf{U}^{(n)} \mathbf{G}_{[n]} \left(\mathbf{U}^{(N)}
+                     \otimes \cdots \mathbf{U}^{(n+1)} \otimes \mathbf{U}^{(n-1)}
+                     \otimes \cdots \otimes \mathbf{U}^{(1)} \right)^T\]
+
+<p>Notice the reverse order of the kronecker product of the matrix factors, that arises from the Fortran ordering of the elements when vectorising/folding/unfolding a tensor.</p>
+<h3>Unfolding in TensorLy</h3>
+<h4>Formal definition</h4>
+<p>In TensorLy, given a tensor \(\tilde X \in \mathbb{R}^{I_1 \times I_2 \times \cdots \times I_N}\), we define the mode-n unfolding of \(\tilde X\) as a matrix \(\mathbf{X}^{TensorLy}_{[n]} \in \mathbb{R}^{I_n, I_M}\), with \(M = \prod_{\substack{k=1,\\\\k \neq n}}^N I_k\) and is defined by the mapping from element \((i_1, i_2, \cdots, i_N)\) to \((i_n, j)\), with</p>
+\[\begin{aligned}
+j = \sum_{\substack{k=1,\\k \neq n}}^N i_k \times \prod_{m=k+1}^N I_m.
+\end{aligned}\]
+
+<h4>Example</h4>
+<p>Using the same tensor \(\tilde X\) as defined previously, the unfoldings according to this new definition are given by:</p>
+<h5>mode-0 unfolding:</h5>
+$$\begin{aligned}
+\tilde X^{TensorLy}_{[0]} = 
+\left[ \begin{matrix}
+   0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\ 
+   8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\ 
+   16 & 17 & 18 & 19 & 20 & 21 & 22 & 23\\ 
+ \end{matrix} \right]
+\end{aligned}$$
+
+<h5>mode-1 unfolding:</h5>
+$$\begin{aligned}
+\tilde X^{TensorLy}_{[1]} = 
+\left[ \begin{matrix}
+   0 & 1 & 8 & 9 & 16 & 17\\ 
+   2 & 3 & 10 & 11 & 18 & 19\\ 
+   4 & 5 & 12 & 13 & 20 & 21\\ 
+   6 & 7 & 14 & 15 & 22 & 23\\ 
+ \end{matrix} \right]
+\end{aligned}$$
+
+<h5>mode-2 unfolding:</h5>
+$$\begin{aligned}
+\tilde X^{TensorLy}_{[2]} = 
+\left[ \begin{matrix}
+   0 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 & 22\\ 
+   1 & 3 & 5 & 7 & 9 & 11 & 13 & 15 & 17 & 19 & 21 & 23\\ 
+ \end{matrix} \right]
+\end{aligned}$$
+
+<h4>Properties</h4>
+<p>One of the nice things with this definition of the unfolding is that it offers nice properties.</p>
+<p>Firstly, you might have recognised a C-ordering of the elements: as a result, this formulation leads to much more natural implementations and achieves better performance when using C-ordering of the elements (as numpy does by default). All that is now required is to move the required dimension into the first position and reshape the result into a matrix.</p>
+<p>This definition also translates into more natural properties. For instance, given a tensor \(\tilde{X} \in \mathbb{R}^{I_1 \times I_2 \times \cdots \times I_N}\) and its Tucker decomposition \([\!\![~\tilde{G};~\mathbf{U}^{(1)}, \cdots, \mathbf{U}^{(N)}~]\!\!]\), we can express the mode-\(n\) unfolding of \(\tilde{X}\) as:</p>
+$$\mathbf{X}_{[n]} = \mathbf{U}^{(n)} \mathbf{G}_{[n]} \left(\mathbf{U}^{(1)}
+                     \otimes \cdots \mathbf{U}^{(n-1)} \otimes \mathbf{U}^{(n+1)}
+                     \otimes \cdots \otimes \mathbf{U}^{(N)} \right)^T$$
+
+<h4>Example with code, using TensorLy</h4>
+<p>In TensorLy, we simply define tensors as numpy arrays (which are already multi-dimensional arrays, i.e. tensors):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>
+               <span class="p">[</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
+               <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">]],</span>
+
+              <span class="p">[[</span> <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">]],</span>
+
+              <span class="p">[[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]]])</span>
+</code></pre></div>
+
+<p>You can quickly check the frontal slices as follows:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">X</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">6</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">]])</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">X</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">7</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">]])</span>
+</code></pre></div>
+
+<p>To unfold a tensor, simply use the <code>unfold</code> function from TensorLy:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tensorly</span><span class="w"> </span><span class="kn">import</span> <span class="n">unfold</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">unfold</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">]])</span>
+</code></pre></div>
+
+<h3>Implementing tensor unfolding as defined by Kolda and Bader</h3>
+<p>In order to provide a good comparison of the different methods, we need a good implementation. However, tensor manipulation is not always very intuitive, as you will see. If you are curious as to the how and why of our implementations, read on!</p>
+<h4>Unfolding and ordering of the elements</h4>
+<p>Consider the tensor <code>X</code> defined above: you might be tempted to get the mode-0 unfolding as defined by Kolda and Bader by simply reshaping it into a matrix of size <code>(3, 4*2)</code>. However, this is what happens if you do:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">]])</span>
+</code></pre></div>
+
+<p>What happened here?</p>
+<p>Writing <code>X.reshape((3, -1))</code> is equivalent to writing: <code>X.reshape((3, -1), order='C')</code>. In other words, the elements are read in <strong>C-order</strong>. Which means that the elements from the <strong>last</strong> axis are contiguous in memory and read first: you can see this by flattening the array in the default order (<em>C order</em>).</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="c1"># equivalent to X.ravel(order='C')</span>
+<span class="n">array</span><span class="p">([</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>
+       <span class="mi">15</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">])</span>
+</code></pre></div>
+
+<p>What you really want is to read the elements column-wise, i.e. in <strong>Fortran order</strong>: indeed, if you <code>reshape</code> the array in <code>Fortran</code> order, you obtain the mode-0 unfolding:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">'F'</span><span class="p">)</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">24</span><span class="p">]])</span>
+</code></pre></div>
+
+<h4>Unfolding using reshaping in F-order</h4>
+<p>Based on the above discussion, a simple function to unfold a tensor would be the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">f_unfold</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Simple unfolding function</span>
+<span class="sd">        Moves the `mode` axis to the beginning and reshapes in Fortran order</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="p">),</span> <span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">'F'</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Yes <strong>but</strong>...</p>
+<p>1)  we work mostly in C-order
+2)  moving the axis and reshaping in Fortran order is slow if you manipulate arrays in C-order, which they are by default in numpy which leads us to...
+3)  <em>always try to use the defaults users expect</em>. This is the <em>Principle of least astonishment</em>.</p>
+<h4>Unfolding using reshaping in C-order: playing with strides and shape</h4>
+<p>As we said, what we want is the mode-axis first, then the other dimensions in the correct order. Let's take the example of mode-0 unfolding: when we form <code>X.reshape((mode, 4*2))</code>, the elements of the <strong>last</strong> mode come first, while the first mode should. (One way to look at it is that the reshaping returns a tensor of size \((I_k, I_n \times \cdots \times I_{k+1} \times I_{k-1} \cdots \times I_1)\) instead of \((I_k, I_1 \times \cdots \times I_{k-1} \times I_{k+1} \cdots \times I_n)\)):</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">]])</span>
+</code></pre></div>
+
+<p>To correct this, we need to re-arange the dimensions of the tensor before reshaping.</p>
+<h5>In Pseudo code:</h5>
+<blockquote>
+<p><strong>function</strong> <code>unfold(tensor, mode=k)</code>:</p>
+<p><strong>Input</strong>: tensor of size \((I_1, \cdots I_n)\) to unfold in mode \(k\).</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>
+<p>Put the \(k^{th}\) axis of <code>tensor</code> first:<br />
+   \((I_1, \cdots I_n) \rightarrow (I_k, I_1 \times \cdots \times I_{k-1} \times I_{k+1} \cdots \times I_n)\)</p>
+</li>
+<li>
+<p>Reverse the order of the remaining axis of <code>tensor</code>:<br />
+   \((I_k, I_1 \times \cdots \times I_{k-1} \times I_{k+1} \cdots \times I_n) \rightarrow (I_k, I_n \times \cdots \times I_{k+1} \times I_{k-1} \cdots \times I_1)\)</p>
+</li>
+<li>
+<p>Reshape in C order:<br />
+<code>reshape(tensor, (I_k, -1), order='C')</code></p>
+</li>
+</ol>
+</blockquote>
+<h5>Actual code</h5>
+<p>Let's write an intermediate function to give us the reordering of the axis. For instance, for a tensor of order 5, the reordering corresponding to 2-mode unfoding should be:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The function to do this is simple:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reorder</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Reorders the elements</span>
+<span class="sd">    """</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">indices</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">([</span><span class="n">element</span><span class="p">]</span> <span class="o">+</span> <span class="n">indices</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p>Using this, the actual function to unfold a tensor is the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.lib.stride_tricks</span><span class="w"> </span><span class="kn">import</span> <span class="n">as_strided</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">c_unfold</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Returns the mode-`mode` unfolding of `tensor` </span>
+<span class="sd">        (modes start at `0`)</span>
+<span class="sd">    """</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">strides</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">strides</span><span class="p">)</span>
+    <span class="n">fibers_len</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">reorder</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="n">strides</span> <span class="o">=</span> <span class="n">reorder</span><span class="p">(</span><span class="n">strides</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="n">strides</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">fibers_len</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+
+<h4>A shorter version</h4>
+<p>The previous code can be written equivalently in a much shorter way using numpy's built-in <code>transpose</code> function that takes care of changing the strides and the shape for us:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">unfold</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Returns the mode-`mode` unfolding of `tensor` </span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">reorder</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">ndim</span><span class="p">),</span> <span class="n">mode</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+
+<h4>Timing all these candidates</h4>
+<p>This is all well and good but which of these functions is actually faster: we have mentioned this already, but let us see what it is in practice. I have run each method on a tensor of size \((100, 10, 15, 10, 100)\), using the timeit function from the timeit module.</p>
+<p><img alt="comparison of the unfolding in NumPy with various implementations of the Kolda&amp;Bader definition and the TensorLy definition" class="wide center" src="../static/images/tensorly/unfolding_implementation_comparison.png" /></p>
+<h3>Refolding a tensor using the Kolda and Bader defition</h3>
+<p>Using the introduced TensorLy convention, folding is simply a reshaping in Numpy, followed by a moveaxis to invert the effect of the folding. For completeness, I will go over refolding an unfolded tensor using Kolda and Bader's definition, which are slightly more tricky to do on a tensor represented by a C-style array.</p>
+<p>Once you understand how to properly unfold a tensor, refolding it is still fairly easy: we just need to put the dimensions composing the rows back in order and then switch the first dimension where it belong in \(k\)-th position.</p>
+<h4>With strides</h4>
+<p>We can use our knowledge on the ordering of the elements in the rows of the matrix to directly set the strides and the shape. Knowing the size of an element (in bytes), and the number of elements per dimension, we can easily determine the number of bytes to skip to go to the next dimension (<em>strides</em>):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">c_fold</span><span class="p">(</span><span class="n">unfolded</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Returns the folded tensor of shape `shape` from the `mode`-mode unfolding `unfolded`.</span>
+<span class="sd">    """</span>
+    <span class="n">column_size</span><span class="p">,</span> <span class="n">element_size</span> <span class="o">=</span> <span class="n">unfolded</span><span class="o">.</span><span class="n">strides</span>
+    <span class="n">column_dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># the mode-dimension is contained in the columns</span>
+    <span class="n">column_dimensions</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+    <span class="c1"># the elements of a row are ordered as the first dimension, then the 2nd, etc</span>
+    <span class="c1"># to read the first, skip 0 elements</span>
+    <span class="c1"># to read the second dimension, skip n_elements_first_dimension, etc.</span>
+    <span class="n">column_dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="n">column_dimensions</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="c1"># number of bytes to skip to go from one element to another</span>
+    <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="o">*</span> <span class="n">element_size</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">column_dimensions</span><span class="p">]</span>
+    <span class="c1"># To go to the next element in dimension mode, we go to the next line of the unfolded tensor</span>
+    <span class="n">strides</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">column_size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">unfolded</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="n">strides</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div>
+
+<h4>Concise solution</h4>
+<p>Again, it is faster and clearer to let numpy do the work. We first reshape the unfolded tensor into a tensor after the transposition was done. Then we undo the transpose:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fold</span><span class="p">(</span><span class="n">unfolded</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Returns the folded tensor of shape `shape` from the `mode`-mode unfolding `unfolded`.</span>
+<span class="sd">    """</span>
+    <span class="n">unfolded_indices</span> <span class="o">=</span> <span class="n">reorder</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)),</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="n">original_shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">shape</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unfolded_indices</span><span class="p">]</span>
+    <span class="n">unfolded</span> <span class="o">=</span> <span class="n">unfolded</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">original_shape</span><span class="p">)</span>
+
+    <span class="n">folded_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">folded_indices</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">unfolded</span><span class="p">,</span> <span class="n">folded_indices</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>Final words</h3>
+<p>By simply redifining the unfoding operator we were able to gain a significant speedup. Tensor unfolding is ubuquitous in multi-linear algebra, used in all kind of algorithms from higher order SVD to tensor regression and the speedup translates into faster algorithms. Not only that it also translates into nice mathematical properties and a natural implemenation in Python.</p></div>
+        </div>
+    </div>
+
+    <footer class="article-footer">
+        <div class="article-footer__inner shell">
+            <ul class="article-tags" aria-label="Article topics">
+<li>machine-learning</li><li>TensorLy</li>            </ul>
+            <nav class="article-pagination" aria-label="More posts">
+                <a href="../blog/tensorly-release-0-5.html">
+                    <span>Newer</span>
+                    <strong>TensorLy 0.5 is out!</strong>
+                </a>
+                <a href="../blog/rpca.html">
+                    <span>Older</span>
+                    <strong>Robust Tensor PCA with TensorLy</strong>
+                </a>
+            </nav>
+            <a class="article-footer__all" href="../blog.html"><span class="m" aria-hidden="true">←</span>&nbsp;Back to the blog</a>
+        </div>
+    </footer>
+</article></main>
+    <footer class="site" role="contentinfo">
+    <div class="wrap">
+        <div class="inner">
+            <p class="copyright">©&nbsp;2026 Jean Kossaifi</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a class="lnk" href="../">Home</a></li>
+                    <li><a class="lnk" href="../publications.html">Publications</a></li>
+                    <li><a class="lnk" href="../projects.html">Projects</a></li>
+                    <li><a class="lnk" href="../news.html">Updates</a></li>
+                    <li><a class="lnk" href="../blog.html">Blog</a></li>
+<li><a class="lnk" href="mailto:jean.kossaifi@nvidia.com">Email</a></li>                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
