@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4GT8G15WY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', "G-H4GT8G15WY");
+</script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Who Gets to Build AI? | Jean Kossaifi</title>
+    <meta name="description" content="Modern AI was built on shared science and software. Who gets to shape what comes next?">
+<meta name="author" content="Jean Kossaifi">    <meta name="robots" content="index, follow">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f2ea">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0f0c">
+
+<link rel="canonical" href="https://jeankossaifi.com/blog/26-09-open-source.html">    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Jean Kossaifi">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Who Gets to Build AI?">
+    <meta property="og:description" content="Modern AI was built on shared science and software. Who gets to shape what comes next?">
+<meta property="og:url" content="https://jeankossaifi.com/blog/26-09-open-source.html">    <meta property="og:image" content="https://jeankossaifi.com/static/images/social/blog/26-09-open-source.png">
+<meta property="og:image:secure_url" content="https://jeankossaifi.com/static/images/social/blog/26-09-open-source.png"><meta property="og:image:type" content="image/png">    <meta property="og:image:alt" content="Who Gets to Build AI? — Jean Kossaifi">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Who Gets to Build AI?">
+    <meta name="twitter:description" content="Modern AI was built on shared science and software. Who gets to shape what comes next?">
+<meta name="twitter:url" content="https://jeankossaifi.com/blog/26-09-open-source.html">    <meta name="twitter:image" content="https://jeankossaifi.com/static/images/social/blog/26-09-open-source.png">
+    <meta name="twitter:image:alt" content="Who Gets to Build AI? — Jean Kossaifi">
+
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Who Gets to Build AI?",
+  "author": {
+    "@type": "Person",
+    "name": "Jean Kossaifi",
+    "url": "https://jeankossaifi.com/",
+    "@id": "https://jeankossaifi.com/#person"
+  },
+  "datePublished": "2026-09-20",
+  "description": "Modern AI was built on shared science and software. Who gets to shape what comes next?",
+  "url": "https://jeankossaifi.com/blog/26-09-open-source.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://jeankossaifi.com/blog/26-09-open-source.html"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Jean Kossaifi",
+    "url": "https://jeankossaifi.com/",
+    "@id": "https://jeankossaifi.com/#person",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://jeankossaifi.com/static/profile-800.jpg"
+    }
+  },
+  "image": "https://jeankossaifi.com/static/images/OSS_AI.png"
+}</script>
+
+    <script>
+    /* pre-paint boot — URL param > localStorage > system; runs before first paint */
+    (function(){
+      var d = document.documentElement;
+      var p = new URLSearchParams(location.search);
+      var theme = p.get('theme');
+      if (theme !== 'light' && theme !== 'dark'){
+        try { theme = localStorage.getItem('jean-site-theme'); } catch(e){ theme = null; }
+      }
+      if (theme !== 'light' && theme !== 'dark'){
+        theme = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      }
+      d.dataset.theme = theme;
+      d.classList.add('js');
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: no-preference)').matches){
+        d.classList.add('motion');
+      }
+    })();
+    </script>
+    <link rel="icon" href="../static/theme/favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="icon" href="../static/theme/favicon.svg?v=jk2" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="../static/theme/favicon-192.png">
+    <link rel="preload" href="../static/theme/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../static/theme/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../static/theme.css?v=07bc2ecf5c13">
+    <script src="../static/theme.js?v=4c26877d9171" defer></script>
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="sr-only" role="status" id="live"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site site--flow">
+    <div class="wrap site-row">
+        <a class="wordmark" href="../">Jean Kossaifi</a>
+        <div class="nav-right">
+            <nav class="primary" aria-label="Primary">
+                <ul>
+                    <li><a class="lnk"
+                           href="../#about"
+                           data-nav="about"
+data-spy="about">About</a></li>
+                    <li><a class="lnk"
+                           href="../publications.html"
+                           data-nav="publications"
+data-spy="publications">Publications</a></li>
+                    <li><a class="lnk"
+                           href="../projects.html"
+                           data-nav="projects"
+data-spy="work">Projects</a></li>
+                    <li><a class="lnk"
+                           href="../news.html"
+                           data-nav="news"
+data-spy="writing">Updates</a></li>
+                    <li><a class="lnk current"
+                           href="../blog.html"
+                           data-nav="blog"
+aria-current="page">Blog</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+                <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4.4"/>
+                    <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/>
+                </svg>
+                <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+    <main id="main" tabindex="-1"><article class="blog-post" data-blog-post>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+    <header class="article-header">
+        <div class="article-header__inner shell">
+            <a class="eyebrow article-header__kicker" href="../blog.html">Blog</a>
+            <h1>Who Gets to Build AI?</h1>
+<div class="article-header__deck"><p>Modern AI was built on shared science and software. Who gets to shape what comes next?</p></div>            <div class="article-header__meta">
+<time datetime="2026-09-20" data-format-date>2026-09-20</time><span>12 min read</span>                <ul class="article-tags" aria-label="Topics">
+<li>coding</li><li>AI</li><li>open-source software</li><li>OSS</li>                </ul>
+            </div>
+        </div>
+    </header>
+
+    <figure class="blog-post__hero shell">
+        <img src="../static/images/OSS_AI.png"
+             alt="Who Gets to Build AI?"
+             width="None"
+             height="None"
+             fetchpriority="high"
+             decoding="async">
+    </figure>
+
+    <div class="blog-post__content">
+        <div class="article-reading-shell">
+            <div class="prose"><p>I hear a lot of talk about the “dangers of open source.”</p>
+<p>I’ve been working in AI research for over ten years. While I’ve seen open-source software go in and out of fashion several times, what concerns me is when arguments about particular risks become arguments for restricting who may use and build on shared work, reserving the freedom to develop AI for a select few.</p>
+<p>Open source and open science benefit everyone, including people who never use these tools directly. They help researchers advance science, people learn and build, and companies develop businesses around useful products and services. Those services are one way scientific progress benefits society. Universities, research labs, companies, and individuals all contribute research, software, time, and funding to the foundations we all use.</p>
+<h2>Decades of shared work</h2>
+<p>Modern AI is built on decades of open-source software and open science. Without these, much of the infrastructure we now take for granted would not exist in its current form.</p>
+<p>And it took time.</p>
+<p><a href="https://legacy.python.org/doc/essays/ppt/jpf001/tsld006.htm">Python</a> was released in 1991. <a href="https://discourse.matplotlib.org/t/ann-numpy-1-0-release/6136">NumPy 1.0</a> followed in 2006, bringing together earlier work from Numeric and Numarray. <a href="https://scikit-learn.org/stable/about.html">Scikit-learn</a> built on NumPy and SciPy and made machine learning more accessible through a consistent interface, with its first public release in 2010. <a href="https://ipython.org/about/">IPython</a> started in 2001, and <a href="https://jupyter.org/about">Jupyter</a> grew out of it as a separate project in 2014. These tools helped make interactive computing, with code, explanations, and results together in a notebook, something we now take for granted. </p>
+<p>When I started my PhD, we would manually derive our gradients and code them up by hand. <a href="https://arxiv.org/abs/1605.02688">Theano</a> started changing this by introducing automatic differentiation in researchers workflows: instead of computing the gradients, you could now describe the computation and let the software apply the chain rule. <a href="https://research.google/pubs/tensorflow-large-scale-machine-learning-on-heterogeneous-distributed-systems/">TensorFlow</a> was released in 2015, and <a href="https://pytorch.org/blog/a-year-in/">PyTorch</a> in 2017. Together with earlier frameworks such as Torch, these tools made it increasingly practical to try new architectures and run them efficiently on GPUs. Automatic differentiation reduced the work of implementing derivatives; parallel computation accelerated our experiments. PyTorch makes it straightforward to combine core existing operations into a new architecture and train it on a GPU.</p>
+<p>The mathematical history goes back further. Milestones include the <a href="https://papers.baulab.info/papers/Rosenblatt-1958.pdf">perceptron</a> in 1958, <a href="https://papers.baulab.info/papers/also/Hopfield-1982.pdf">Hopfield networks</a> in 1982, the influential work on <a href="https://www.nature.com/articles/323533a0">backpropagation</a> in 1986, and <a href="https://direct.mit.edu/neco/article-abstract/1/4/541/5515/Backpropagation-Applied-to-Handwritten-Zip-Code?redirectedFrom=fulltext">LeCun and colleagues’ convolutional networks (LeNet)</a> in 1989.</p>
+<p>Later came <a href="https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html">AlexNet</a> in 2012, transformers with <a href="https://arxiv.org/abs/1706.03762"><em>Attention Is All You Need</em></a> in 2017, and <a href="https://arxiv.org/abs/2010.11929">Vision Transformers</a> in 2020. At the same time, <a href="https://arxiv.org/abs/2108.08481">neural operators</a> showed how to extend neural networks to learn mapping between function spaces, opening new approaches to scientific and engineering problems. Publishing these ideas allowed other researchers to examine and extend them.</p>
+<p>Datasets and benchmarks, developed alongside theory and accelerated computing, provided the third pillar that made modern AI possible. <a href="https://www.image-net.org/static_files/papers/imagenet_cvpr09.pdf">ImageNet</a>, introduced in 2009, gave researchers a shared basis for testing ideas and comparing results. Shared papers, implementations, and benchmarks gave people ways to examine results, test whether they could reproduce them, and find their limitations.</p>
+<p>This very abridged overview is to say that the modern AI stack represents decades of open work by researchers, engineers, students, and individual maintainers. Universities, public research funding, private investment, and contributors’ own time supported much of this work. Much of it was shared freely for others to use and improve. </p>
+<h2>What sharing makes possible</h2>
+<p><img alt="Four people assembling puzzle pieces with a neural network, code, and scientific plots." class="figure-right" src="../static/images/open-source-collaboration.jpg" /></p>
+<p>Sharing this work also allowed generations of students to learn from working implementations and researchers to pursue ideas its original authors might not have imagined. Preserving that access gives the next generation the same opportunity.</p>
+<p>I’ve contributed to several open-source libraries: I actively maintain and develop <a href="https://tensorly.org/dev/about.html">TensorLy</a> and <a href="https://neuraloperator.github.io/dev/">NeuralOperator</a>, and got the chance to work on projects like scikit-learn, and I learned a ton doing it. This is another advantage of the open-source community: it allows anyone interested to get involved and learn from top experts in the topic.</p>
+<p>In my experience working in AI for science, engineering is one area where AI adoption lags behind, in part because so much of the software is closed source. This makes collaboration between domain experts, AI researchers, and the wider community difficult. We need to understand how these methods behave under different conditions and where they fail. Shared implementations allow other researchers to test those limits and improve the methods. Closed tools inherently put up walls against collaboration - and indirectly, progress.</p>
+<p>Open source does not distribute funding or compute equally. It does let others maintain and adapt a tool if its original provider changes direction or stops supporting it.</p>
+<p>Maintaining these tools takes continued work. Companies can fund the maintenance and improvements they need, including by employing contributors, as  <a href="https://numpy.org/about/">NumPy’s institutional partners</a> do. Supporting shared tools is part of sustaining the businesses and research that depend on them.</p>
+<h2>Sharing work does not mean giving up your rights</h2>
+<p>We should protect people’s ability to share work on clear terms, and their ability to keep other work private.</p>
+<p>Releasing software under an <a href="https://opensource.org/osd">open-source license</a> does not mean giving up copyright. The <a href="https://opensource.org/license/mit">MIT License</a>, for example, permits use, modification, and commercial redistribution while requiring the copyright and permission notices to be preserved. If a license requires notices or attribution, those requirements must be respected. Research papers and datasets may be shared under different terms. Making work available does not mean giving permission to ignore the rights attached to it.</p>
+<h2>Using AI should not mean giving up control of your data</h2>
+<p>Conversely, personal data, confidential information, and unpublished research deserve protection when shared with AI tools. We should have clear, meaningful choices about how providers may use the information we entrust to them.</p>
+<p>The recent controversy around OpenAI’s Navier–Stokes announcement illustrates the concern about unpublished work. In his <a href="https://cims.nyu.edu/~tristanb/statement.pdf">public statement</a>, Tristan Buckmaster asked whether work he had put through Codex could have influenced OpenAI’s research. He explicitly said he did not know whether his data had been used. In its <a href="https://openai.com/index/navier-stokes-solution/">September 10 update</a>, OpenAI said its investigation found that his Codex prompts from the preceding two months could not have influenced the system, including through training.</p>
+<p>Researchers should be able to understand -and trust- how a tool will handle their work before entrusting it with sensitive information. What is retained? What can be used for training or other research? Who can access it? What uses are they authorizing? A clear answer should be available to a student or an independent researcher as well as to a large company. </p>
+<p>Unclear rules about data retention and the reuse of de-identified content can destroy that trust. Removing a researcher’s name from an unpublished proof or algorithm leaves its substance and scientific value intact. Providers should explain whether submitted work can be retained or used for training or other research after de-identification, and what choices researchers have over those uses.</p>
+<p>The laws protecting privacy and other people’s work should be applied fairly to everyone. A company’s size, wealth or technical capabilities --or lack thereof-- should not excuse conduct that would otherwise violate those protections. People’s rights should not depend on how much power they have to defend them.</p>
+<p>Open tools also let us keep that information on infrastructure we control and are a cornerstone of sovereign AI. Researchers can work with unpublished results and companies with confidential designs without having to send them to an outside provider. Sharing the software and keeping the data private are entirely compatible.</p>
+<h2>Safety also depends on access</h2>
+<p>All software needs testing, maintenance, and security work. Open source allows people beyond the original developer to inspect it and contribute improvements.</p>
+<p>There is a real tension between reducing risk and enabling progress. We need to prevent harm while preserving people’s ability to learn, experiment, and build on existing work. Releasing a powerful model deserves scrutiny. Once its weights are widely distributed, they cannot reliably be recalled. Developing and using those capabilities inside a private company, however, deserves the same scrutiny. Private ownership does not establish safety. The risks of releasing a particular model do not, by themselves, justify restricting access to the software and science it builds on.</p>
+<h3>Open, transparent training</h3>
+<p>Making models safer is itself a research problem. Better reasoning can help them interpret context, recognize potential harm, and distinguish legitimate work from misuse. We also need better training and independent testing. Restricting access can obstruct the very work needed to understand these systems and improve their safety.</p>
+<p>That work requires meaningful transparency: what data was used for training, fine-tuning, and alignment, where it came from, how it was obtained, what behavior training rewards, and how safety claims were tested. Public documentation and independent audits should make those claims open to scrutiny while protecting private information.</p>
+<h3>Private threat, open defense</h3>
+<p>Keeping a powerful capability inside a company does not make it safe. In July 2026, OpenAI models compromised parts of Hugging Face’s infrastructure during internal evaluations. OpenAI’s  <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">investigation</a> found that an internal research model operating with reduced safeguards drove the principal intrusion.</p>
+<p>Hugging Face <a href="https://huggingface.co/blog/security-incident-july-2026">reported</a> that hosted models blocked requests needed for its forensic analysis because they contained attack commands and payloads. The team turned to an open-weight model running on its own infrastructure to defend itself, keeping sensitive logs and credentials inside its environment.</p>
+<p>The same knowledge of vulnerabilities can be used to attack a system or to defend it. Defenders need access to capable tools. Open models allow independent researchers to study failures, test safeguards, and develop defenses. Restrictions that obstruct that work have safety consequences too.</p>
+<h2>Who gets to set the rules?</h2>
+<p>We should ask what risk a restriction would reduce, what useful work it would prevent, and who would retain access. Laws governing training data, development, and use should apply fairly to everyone. The aim should be to reduce harm while preserving everyone’s opportunity to contribute to progress.</p>
+<p>We need safety rules set in the public interest and enforced independently. Providers should document how their models were trained and tested (and what data), and be held accountable for meeting those rules. The requirements should be proportionate to the risks and apply fairly to everyone. That also requires international coordination: moving development across a border should not become a way to escape scrutiny.</p>
+<p>Safety rules can restrict who gets to do research without explicitly banning anyone. A costly evaluation, legal review, or reporting requirement may be another operating expense for a large company. For a small lab, it may end a project. Requirements can apply equally on paper while leaving only a few institutions with a practical path to comply.</p>
+<p>Restrictions on releasing models can also limit the research behind them. If researchers cannot realistically share their results or let others examine and extend them, some projects become much harder to justify or sustain.</p>
+<p>These costs may sometimes be justified by specific risks. They should be examined alongside the safety benefits a rule is supposed to provide. Companies and commercial labs have expertise to contribute, but they also have commercial interests in the outcome. Their proposals need independent scrutiny, including scrutiny of whether they unnecessarily exclude others while leaving their own development paths open.</p>
+<p>Now, it is perfectly reasonable for a company to keep a competitive advantage private. It is also reasonable to build a commercial product using open software under its license and charge for a useful service. Regulatory capture, gatekeeping and the like, on the other hand, are not.</p>
+<h3>When restrictions create dependence</h3>
+<p>If a company cannot offer something people value beyond what is already available through open source, perhaps it needs to reconsider its business. Better methods, easier tools, reliable infrastructure, and good support are all things worth paying for.</p>
+<p>But consider what happens if an entity benefits from that freedom, helps make independent alternatives prohibitively difficult, and then sells access to the systems that remain. People who could otherwise build and adapt their own tools become dependent on a gatekeeper. That gatekeeper gets to decide what they may do, on whose terms, and at what price.</p>
+<p>The result is a captive market: close off the alternatives, put access under your control, and charge people to keep doing work they could otherwise do independently. Pay the gatekeeper, accept its terms, or lose the ability to do the work.</p>
+<p>What isn’t reasonable is benefiting from that freedom and then trying to take it away from everyone else.</p>
+<h2>A way forward</h2>
+<p>We are at an inflection point. AI is already changing how we work, learn, and do science. The question is how we shape its development so that it benefits everyone, across every part of society, and reflects the values we want it to serve.</p>
+<p>That future needs contributions from across society. People from all backgrounds should have the opportunity to understand these tools, question their limitations, and help decide how they are used. Open science and open source give us a foundation for that participation.  Protecting privacy, making systems more transparent, and holding their developers accountable help us put our values into practice.</p>
+<p><img alt="People walk through open gates, toward a brighter, open world!" class="figure-left" src="../static/images/open-source-way-forward.jpg" /></p>
+<p>I want AI to help us understand the world, improve people’s lives, and pursue ideas that once seemed out of reach. I am particularly excited about the impact AI will have in the real world, from engineering to health. In engineering, that means better understanding the laws of physics that govern everything around us, from weather to quantum phenomena; building better cars, airplanes, and bridges; and developing new materials. In biotechnology and medicine, I hope AI will help us develop better treatments, find cures for diseases that are deadly today, and help people live healthier, more comfortable lives.</p>
+<p>I’ll keep building open-source tools that make scientific computing and AI for the physical world more accessible. The decades of shared work behind modern AI show what we achieve when people can build on one another’s contributions. We should carry that spirit forward and give the next generation both better tools and the freedom to take them further.</p></div>
+        </div>
+    </div>
+
+    <footer class="article-footer">
+        <div class="article-footer__inner shell">
+            <ul class="article-tags" aria-label="Article topics">
+<li>coding</li><li>AI</li><li>open-source software</li><li>OSS</li>            </ul>
+            <nav class="article-pagination" aria-label="More posts">
+                <a href="../blog/from_2025_to_2026.html">
+                    <span>Older</span>
+                    <strong>2025 Year in Review: Building the Future of Engineering</strong>
+                </a>
+            </nav>
+            <a class="article-footer__all" href="../blog.html"><span class="m" aria-hidden="true">←</span>&nbsp;Back to the blog</a>
+        </div>
+    </footer>
+</article></main>
+    <footer class="site" role="contentinfo">
+    <div class="wrap">
+        <div class="inner">
+            <p class="copyright">©&nbsp;2026 Jean Kossaifi</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a class="lnk" href="../">Home</a></li>
+                    <li><a class="lnk" href="../publications.html">Publications</a></li>
+                    <li><a class="lnk" href="../projects.html">Projects</a></li>
+                    <li><a class="lnk" href="../news.html">Updates</a></li>
+                    <li><a class="lnk" href="../blog.html">Blog</a></li>
+<li><a class="lnk" href="mailto:jean.kossaifi@nvidia.com">Email</a></li>                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
